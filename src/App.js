@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/*------ Pages-----*/
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Team from "./Pages/Team";
+import Contact from "./Pages/Contact";
+import Faq from "./Pages/Faq";
+import ServiceDetails from "./Pages/ServiceDetails";
+import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
+import NotFound from "./Pages/404";
+import SendingProcess from "./Pages/SendingProcces";
+import TravelingProcess from "./Pages/TravelingProcess";
+import Privacy from "./Pages/Privacy";
+import Stats from "./Pages/Stats";
+import TravelerPosts from "./Pages/TravelersPosts";
+import SenderPosts from "./Pages/SenderPosts";
+import Post from "./Pages/Traveler-Post";
+import CreateTravelerPost from "./Pages/CreateTravelerPost.jsx";
+import CreateSenderPost from "./Pages/CreateSenderPost.jsx";
+
+class App extends Component {
+  componentDidMount() {
+    this.props.hideLoader();
+  }
+  render() {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/SendingProcess" element={<SendingProcess />} />
+          <Route path="/TravelingProcess" element={<TravelingProcess />} />
+
+          <Route path="/About" element={<About />} />
+          <Route path="/Privacy" element={<Privacy />} />
+
+          <Route path="/Team" element={<Team />} />
+          <Route path="/Stats" element={<Stats />} />
+
+          <Route path='/post' element={<Post />}>
+            <Route path=':postId' element={<Post />} />
+          </Route>
+
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/TravelersPosts" element={<TravelerPosts />} />
+          <Route path="/SendersPosts" element={<SenderPosts />} />
+
+
+          <Route path="/CreateTravelerPost" element={<CreateTravelerPost />} />
+          <Route path="/ctp" element={<CreateTravelerPost />} />
+
+          <Route path="/CreateSenderPost" element={<CreateSenderPost />} />
+          <Route path="/csp" element={<CreateSenderPost />} />
+
+
+
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/ServiceDetails" element={<ServiceDetails />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    );
+  }
 }
 
 export default App;

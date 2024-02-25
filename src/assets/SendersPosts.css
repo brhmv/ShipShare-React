@@ -1,0 +1,89 @@
+ .posts {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     padding: 10px 20px;
+     justify-content: space-evenly;
+     row-gap: 10px;
+     min-width: 430px;
+ }
+
+
+ .post-item {
+     border: 2px solid black;
+     border-radius: 15px;
+     padding: 10px;
+     margin-bottom: 20px;
+     background-color: #6d61f3;
+     width: 400px;
+     min-height: 200px;
+     min-width: 430px;
+ }
+
+
+ .post-item:hover {
+     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+     background-color: #a440eb;
+ }
+
+ .post-item h2 {
+     color: #333;
+     font-weight: 800;
+ }
+
+ .post-image img {
+     max-width: 100%;
+     height: auto;
+     border-radius: 15px;
+     margin-bottom: 10px;
+     width: 400px;
+     margin: 0px;
+ }
+
+ .post-details {
+     text-align: left;
+     padding-left: 10px;
+ }
+
+ .p-detail {
+     font-size: 25px;
+     margin: 5px 0;
+     max-width: 400px;
+     color: black;
+ }
+
+ .span-detail {
+     font-weight: 700;
+ }
+
+ .post-link {
+     text-decoration: none;
+     color: inherit;
+ }
+
+ .post-link:hover {
+     color: inherit;
+     text-decoration: none;
+ }
+
+ .view-img {
+     width: 40px;
+     height: 40px;
+ }
+
+ .loc-img {
+     width: 30px;
+     height: 30px;
+ }
+
+
+ .search-form {
+     display: flex;
+     flex-flow: row;
+     margin: auto;
+ }
+
+
+ .form-control {
+     font-size: 22px;
+ }
