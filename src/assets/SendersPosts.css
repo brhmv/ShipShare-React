@@ -10,14 +10,14 @@
 
 
  .post-item {
-     border: 2px solid black;
-     border-radius: 15px;
-     padding: 10px;
+     /* border: 2px solid black; */
+     border-radius: 15px !important;
+     padding: 10px 15px;
      margin-bottom: 20px;
      background-color: #6d61f3;
-     width: 400px;
-     min-height: 200px;
-     min-width: 430px;
+     /* width: 400px; */
+     /* min-height: 200px; */
+     /* min-width: 430px; */
  }
 
 
@@ -31,13 +31,17 @@
      font-weight: 800;
  }
 
+ .post-image {
+     padding: 0%;
+ }
+
  .post-image img {
      max-width: 100%;
      height: auto;
      border-radius: 15px;
      margin-bottom: 10px;
      width: 400px;
-     margin: 0px;
+     margin-left: 13px !important;
  }
 
  .post-details {
@@ -81,6 +85,7 @@
      display: flex;
      flex-flow: row;
      margin: auto;
+     gap: 20px;
  }
 
 

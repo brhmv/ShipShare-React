@@ -5,11 +5,11 @@ import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
-import location from '../img/location.png';
-import date from '../img/date.png';
-import size from '../img/size.png';
-import kg from '../img/kg.png';
-import view from '../img/view.jpg';
+
+
+
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
 
 // import { useSelector } from 'react-redux';
 
@@ -27,7 +27,6 @@ function TarvelerPosts() {
             itemWeight: 1.5,
             price: 25.99,
             views: 100,
-            itemCategory: 'Travel',
             isAvailable: true,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -42,7 +41,6 @@ function TarvelerPosts() {
             itemWeight: 1.5,
             price: 25.99,
             views: 10,
-            itemCategory: 'Travel',
             isAvailable: true,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -57,7 +55,6 @@ function TarvelerPosts() {
             itemWeight: 1.5,
             price: 25.99,
             views: 40,
-            itemCategory: 'Travel',
             isAvailable: true,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -72,7 +69,6 @@ function TarvelerPosts() {
             itemWeight: 1.5,
             price: 25.99,
             views: 300,
-            itemCategory: 'Travel',
             isAvailable: true,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -87,7 +83,6 @@ function TarvelerPosts() {
             itemWeight: 1.5,
             price: 25.99,
             views: 50,
-            itemCategory: 'Travel',
             isAvailable: true,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -102,7 +97,6 @@ function TarvelerPosts() {
             itemWeight: 0.8,
             price: 49.99,
             views: 20,
-            itemCategory: 'Travel',
             isAvailable: false,
             image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
         },
@@ -178,27 +172,23 @@ function TarvelerPosts() {
                             </div>
 
                             <div className="post-details">
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Description:</span>{post.description}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <img className='loc-img' alt='img' src={location}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <img className='loc-img' alt='img' src={location}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <img className='loc-img' alt='img' src={date}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Size:</span> {post.itemSize} <img className='loc-img' alt='img' src={size}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Weight:</span> {post.itemWeight} <img className='loc-img' alt='img' src={kg}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemCategory}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <img alt='img' className='view-img' src={view}></img></p>
+                                {/* <p className="p-detail"><span className="span-detail">Description:</span>{post.description}</p> */}
 
+                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+
+                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate}  <FaCalendarAlt /></p>
+
+                                <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
+
+                                {/* <p className="p-detail"><span className="span-detail">Size:</span> {post.itemSize} <img className='loc-img' alt='img' src={size}></img></p> */}
+
+                                {/* <p className="p-detail"><span className="span-detail">Weight:</span> {post.itemWeight} <img className='loc-img' alt='img' src={kg}></img></p> */}
+
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
+
+                                {/* <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <img alt='img' className='view-img' src={view}></img></p> */}
                             </div>
                         </div>
                     </Link>

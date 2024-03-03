@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Reveal from 'react-reveal/Reveal';
+import { Link } from 'react-router-dom';
 
 class AgencyBanner extends Component {
     render() {
@@ -25,9 +26,10 @@ class AgencyBanner extends Component {
                                             )
                                         })
                                     }
-                                    <div className="action_btn d-flex align-items-center mt_60">
-                                        <a href="/#" className="btn_hover agency_banner_btn wow fadeInLeft" data-wow-delay="0.5s">Get in Touch</a>
-                                        <a href="/#" className="agency_banner_btn_two wow fadeInLeft" data-wow-delay="0.7s">Google Sing Up</a>
+                                    <div className="action_btn d-flex align-items-center mt_60 ">
+                                        <Link to="/SignUp" className="btn_hover agency_banner_btn wow fadeInLeft" data-wow-delay="0.5s">Sign Up</Link>
+                                        <br />
+                                        <Link to="/SendingProcess" className="btn_hover agency_banner_btn wow fadeInLeft" data-wow-delay="0.5s">How it works?</Link>
                                     </div>
                                 </Reveal>
                             </div>

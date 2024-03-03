@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Sticky from 'react-stickynode';
+import Cookies from 'js-cookie';
+
 
 class CustomNavbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isAuthenticated: !!Cookies.get('accessToken')
+        };
+    }
+
+    handleSignOut = () => {
+        Cookies.remove('accessToken');
+        this.setState({ isAuthenticated: false });
+    };
+
     render() {
         var { mClass, nClass, cClass, slogo, hbtnClass } = this.props;
+        const { isAuthenticated } = this.state;
+
         return (
             <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
                 <header className="header_area">
@@ -39,7 +55,7 @@ class CustomNavbar extends Component {
                                             Home
                                         </Link>
 
-                                        <div className="mega_menu_inner">
+                                        {/* <div className="mega_menu_inner">
                                             <ul className="dropdown-menu">
                                                 <li className="nav-item">
                                                     <ul className="dropdown-menu scroll">
@@ -57,20 +73,18 @@ class CustomNavbar extends Component {
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> */}
                                     </li>
 
-                                    {/* done */}
                                     <li className="dropdown submenu nav-item">
                                         <Link to="./" title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">How ShipShare Works</Link>
                                         <ul role="menu" className=" dropdown-menu">
-                                            <li className="nav-item"><NavLink exact title="For Senders" className="nav-link" to='/SendingProcess'>For Senders</NavLink></li>
-                                            <li className="nav-item"><NavLink exact title="For Travelers" className="nav-link" to='/TravelingProcess'>For Travelers</NavLink></li>
+                                            <li className="nav-item"><NavLink exact='true' title="For Senders" className="nav-link" to='/SendingProcess'>For Senders</NavLink></li>
+                                            <li className="nav-item"><NavLink exact='true' title="For Travelers" className="nav-link" to='/TravelingProcess'>For Travelers</NavLink></li>
                                         </ul>
                                     </li>
 
 
-                                    {/* done */}
                                     <li className="dropdown submenu nav-item"><Link title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" to="#">Posts</Link>
                                         <ul role="menu" className=" dropdown-menu">
                                             <li className="nav-item"><NavLink title="TravelersPosts" className="nav-link" to='/TravelersPosts'>Travelers Posts</NavLink></li>
@@ -78,29 +92,31 @@ class CustomNavbar extends Component {
                                         </ul>
                                     </li>
 
-
-
-
-
                                     <li className="dropdown submenu nav-item">
                                         <Link to="./" title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</Link>
                                         <ul role="menu" className=" dropdown-menu">
-                                            <li className="nav-item"><NavLink exact title="Team" className="nav-link" to='/Team'>Team</NavLink></li>
-                                            <li className="nav-item"><NavLink exact title="Faq" className="nav-link" to='/Faq'>Faq</NavLink></li>
+                                            <li className="nav-item"><NavLink exact='true' title="Team" className="nav-link" to='/Team'>Team</NavLink></li>
+                                            <li className="nav-item"><NavLink exact='true' title="Faq" className="nav-link" to='/Faq'>Faq</NavLink></li>
                                         </ul>
                                     </li>
 
 
-                                    {/* done */}
-                                    <li className="nav-item"><NavLink exact title="About" className="nav-link" to='/About'>About</NavLink></li>
+                                    <li className="nav-item"><NavLink exact='true' title="About" className="nav-link" to='/About'>About</NavLink></li>
 
-                                    {/* done */}
                                     <li className="nav-item"><NavLink title="Pricing" className="nav-link" to="/Contact">Contact</NavLink></li>
                                 </ul>
 
-                                {/* done */}
-                                <a className={`btn_get btn_hover ${hbtnClass}`} href="#get-app"><NavLink exact title="SignIn" className="nav-link" to='/SignIn'>Sign In</NavLink></a>
-                                <a className={`btn_get btn_hover ${hbtnClass}`} href="#get-app"><NavLink exact title="SignUp" className="nav-link" to='/SignUp'>Sign Up</NavLink></a>
+                                {isAuthenticated ? (
+                                    <div className='nav-buttons-div'>
+                                        <NavLink exact='true' title="MyProfile" className={`btn_get btn_hover ${hbtnClass} nav-buuton`} to='/Profile'>My Profile</NavLink>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buuton`} onClick={this.handleSignOut}>Sign Out</button>
+                                    </div>
+                                ) : (
+                                    <div className='nav-buttons-div'>
+                                        <NavLink exact='true' title="SignIn" className={`btn_get btn_hover ${hbtnClass} nav-buuton`} to='/SignIn'>Sign In</NavLink>
+                                        <NavLink exact='true' title="SignUp" className={`btn_get btn_hover ${hbtnClass} nav-buuton`} to='/SignUp'>Sign Up</NavLink>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </nav>

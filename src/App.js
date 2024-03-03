@@ -20,11 +20,15 @@ import SenderPosts from "./Pages/SenderPosts";
 import Post from "./Pages/Traveler-Post";
 import CreateTravelerPost from "./Pages/CreateTravelerPost.jsx";
 import CreateSenderPost from "./Pages/CreateSenderPost.jsx";
+import Profile from "./Pages/Profile.jsx";
+import Chat from "./Pages/Chat.jsx";
 
 class App extends Component {
+
   componentDidMount() {
     this.props.hideLoader();
   }
+
   render() {
     return (
       <Router>
@@ -40,10 +44,12 @@ class App extends Component {
 
           <Route path="/Team" element={<Team />} />
           <Route path="/Stats" element={<Stats />} />
+      
+          <Route path='/post/:postId' element={<Post />} />
 
-          <Route path='/post' element={<Post />}>
-            <Route path=':postId' element={<Post />} />
-          </Route>
+          <Route path='/profile/:userId' element={<Profile />} />
+          <Route path='/profile' element={<Profile />} />
+
 
           <Route path="/Contact" element={<Contact />} />
           <Route path="/TravelersPosts" element={<TravelerPosts />} />
@@ -56,9 +62,8 @@ class App extends Component {
           <Route path="/CreateSenderPost" element={<CreateSenderPost />} />
           <Route path="/csp" element={<CreateSenderPost />} />
 
-
-
           <Route path="/Faq" element={<Faq />} />
+          <Route path="/Chat" element={<Chat />} />
           <Route path="/ServiceDetails" element={<ServiceDetails />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />

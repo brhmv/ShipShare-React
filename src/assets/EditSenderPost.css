@@ -1,0 +1,31 @@
+.edit-post-container {
+    background-color: rgb(116, 116, 116);
+    border-radius: 25px;
+    color: black;
+    padding: 10px;
+
+
+}
+
+.modal-div input {
+    font-size: 25px;
+
+}
+
+.modal-label {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.modal-butons {
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.modal-h2 {
+    font-size: 40px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}

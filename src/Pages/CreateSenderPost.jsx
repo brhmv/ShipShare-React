@@ -4,10 +4,13 @@ import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
-import location from '../img/location.png';
-import date from '../img/date.png';
-import size from '../img/size.png';
-import kg from '../img/kg.png';
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
+import { GiWeight } from "react-icons/gi";
+import { TbRulerMeasure } from "react-icons/tb";
+
+
+
 
 function CreateSenderPost() {
     const [description, setDescription] = useState('');
@@ -17,7 +20,6 @@ function CreateSenderPost() {
     const [itemType, setItemType] = useState('');
     const [itemSize, setItemSize] = useState('');
     const [itemWeight, setItemWeight] = useState('');
-    const [itemCategory, setItemCategory] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState(null);
 
@@ -28,7 +30,6 @@ function CreateSenderPost() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your logic to handle the form submission
     };
 
     var itemCategories = ['Documents & Books', 'Health & Beauty', 'Food & Beverages', 'Toys & Games', 'Clothing', 'Sports & Outdoor', 'Furniture', 'Electronics', 'Automotive', 'other'];
@@ -50,35 +51,35 @@ function CreateSenderPost() {
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Start Destination:</span> <img className='loc-img' alt='img' src={location}></img></p>
+                        <p className="p-detail"><span className="span-detail">Start Destination:</span> <FaLocationDot /></p>
                         <input type="text" className="form-control" value={startDestination} onChange={(e) => setStartDestination(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">End Destination:</span> <img className='loc-img' alt='img' src={location}></img></p>
+                        <p className="p-detail"><span className="span-detail">End Destination:</span> <FaLocationDot /></p>
                         <input type="text" className="form-control" value={endDestination} onChange={(e) => setEndDestination(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Deadline Date:</span> <img className='loc-img' alt='img' src={date}></img></p>
+                        <p className="p-detail"><span className="span-detail">Deadline Date:</span> <FaCalendarAlt /></p>
                         <input type="date" className="form-control" value={deadlineDate} onChange={(e) => setDeadlineDate(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Item Size: (height/width/length)sm</span> <img className='loc-img' alt='img' src={size}></img></p>
+                        <p className="p-detail"><span className="span-detail">Item Size: (height/width/length)sm</span> <TbRulerMeasure /></p>
                         <input type="text" className="form-control" value={itemSize} onChange={(e) => setItemSize(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Item Weight:</span> <img className='loc-img' alt='img' src={kg}></img></p>
+                        <p className="p-detail"><span className="span-detail">Item Weight:</span> <GiWeight /></p>
                         <input type="text" className="form-control" value={itemWeight} onChange={(e) => setItemWeight(e.target.value)} />
                     </div>
 

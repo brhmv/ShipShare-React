@@ -4,6 +4,7 @@ import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import { useParams } from 'react-router-dom';
+import { AiFillEye } from "react-icons/ai";
 
 function TravelerPost() {
 
@@ -179,7 +180,7 @@ function TravelerPost() {
                 <div className="post-details">
                     <p><strong>Title:</strong> {post.title}</p>
                     <hr />
-                    <p><strong>Views:</strong> {post.views}</p>
+                    <p><strong>Views:</strong> {post.views} <AiFillEye /></p>
                     <hr />
                     <p><strong>Description:</strong> {post.description}</p>
                     <hr />
@@ -197,6 +198,8 @@ function TravelerPost() {
 
                     {/* <div className="post-display-user">
                         <p>Posted by: <Link to="#" onClick={() => redirectToChat(post.user.userId)}>{post.user.username}</Link></p>
+
+
                     </div> */}
 
                 </div>

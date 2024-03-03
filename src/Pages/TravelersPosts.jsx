@@ -7,9 +7,9 @@ import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import Image from '../img/logoL.png';
-import view from '../img/view.jpg';
-import location from '../img/location.png';
-import date from '../img/date.png';
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
+
 
 function TarvelerPosts() {
 
@@ -205,7 +205,7 @@ function TarvelerPosts() {
 
             <br />
 
-            <h1>Searh Post</h1>
+            <h1 className='posts-h1'>Searh Post</h1>
 
             <br />
 
@@ -250,28 +250,18 @@ function TarvelerPosts() {
                 {filteredPosts.map(post => (
                     <Link key={post.id} to={`/post/${post.id}`} className="post-link">
                         <div key={post.id} className="post-item">
-                            <div className="post-image">
-                                <img src={post.image} alt={post.id} />
-                            </div>
 
                             <div className="post-details">
 
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Description:</span>{post.description}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <img className='loc-img' alt='img' src={location}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <img className='loc-img' alt='img' src={location}></img></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <img className='loc-img' alt='img' src={date}></img></p>
-                                <hr />
+                                <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
+
+                                <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
+
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+
                                 <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemCategory}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
-                                <hr />
-                                <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <img alt='img' className='view-img' src={view}></img></p>
+
+                                <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
                             </div>
                         </div>

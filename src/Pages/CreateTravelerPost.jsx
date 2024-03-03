@@ -5,8 +5,8 @@ import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
-import location from '../img/location.png';
-import date from '../img/date.png';
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
 
 function CreateTravelerPost() {
     // const [title, setTitle] = useState('');
@@ -49,21 +49,21 @@ function CreateTravelerPost() {
 
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Start Destination:</span> <img className='loc-img' alt='img' src={location}></img></p>
+                        <p className="p-detail"><span className="span-detail">Start Destination:</span> <FaLocationDot /></p>
                         <input type="text" className="form-control" id="startDestination" value={startDestination} onChange={(e) => setStartDestination(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">End Destination:</span> <img className='loc-img' alt='img' src={location}></img></p>
+                        <p className="p-detail"><span className="span-detail">End Destination:</span> <FaLocationDot /></p>
                         <input type="text" className="form-control" value={endDestination} onChange={(e) => setEndDestination(e.target.value)} />
                     </div>
 
                     <hr />
 
                     <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Deadline Date:</span> <img className='loc-img' alt='img' src={date}></img></p>
+                        <p className="p-detail"><span className="span-detail">Deadline Date:</span> <FaCalendarAlt /></p>
                         <input type="date" className="form-control" value={deadlineDate} onChange={(e) => setDeadlineDate(e.target.value)} />
                     </div>
 

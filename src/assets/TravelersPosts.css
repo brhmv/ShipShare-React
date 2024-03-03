@@ -1,60 +1,74 @@
  .posts {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
+     /* display: flex; */
+     /* flex-direction: row; */
+     /* flex-wrap: wrap; */
+     /* justify-content: space-evenly; */
+     display: grid !important;
+     grid-template-columns: auto auto auto !important;
      padding: 10px 20px;
-     justify-content: space-evenly;
      row-gap: 10px;
      min-width: 430px;
+     /* background-color: #6d61f3 !important; */
+
  }
 
 
  .post-item {
-     border: 2px solid black;
+     /* border: 2px solid black; */
      border-radius: 15px;
      padding: 10px;
      margin-bottom: 20px;
-     background-color: #6d61f3;
-     width: 400px;
+     /* background-color: #6d61f3; */
+     /* background-color: rgb(202, 202, 202) !important; */
+     background-color: #6d61f3 !important;
+     /* width: 400px; */
      min-height: 200px;
-     min-width: 430px;
+     /* min-width: 430px; */
  }
 
 
  .post-item:hover {
+     background-color: #f2f2f2 !important;
      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-     background-color: #a440eb;
+
+     transform: scale(1.05);
+     transition: 1s all;
+
+     .p-detail,
+     .span-detail {
+         color: #6d61f3 !important;
+     }
+
  }
 
- .post-item h2 {
-     color: #333;
-     font-weight: 800;
+ .posts-h1 {
+     color: #000000;
+     font-weight: 500;
  }
 
- .post-image img {
-     max-width: 100%;
-     height: auto;
-     border-radius: 15px;
-     margin-bottom: 10px;
-     max-width: 350px;
-     margin: 0px;
-     margin-left: 50px;
- }
 
  .post-details {
      text-align: left;
      padding-left: 10px;
+     align-items: baseline;
  }
 
  .p-detail {
+     display: flex;
+     flex-direction: row;
      font-size: 25px;
-     margin: 5px 0;
+     margin: 15px 0 !important;
      max-width: 400px;
-     color: black;
+     color: rgb(255, 255, 255) !important;
+     /* color: rgb(0, 0, 0) !important; */
+     align-items: center;
+     gap: 5px;
  }
 
  .span-detail {
      font-weight: 700;
+     line-break: unset;
+     color: rgb(255, 255, 255) !important;
  }
 
  .post-link {
@@ -82,6 +96,7 @@
      display: flex;
      flex-flow: row;
      margin: auto;
+     gap: 20px;
  }
 
 
