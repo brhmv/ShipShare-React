@@ -1,14 +1,13 @@
-import '../assets/Traveler-Post.css';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import { Link, useParams } from 'react-router-dom';
-import { AiFillEye } from "react-icons/ai";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
 
-function TravelerPost() {
-
-    // let all_posts = useSelector((state) => state.shop.allPosts);
+function UserView() {
+    const { userId } = useParams();
 
     const travelerPosts = [
         {
@@ -165,46 +164,45 @@ function TravelerPost() {
         }
     ];
 
-    const { postId } = useParams();
-    const post = travelerPosts.find((e) => e.id === Number(postId));
+    const userTravelPosts = travelerPosts.filter(post => post.userId === userId);
 
 
     return (
         <div className='privacy'>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
-            <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Post Details" Pdescription="-----------------------" />
+            <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User View" Pdescription="--------" />
 
-            <div className="post-details-container">
-                <h2 className="post-details-title">Traveler Post Details</h2>
+            <div className="container text-align-center">
 
-                <div className="post-display-user">
-                    <p><strong>Posted by:</strong> <Link to={`/user/${post.userId}`} className='btn btn-success' >{post.user.username}</Link></p>
-                </div>
-
-                <div className="post-details">
-                    <p><strong>Title:</strong> {post.title}</p>
-                    <hr />
-                    <p><strong>Views:</strong> {post.views} <AiFillEye /></p>
-                    <hr />
-                    <p><strong>Description:</strong> {post.description}</p>
-                    <hr />
-                    <p><strong>Start Destination:</strong> {post.startDestination}</p>
-                    <hr />
-                    <p><strong>End Destination:</strong> {post.endDestination}</p>
-                    <hr />
-                    <p><strong>Deadline Date:</strong> {post.deadlineDate}</p>
-                    <hr />
-                    <p><strong>Price:</strong> {post.price}</p>
-                    <hr />
-                    <p><strong>Is Available:</strong> {post.isAvailable ? 'Yes' : 'No'}</p>
-                    <hr />
-                </div>
+                <Link to={`/chat/${userId}`} className='btn btn-success'>Chat with user</Link>
             </div>
+
+            <div className='posts'>
+                {userTravelPosts.map(post => (
+                    <div key={post.id} className="post-item">
+
+                        <div className="post-details">
+
+                            <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
+
+                            <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
+
+                            <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+
+                            <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemCategory}</p>
+
+                            <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
+
+                        </div>
+                    </div>
+                ))
+                }
+            </div >
 
             <Footer FooterData={FooterData} />
         </div >
     );
 }
 
-export default TravelerPost;
+export default UserView;

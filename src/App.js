@@ -22,6 +22,7 @@ import CreateTravelerPost from "./Pages/CreateTravelerPost.jsx";
 import CreateSenderPost from "./Pages/CreateSenderPost.jsx";
 import Profile from "./Pages/Profile.jsx";
 import Chat from "./Pages/Chat.jsx";
+import User from "./Pages/UserView.jsx";
 
 class App extends Component {
 
@@ -44,11 +45,13 @@ class App extends Component {
 
           <Route path="/Team" element={<Team />} />
           <Route path="/Stats" element={<Stats />} />
-      
+
           <Route path='/post/:postId' element={<Post />} />
 
           <Route path='/profile/:userId' element={<Profile />} />
           <Route path='/profile' element={<Profile />} />
+
+          <Route path='/user/:userId' element={<User />} />
 
 
           <Route path="/Contact" element={<Contact />} />

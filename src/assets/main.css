@@ -4670,6 +4670,7 @@ button:focus {
   z-index: 1;
   padding: 235px 0px 125px;
   overflow: hidden;
+  height: 5px;
 }
 
 .breadcrumb_area .breadcrumb_shap {
