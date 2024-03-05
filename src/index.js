@@ -19,6 +19,7 @@ import "popper.js";
 
 import { Provider } from "react-redux"
 import store from "./Store/Store"
+import { createRoot } from 'react-dom/client';
 
 const loader = document.querySelector("#preloader");
 
@@ -27,13 +28,13 @@ const showLoader = () => loader.classList.remove("loader--hide");
 
 const hideLoader = () => loader.classList.add("loader--hide");
 
-
+const container = document.getElementById('root');
+const root = createRoot(container);
 setTimeout(() => {
-  ReactDOM.render(
+  root.render(
     <Provider store={store}>
       <App hideLoader={hideLoader} showLoader={showLoader} />
     </Provider>,
-    document.getElementById("root")
   );
 }, 1000);
 
