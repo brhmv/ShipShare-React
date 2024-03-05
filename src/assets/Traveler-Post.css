@@ -2,25 +2,43 @@
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .post-details-title {
-    font-size: 24px;
+    font-size: 34px;
     color: #333;
+    margin: 0%;
 }
 
-.post-details p {
+.travel-post-details {
+    border: 1px #aeaeae solid;
+    padding: 10px;
+}
+
+.travel-post-details p {
     font-size: 26px;
     color: #555;
     margin-top: 10px;
 }
 
-.post-details p {
+.travel-post-details p {
     margin: 5px 0;
 }
 
-.post-details p strong {
+.travel-post-details p strong {
     font-weight: bold;
     margin-right: 5px;
+}
+
+.poster-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 20px;
+}
+
+.poster-div a {
+    font-size: 25px;
 }

@@ -119,7 +119,7 @@ function TarvelerPosts() {
 
             <br />
 
-            <h1>Searh Post</h1>
+            <h1 className='posts-h1'>Searh Post</h1>
 
             <br />
 
@@ -164,12 +164,12 @@ function TarvelerPosts() {
                 {filteredPosts.map(post => (
                     <Link key={post.id} to={`/post/${post.id}`} className="post-link">
                         <div key={post.id} className="post-item" onClick={<Link to='/notifictaion'></Link>}>
+
                             <div className="post-image">
                                 <img src={post.image} alt={post.id} />
                             </div>
 
                             <div className="post-details">
-                                {/* <p className="p-detail"><span className="span-detail">Description:</span>{post.description}</p> */}
 
                                 <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
 
@@ -179,18 +179,12 @@ function TarvelerPosts() {
 
                                 <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
 
-                                {/* <p className="p-detail"><span className="span-detail">Size:</span> {post.itemSize} <img className='loc-img' alt='img' src={size}></img></p> */}
-
-                                {/* <p className="p-detail"><span className="span-detail">Weight:</span> {post.itemWeight} <img className='loc-img' alt='img' src={kg}></img></p> */}
-
                                 <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
 
-                                {/* <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <img alt='img' className='view-img' src={view}></img></p> */}
                             </div>
                         </div>
                     </Link>
                 ))}
-                <hr />
             </div>
 
 

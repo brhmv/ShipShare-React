@@ -20,7 +20,7 @@
      margin-bottom: 20px;
      /* background-color: #6d61f3; */
      /* background-color: rgb(202, 202, 202) !important; */
-     background-color: #6d61f3 !important;
+     background-color: #6d61f3;
      /* width: 400px; */
      min-height: 200px;
      /* min-width: 430px; */
@@ -42,8 +42,8 @@
  }
 
  .posts-h1 {
-     color: #000000;
-     font-weight: 500;
+     color: #6d61f3;
+     font-weight: 700;
  }
 
 
