@@ -35,9 +35,9 @@ const ChatBanner = () => {
                 className="text-center pr_100 wow fadeInUp"
                 data-wow-delay="0.4s"
               >
-                <a href="/#" className="chat_btn btn_hover">
+                {/* <a href="/#" className="chat_btn btn_hover">
                   Live chat for free
-                </a>
+                </a> */}
 
                 <span>(No credit card requierd)</span>
               </div>

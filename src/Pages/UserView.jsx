@@ -5,167 +5,200 @@ import Breadcrumb from '../components/Breadcrumb';
 import { Link, useParams } from 'react-router-dom';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { TbRulerMeasure } from "react-icons/tb";
+import { AiFillEye } from "react-icons/ai";
+import { GiWeight } from "react-icons/gi";
+import '../assets/UserView.css';
+
 
 function UserView() {
     const { userId } = useParams();
+    const [userData, setUserData] = useState(null);
+    const [userSenderPosts, setSenderPosts] = useState([]);
+    const [userTravelerPosts, setTravelerPosts] = useState([]);
 
-    const travelerPosts = [
+    const [postType, setPostType] = useState('sender');
+
+    const usersArray = [
         {
-            id: 1,
-            userId: '123e4567-e89b-12d3-a456-426614174000',
-            title: 'Trip to Paris',
-            views: 100,
-            description: 'Exploring the beauty of Paris!',
-            startDestination: 'New York',
-            endDestination: 'Paris',
-            deadlineDate: new Date('2024-12-31').toISOString(),
-            user: {
-                username: 'john_doe',
-                fullName: 'John Doe'
-            },
-            price: 500,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
+            id: "123e4567-e89b-12d3-a456-426614174006",
+            name: 'David white',
+            email: 'john@example.com',
+            senderPosts: [
+                {
+                    id: 1,
+                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
+                    description: 'Sender Post 1 Description',
+                    startDestination: 'Start Destination 1',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: '10-10-2021',
+                    itemType: 'other',
+                    price: 10,
+                    size: 13,
+                    weight: 30,
+                    views: 20
+                },
+                {
+                    id: 2,
+                    description: 'Sender Post 1 Description',
+                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
+                    startDestination: 'Start Destination 1',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: '10-10-2021',
+                    itemType: 'Electronics',
+                    price: 10,
+                    size: 13,
+                    weight: 30,
+                    views: 20
+                },
+                {
+                    id: 3,
+                    description: 'Sender Post 1 Description',
+                    startDestination: 'Start Destination 1',
+                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: '10-10-2021',
+                    itemType: 'Automotive',
+                    price: 10,
+                    weight: 30,
+                    size: 13,
+                    views: 20
+                },
+            ],
+            travelerPosts: [
+                {
+                    id: 4,
+                    description: 'Traveler Post 1 Description',
+                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
+                    startDestination: 'Start Destination 1',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: 'Deadline Date 1',
+                    itemType: 'Item Category 1',
+                    vehicleCategory: 'Car',
+                    price: 10,
+                    views: 20
+                },
+                {
+                    id: 5,
+                    description: 'Traveler Post 1 Description',
+                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
+                    startDestination: 'Start Destination 1',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: 'Deadline Date 1',
+                    itemType: 'Item Category 1',
+                    vehicleCategory: 'Bike',
+                    price: 10,
+                    views: 20
+                },
+                {
+                    id: 6,
+                    description: 'Traveler Post 1 Description',
+                    startDestination: 'Start Destination 1',
+                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
+                    endDestination: 'End Destination 1',
+                    deadlineDate: 'Deadline Date 1',
+                    itemType: 'Item Category 1',
+                    vehicleCategory: 'Ship',
+                    price: 10,
+                    views: 20
+                }
+            ]
         },
-        {
-            id: 2,
-            userId: '123e4567-e89b-12d3-a456-426614174000',
-            title: 'Beach Vacation',
-            views: 50,
-            description: 'Relaxing at the beach!',
-            startDestination: 'Miami',
-            endDestination: 'Hawaii',
-            deadlineDate: new Date('2024-11-15').toString(),
-            user: {
-                username: 'jane_smith',
-                fullName: 'Jane Smith'
-            },
-            price: 800,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 3,
-            userId: '123e4567-e89b-12d3-a456-426614174002',
-            title: 'Mountain Hiking',
-            views: 75,
-            description: 'Conquering the highest peaks!',
-            startDestination: 'Denver',
-            endDestination: 'Switzerland',
-            deadlineDate: new Date('2024-10-20').toISOString(),
-            user: {
-                username: 'mike_jackson',
-                fullName: 'Mike Jackson'
-            },
-            price: 1000,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 4,
-            userId: '123e4567-e89b-12d3-a456-426614174003',
-            title: 'City Tour',
-            views: 30,
-            description: 'Exploring urban landscapes!',
-            startDestination: 'Los Angeles',
-            endDestination: 'Tokyo',
-            deadlineDate: new Date('2024-09-15').toISOString(),
-            user: {
-                username: 'lisa_adams',
-                fullName: 'Lisa Adams'
-            },
-            price: 1200,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 5,
-            userId: '123e4567-e89b-12d3-a456-426614174004',
-            title: 'Cultural Exchange',
-            views: 90,
-            description: 'Immersing in local traditions!',
-            startDestination: 'London',
-            endDestination: 'Kyoto',
-            deadlineDate: new Date('2024-08-10').toISOString(),
-            user: {
-                username: 'sam_wilson',
-                fullName: 'Sam Wilson'
-            },
-            price: 700,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 6,
-            userId: '123e4567-e89b-12d3-a456-426614174005',
-            title: 'Adventure Expedition',
-            views: 120,
-            description: 'Venturing into the unknown!',
-            startDestination: 'Sydney',
-            endDestination: 'Amazon Rainforest',
-            deadlineDate: new Date('2024-07-25').toISOString(),
-            user: {
-                username: 'emily_green',
-                fullName: 'Emily Green'
-            },
-            price: 1500,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 7,
-            userId: '123e4567-e89b-12d3-a456-426614174006',
-            title: 'Safari Adventure',
-            views: 80,
-            description: 'Encountering wildlife up close!',
-            startDestination: 'Nairobi',
-            endDestination: 'Maasai Mara',
-            deadlineDate: new Date('2024-06-20').toISOString(),
-            user: {
-                username: 'david_white',
-                fullName: 'David White'
-            },
-            price: 900,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        },
-        {
-            id: 8,
-            userId: '123e4567-e89b-12d3-a456-426614174007',
-            title: 'Road Trip',
-            views: 40,
-            description: 'Exploring scenic routes!',
-            startDestination: 'San Francisco',
-            endDestination: 'Grand Canyon',
-            deadlineDate: new Date('2024-05-15').toISOString(),
-            user: {
-                username: 'sarah_brown',
-                fullName: 'Sarah Brown'
-            },
-            price: 600,
-            favorites: [],
-            transactions: [],
-            isAvailable: true,
-            itemCategory: 'Travel'
-        }
     ];
 
-    const userTravelPosts = travelerPosts.filter(post => post.userId === userId);
+    useEffect(() => {
+        const user = usersArray.find(user => user.id === userId);
 
+        if (user) {
+            setUserData(user);
+            setSenderPosts(user.senderPosts);
+            setTravelerPosts(user.travelerPosts);
+        }
+    }, [userId]);
+
+
+    useEffect(() => {
+        GetUserData(parseInt(userId));
+
+        // fetchUserData(userId);
+    }, [userId]);
+
+
+    const GetUserData = (userId) => {
+        try {
+            const user = usersArray.find(user => user.id === userId);
+            if (user) {
+                setUserData(user);
+                setSenderPosts(user.senderPosts);
+                setTravelerPosts(user.travelerPosts);
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    }
+
+    const handlePostTypeChange = (type) => {
+        setPostType(type);
+    };
+
+
+    const renderSenderPosts = () => {
+        return (
+            <div className="user-posts-div">
+                {userSenderPosts.length !== 0 ?
+                    userSenderPosts.map((post, index) => (
+                        <Link key={post.id} to={`/post/${post.id}`} className="post-link">
+                            <div key={index} className="user-post-item">
+
+                                <div className="post-image">
+                                    <img src={post.imageUrl} alt={post.id} />
+                                </div>
+
+                                <div className="user-post-details">
+                                    <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
+                                    <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                    <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
+                                    <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
+                                    <p className="p-detail"><span className="span-detail">Size:</span> {post.size} <TbRulerMeasure /></p>
+                                    <p className="p-detail"><span className="span-detail">Weight:</span> {post.weight} <GiWeight /></p>
+                                    <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
+
+                                </div>
+                            </div>
+                        </Link>
+                    )) : < h1 > No post Yet.</h1 >
+                }
+            </div >
+        );
+    };
+
+    const renderTravelerPosts = () => {
+        return (
+            <div className="userTravelerPosts-div">
+                {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
+                    <div key={index} className="post">
+                        <div className="post-details">
+
+                            <span className="span-detail">Description:</span><p className="p-detail"> {post.description}</p>
+                            <span className="span-detail">Start Destination:</span><p className="p-detail"> {post.startDestination} <FaLocationDot /></p>
+                            <span className="span-detail">End Destination:</span><p className="p-detail"> {post.endDestination} <FaLocationDot /></p>
+                            <span className="span-detail">Deadline Date:</span><p className="p-detail"> {post.deadlineDate} <FaCalendarAlt /></p>
+                            <span className="span-detail">Item Category:</span><p className="p-detail"> {post.itemType}</p>
+                            <span className="span-detail">Price:</span><p className="p-detail"> {post.price}</p>
+
+                            <span className="span-detail">Vehicle Category:</span><p className="p-detail"> {post.vehicleCategory}</p>
+
+                            <span className="span-detail">Views:</span><p className="p-detail"> {post.views} <AiFillEye /></p>
+
+                        </div>
+                    </div>
+                )) : < h1 > No post Yet.</h1 >}
+            </div>
+        );
+    };
 
     return (
         <div className='privacy'>
@@ -173,32 +206,44 @@ function UserView() {
 
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User View" Pdescription="--------" />
 
-            <div className="container text-align-center">
+            <br />
+            <h1 className='profile-h1'>User Details</h1>
 
-                <Link to={`/chat/${userId}`} className='btn btn-success'>Chat with user</Link>
+
+            <div>
+                {userData ? (
+                    <div className='user-detail-div'>
+                        <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{userData.email}</p>
+                        <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>
+                    </div>
+                ) : (
+                    <h1>Loading...</h1>
+                )}
             </div>
 
-            <div className='posts'>
-                {userTravelPosts.map(post => (
-                    <div key={post.id} className="post-item">
+            <br />
 
-                        <div className="post-details">
+            <div className="profile-button-div">
+                <button
+                    className={`btn ${postType === 'sender' ? 'btn-primary' : 'btn-secondary'}`}
+                    onClick={() => handlePostTypeChange('sender')}
+                >
+                    Sender Post
+                </button>
+                <button
+                    className={`btn ${postType === 'traveler' ? 'btn-primary' : 'btn-secondary'}`}
+                    onClick={() => handlePostTypeChange('traveler')}
+                >
+                    Traveler Post
+                </button>
+            </div>
 
-                            <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
 
-                            <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
 
-                            <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
 
-                            <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemCategory}</p>
-
-                            <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
-
-                        </div>
-                    </div>
-                ))
-                }
-            </div >
+            {postType === 'sender' && renderSenderPosts()}
+            {postType === 'traveler' && renderTravelerPosts()}
 
             <Footer FooterData={FooterData} />
         </div >

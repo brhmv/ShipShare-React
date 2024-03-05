@@ -14,7 +14,7 @@
      border-radius: 15px !important;
      padding: 10px 15px;
      margin-bottom: 20px;
-     background-color: #6d61f3;
+     background-color: #6d61f3 !important;
      /* width: 400px; */
      /* min-height: 200px; */
      /* min-width: 430px; */
@@ -22,8 +22,17 @@
 
 
  .post-item:hover {
+     background-color: #f2f2f2 !important;
      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-     background-color: #a440eb;
+
+     transform: scale(1.05);
+     transition: 1s all;
+
+     .p-detail,
+     .span-detail {
+         color: #6d61f3 !important;
+     }
+
  }
 
  .post-item h2 {
@@ -33,6 +42,7 @@
 
  .post-image {
      padding: 0%;
+     margin-right: 10px;
  }
 
  .post-image img {

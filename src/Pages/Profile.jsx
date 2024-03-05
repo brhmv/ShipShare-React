@@ -76,7 +76,7 @@ const ProfileView = () => {
                     imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
                     startDestination: 'Start Destination 1',
                     endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
+                    deadlineDate: '33-33-2033',
                     itemType: 'Item Category 1',
                     vehicleCategory: 'Car',
                     price: 10,
@@ -88,7 +88,7 @@ const ProfileView = () => {
                     imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
                     startDestination: 'Start Destination 1',
                     endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
+                    deadlineDate: '11-11-2011',
                     itemType: 'Item Category 1',
                     vehicleCategory: 'Bike',
                     price: 10,
@@ -100,7 +100,7 @@ const ProfileView = () => {
                     startDestination: 'Start Destination 1',
                     imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
                     endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
+                    deadlineDate: '22-22-2022',
                     itemType: 'Item Category 1',
                     vehicleCategory: 'Ship',
                     price: 10,
@@ -192,61 +192,52 @@ const ProfileView = () => {
 
     const renderSenderPosts = () => {
         return (
-            <div className="userSenderPosts-div">
-                {userSenderPosts.map((post, index) => (
-                    <div key={index} className="post">
-                        <div className="post-image">
-                            <img src={post.imageUrl} alt={post.id} />
-                        </div>
-
-
-                        <div className="post-details">
-                            <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-
-                            <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-
-                            <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-
-                            <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
-
-                            <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
-
-                            <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
-
-                            <p className="p-detail"><span className="span-detail">Size:</span> {post.size} <TbRulerMeasure /></p>
-
-                            <p className="p-detail"><span className="span-detail">Weight:</span> {post.weight} <GiWeight /></p>
-
-                            <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
-
-                            <div className='d-flex align-content-center justify-content-center'>
-                                <button className="btn btn-warning m-3 f_size_20" onClick={() => handleUpdate(post, 'sender')}>Edit</button>
-                                <button className="btn btn-danger m-3 f_size_20" onClick={() => handleDeletePost(post.id, 'sender')}>Delete</button>
+            <div className="profile-posts-div">
+                {userSenderPosts.length !== 0 ?
+                    userSenderPosts.map((post, index) => (
+                        <div key={index} className="profile-post-item">
+                            <div className="post-image">
+                                <img src={post.imageUrl} alt={post.id} />
+                            </div>
+                            <div className="profile-post-details">
+                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
+                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
+                                <p className="p-detail"><span className="span-detail">Size:</span> {post.size} <TbRulerMeasure /></p>
+                                <p className="p-detail"><span className="span-detail">Weight:</span> {post.weight} <GiWeight /></p>
+                                <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
+                                <div className='d-flex align-content-center justify-content-center'>
+                                    <button className="btn btn-warning m-3 f_size_20" onClick={() => handleUpdate(post, 'sender')}>Edit</button>
+                                    <button className="btn btn-danger m-3 f_size_20" onClick={() => handleDeletePost(post.id, 'sender')}>Delete</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    )) : < h1 > No post Yet.</h1 >
+                }
+            </div >
         );
     };
 
     const renderTravelerPosts = () => {
         return (
-            <div className="userTravelerPosts-div">
-                {userTravelerPosts.map((post, index) => (
-                    <div key={index} className="post">
-                        <div className="post-details">
+            <div className="profile-posts-div">
+                {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
+                    <div key={index} className="profile-post-item">
+                        <div className="profile-post-details">
 
-                            <span className="span-detail">Description:</span><p className="p-detail"> {post.description}</p>
-                            <span className="span-detail">Start Destination:</span><p className="p-detail"> {post.startDestination} <FaLocationDot /></p>
-                            <span className="span-detail">End Destination:</span><p className="p-detail"> {post.endDestination} <FaLocationDot /></p>
-                            <span className="span-detail">Deadline Date:</span><p className="p-detail"> {post.deadlineDate} <FaCalendarAlt /></p>
-                            <span className="span-detail">Item Category:</span><p className="p-detail"> {post.itemType}</p>
-                            <span className="span-detail">Price:</span><p className="p-detail"> {post.price}</p>
+                            <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
+                            <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                            <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                            <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                            <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemType}</p>
+                            <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
 
-                            <span className="span-detail">Vehicle Category:</span><p className="p-detail"> {post.vehicleCategory}</p>
+                            <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
 
-                            <span className="span-detail">Views:</span><p className="p-detail"> {post.views} <AiFillEye /></p>
+                            <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
                             <div className='d-flex align-content-center justify-content-center'>
 
@@ -256,7 +247,7 @@ const ProfileView = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) : < h1 > No post Yet.</h1 >}
             </div>
         );
     };
@@ -267,6 +258,8 @@ const ProfileView = () => {
 
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User Profile" Pdescription="---------------------" />
 
+            <br />
+
             <h1 className='profile-h1'>User Details</h1>
 
             <div>
@@ -275,17 +268,25 @@ const ProfileView = () => {
                         <p className='user-detail'><span className='bold-span'>User ID: </span>{userData.id}</p>
                         <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
                         <p className='user-detail'><span className='bold-span'>Email: </span>{userData.email}</p>
+
+
                     </div>
+
+
                 ) : (
                     <div>Loading...</div>
                 )}
             </div>
 
+            <div className="profile-button-div-one ">
+                <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
+                <Link className='btn btn-success btn-lg' to="./CreateSenderPost">Create Sender Post</Link>
+            </div>
+            <br />
 
-            <Link to="./CreateTravelerPost">Create Traveler Post</Link>
-            <Link to="./CreateSenderPost">Create Sender Post</Link>
 
-            <div className="btn-group profile-button-div">
+
+            <div className="profile-button-div">
                 <button
                     className={`btn ${postType === 'sender' ? 'btn-primary' : 'btn-secondary'}`}
                     onClick={() => handlePostTypeChange('sender')}
@@ -300,6 +301,7 @@ const ProfileView = () => {
                 </button>
             </div>
 
+            <br />
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
 

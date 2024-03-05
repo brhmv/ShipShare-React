@@ -7,10 +7,14 @@ import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { addPostAsync } from '../Store/PostSlice'
 
 function CreateTravelerPost() {
-    // const [title, setTitle] = useState('');
+    const dispatch = useDispatch();
+
     const [description, setDescription] = useState('');
+    const [title, setTitle] = useState('');
     const [startDestination, setStartDestination] = useState('');
     const [endDestination, setEndDestination] = useState('');
     const [deadlineDate, setDeadlineDate] = useState('');
@@ -19,17 +23,29 @@ function CreateTravelerPost() {
     const [image, setImage] = useState(null);
 
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const postData = {
+            title,
+            description,
+            startDestination,
+            endDestination,
+            deadlineDate,
+            price,
+            vehicleCategory,
+            // image
+        };
+        dispatch(addPostAsync(postData));
+    };
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your logic to handle the form submission
-    };
 
     const VehicleCategories = ['Plane', 'Car', 'Bike', 'Train', 'Ship', 'Other'];
+
 
     return (
         <div>
@@ -39,6 +55,11 @@ function CreateTravelerPost() {
             <div className="container mt-5 travelpost-form">
                 <br />
                 <form onSubmit={handleSubmit} c>
+
+                    <div className="mb-3">
+                        <p className="p-detail"><span className="span-detail">Title:</span></p>
+                        <input className="form-control" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                    </div>
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Description:</span></p>
@@ -91,7 +112,7 @@ function CreateTravelerPost() {
                     </div>
 
                     <div className='submit-button-div' >
-                        <button type="submit" className="btn btn-primary submit-button">Submit</button>
+                        <button type="submit" className="btn btn-primary submit-button" >Submit</button>
                     </div>
 
                     <br />

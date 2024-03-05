@@ -66,7 +66,7 @@ class App extends Component {
           <Route path="/csp" element={<CreateSenderPost />} />
 
           <Route path="/Faq" element={<Faq />} />
-          <Route path="/Chat" element={<Chat />} />
+          <Route path="/Chat/:id" element={<Chat />} />
           <Route path="/ServiceDetails" element={<ServiceDetails />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
