@@ -1,27 +1,31 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { useEffect } from "react";
 
+const ConversationsTab = ({ conversations, setConversationId }) => {
+  const loadMessages = (conversation) => {
+    console.log(conversation.id);
+    setConversationId(conversation.id);
+  };
+ 
+  useEffect(() => {
+    console.log(conversations);
+  },[conversations])
 
-const ConversationsTab = ({conversations,setMessages}) => {
-    const loadMessages = (conversation) =>{
-        console.log("sent");
-        setMessages(conversation.Messages);
-    };
-
-  return(
+  return (
     <div className="all-conversations">
-        <div>
-            {conversations.map((conversation,index) => {
-                return (
-                    <div key={index} onClick={() => loadMessages(conversation)} className="conversation">
-                        {conversation.Id}
-                    </div>
-                )
-            })}
-        </div>
+      <div>
+        {conversations.map((conversation, index) => {
+          return (
+            <div
+              key={index}
+              onClick={() => loadMessages(conversation)}
+              className="conversation"
+            >
+              {conversation.id}
+            </div>
+          );
+        })}
+      </div>
     </div>
-  )
-    
+  );
 };
 export default ConversationsTab;
