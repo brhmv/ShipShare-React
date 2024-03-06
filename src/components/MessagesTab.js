@@ -1,74 +1,86 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import SenderMessage from "./SenderMessage";
 import RecipientMessage from "./RecipientMessage";
 import * as signalR from "@microsoft/signalr";
+import Cookies from "js-cookie";
 
-const MessagesTab = ({ oldMessages, conversationId, recipientId }) => {
-  const [connection, setConnection] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
-  const [ownId, setOwnId] = useState("");
+const MessagesTab = ({oldMessages, conversationId, recipientId,conversationName}) => {
 
-  const funcConnect = async () => {
-    const newConnection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:7189/chat-hub")
-      .build();
-    newConnection.on("getId", async (id) => {
-      setOwnId(id);
-    });
+    const [connection, setConnection] = useState(null);
+    const [message, setMessage] = useState("");
+    const [ownId, setOwnId] = useState("");
+    const [reloadFlag,setReloadFlag] = useState(false);
 
-    newConnection.on("ReceiveMessage", (message) => {
-      var div = document.getElementById("messageMain");
-      var newDiv = document.createElement("div");
-      newDiv.innerHTML = `${message}`;
-      newDiv.className = "recipient-message";
-      div.appendChild(newDiv);
-    });
+    useEffect(() => {
+        console.log("reload");
+        setReloadFlag(!reloadFlag);
+    }, [oldMessages]);
+    const funcConnect = async () => {
+        const newConnection = new signalR.HubConnectionBuilder()
+            .withUrl("https://localhost:7189/chat",
+                {accessTokenFactory: () => Cookies.get("accessToken")})
+            .withAutomaticReconnect([1000,1000,2000,3000,4000,5000])
+            .build();
 
-    await newConnection.invoke("GetId").catch((err) => console.log(err));
+        newConnection.on("getId", async (id) => {
+            setOwnId(id);
+        });
 
-    setConnection(newConnection);
+        newConnection.on("ReceiveMessage", (message,recId) => {
+            let div = document.getElementById("messageMain");
+            if(recId === recipientId) {
+                let newDiv = document.createElement("div");
+                newDiv.innerHTML = `${message.text}`;
+                newDiv.className = "recipient-message";
+                div.appendChild(newDiv);
+            }
+        });
 
-    await newConnection.start();
-  };
+        setConnection(newConnection);
 
-  useEffect(() => {
-    funcConnect();
-  }, []);
+        await newConnection.start();
 
-  const sendMessage = async () => {
-    var div = document.getElementById("messageMain");
-    var newDiv = document.createElement("div");
-    newDiv.innerHTML = `${message}`;
-    newDiv.className = "sender-message";
-    div.appendChild(newDiv);
-    await connection
-      .invoke("SendMessageAsync", conversationId, recipientId, message)
-      .catch((err) => console.log(err));
-  };
+        await newConnection.invoke("GetId").catch((err) => console.log(err));
+        console.log(ownId);
+    };
 
-  return (
-    <div className="messages-container">
-      <div>{conversationId}</div>
-      <div id="messageMain" className="messages-main">
-        {messages.map((message, index) => {
-          if (message.SenderId === ownId) {
-            return <SenderMessage key={index} text={message.Text} />;
-          } else return <RecipientMessage key={index} text={message.Text} />;
-        })}
-      </div>
-      <div className="input-container">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="message-input"
-        />
-        <div className="button" onClick={sendMessage}>
-          Send
+    useEffect(() => {
+        funcConnect();
+    }, []);
+
+    const sendMessage = async () => {
+        let div = document.getElementById("messageMain");
+        let newDiv = document.createElement("div");
+        newDiv.innerHTML = `${message}`;
+        newDiv.className = "sender-message";
+        div.appendChild(newDiv);
+        await connection
+            .invoke("SendMessageAsync", conversationId, recipientId, message)
+            .catch((err) => console.log(err));
+    };
+
+    return (
+        <div className="messages-container">
+            <div className="message-header">{conversationName}</div>
+            <div id="messageMain" className="messages-main">
+                {oldMessages.map((message, index) => {
+                    if (message.senderId === ownId) {
+                        return <SenderMessage key={index} text={message.text}/>;
+                    } else return <RecipientMessage key={index} text={message.text}/>;
+                })}
+            </div>
+            <div className="input-container">
+                <input
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="message-input"
+                />
+                <div className="button" onClick={sendMessage}>
+                    Send
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 export default MessagesTab;

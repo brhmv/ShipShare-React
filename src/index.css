@@ -11,16 +11,16 @@
 
 .all-conversations {
     list-style-type: none;
-    flex : 2;
+    width : 20%;
     height: 100vh;
     border-right: 1px solid black;
-    width: 200px;
 }
 
 .messages-container {
+    position: relative;
     display: flex;
     flex-direction: column;
-    flex : 8;
+    width : 80%;
     justify-content: flex-end;
     align-items: flex-end;
 }
@@ -74,7 +74,7 @@
 }
 
 .recipient-message {
-    justify-self: flex-end;
+    justify-self: flex-start;
     background-color: gray;
     color : white;
 }
@@ -82,5 +82,16 @@
 .sender-message {
     background-color: aquamarine;
     color : white;
-    justify-self: flex-start;
+    justify-self: flex-end;
+}
+
+.message-header {
+    padding: 10px;
+    font-size: 22px;
+    border-bottom: 1px solid black;
+    color: black;
+    width: 100%;
+    position : absolute;
+    top: 0;
+    left :0;
 }
