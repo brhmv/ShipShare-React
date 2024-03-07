@@ -8,30 +8,10 @@ import MessagesTab from "../components/MessagesTab";
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
     const [conversationName, setConversationName] = useState("");
-    const [messages, setMessages] = useState([]);
     const {userId} = useParams();
     const token = Cookies.get("accessToken");
     const [conversationId, setConversationId] = useState(null);
     const [messagesTabIsOpen, setMessagesTabIsOpen] = useState(false);
-
-    useEffect(() => {
-        // console.log("work");
-        // fetch(`https://localhost:7189/api/Message/getAllMessages/${userId}`, {
-        //     headers: {Authorization: `Bearer ${Cookies.get("accessToken")}`},
-        //     method: "GET",
-        // }).then(res => res.json())
-        //     .then(data => setMessages(data["$values"]))
-        //     .catch((err) => console.log(err));
-        //
-        // console.log(messages);
-        conversations.forEach(conversation => {
-            if (conversation.id === conversationId) {
-                setMessages([...conversation.messages["$values"]]);
-            }
-        });
-        console.log(conversations);
-        console.log(messages);
-    }, [conversationId])
 
     useEffect(() => {
         createConversation();
@@ -71,7 +51,6 @@ const Chat = () => {
                 setConversationName={setConversationName}
             />
             {messagesTabIsOpen && <MessagesTab
-                oldMessages={messages}
                 conversationId={conversationId}
                 recipientId={userId}
                 conversationName={conversationName}
