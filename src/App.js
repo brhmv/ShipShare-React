@@ -52,8 +52,7 @@ class App extends Component {
           <Route path='/profile' element={<Profile />} />
 
           <Route path='/user/:userId' element={<User />} />
-
-          <Route path="/chat/:userId" element={<Chat />} />
+          <Route path="/chat/:userId?" element={<Chat/>}/>
 
 
           <Route path="/Contact" element={<Contact />} />
