@@ -1,7 +1,8 @@
+import '../assets/Profile.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
-import '../assets/Profile.css';
+import { useDispatch, useSelector } from 'react-redux'
 import EditTravelerPost from './EditTravelerPost';
 import EditSenderPost from './EditSenderPost';
 import CustomNavbar from '../components/CustomNavbar';
@@ -11,7 +12,13 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillEye } from "react-icons/ai";
 import { GiWeight } from "react-icons/gi";
 
+import { fetchUserPosts, fetchUserSenderPosts } from "../Store/UserSenderSlice";
+
+// import getUserTravelPost from "../Store/UserTravelSlice"
+// import getUserSenderPost from "../Store/UserSenderSlice"
+
 const ProfileView = () => {
+    const dispatch = useDispatch();
     const { userId } = useParams();
     const [userData, setUserData] = useState(null);
     const [userSenderPosts, setSenderPosts] = useState([]);
@@ -22,6 +29,7 @@ const ProfileView = () => {
     const [editPost, setEditPost] = useState(null);
     const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
+
 
     const usersArray = [
         {
@@ -110,18 +118,29 @@ const ProfileView = () => {
         },
     ];
 
+    // burda 
+    const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
+
+
+    useEffect(() => {
+        console.log('aswdaw');
+        dispatch(fetchUserPosts());
+        dispatch(fetchUserSenderPosts());
+    }, [dispatch]);
+
+
     useEffect(() => {
 
-        const user = usersArray.find(user => user.id === parseInt(userId));
+        const user = usersArray.find(user => user.id === (userId));
         if (user) {
             setUserData(user);
-            setSenderPosts(user.senderPosts);
-            setTravelerPosts(user.travelerPosts);
+            // setSenderPosts(user.senderPosts);
+            // setTravelerPosts(user.travelerPosts);
         }
     }, [userId]);
 
     useEffect(() => {
-        GetUserData(parseInt(userId));
+        GetUserData(userId);
 
         // fetchUserData(userId);
     }, [userId]);
@@ -178,7 +197,6 @@ const ProfileView = () => {
             );
             setTravelerPosts(updatedPosts);
         }
-        // setIsEditing(false);
         setIsEditingSender(false);
         setIsEditingTravel(false);
     };
@@ -268,11 +286,7 @@ const ProfileView = () => {
                         <p className='user-detail'><span className='bold-span'>User ID: </span>{userData.id}</p>
                         <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
                         <p className='user-detail'><span className='bold-span'>Email: </span>{userData.email}</p>
-
-
                     </div>
-
-
                 ) : (
                     <div>Loading...</div>
                 )}
@@ -283,7 +297,6 @@ const ProfileView = () => {
                 <Link className='btn btn-success btn-lg' to="./CreateSenderPost">Create Sender Post</Link>
             </div>
             <br />
-
 
 
             <div className="profile-button-div">

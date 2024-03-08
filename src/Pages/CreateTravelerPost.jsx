@@ -8,7 +8,7 @@ import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
-import { addPostAsync } from '../Store/PostSlice'
+import { addPostAsync } from '../Store/TravelPostSlice'
 
 function CreateTravelerPost() {
     const dispatch = useDispatch();

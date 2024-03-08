@@ -9,7 +9,7 @@ export const signIn = async (email, password) => {
     });
 
     if (!response.ok) {
-        throw new Error('Sign-in failed');
+        console.log(response.errors);
     }
 
     var temp = await response.json();
