@@ -9,9 +9,6 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { GiWeight } from "react-icons/gi";
 import { TbRulerMeasure } from "react-icons/tb";
 
-
-
-
 function CreateSenderPost() {
     const [description, setDescription] = useState('');
     const [startDestination, setStartDestination] = useState('');
@@ -21,7 +18,7 @@ function CreateSenderPost() {
     const [itemSize, setItemSize] = useState('');
     const [itemWeight, setItemWeight] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -104,7 +101,7 @@ function CreateSenderPost() {
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Upload Image:</span></p>
-                        <input type="file" className="form-control" value={image} onChange={handleImageChange} accept="image/*" />
+                        <input type="file" className="form-control" onChange={handleImageChange} accept="image/*" />
                     </div>
 
                     <div className='submit-button-div'>

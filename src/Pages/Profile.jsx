@@ -30,7 +30,6 @@ const ProfileView = () => {
     const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
 
-
     const usersArray = [
         {
             id: 1,
@@ -118,16 +117,14 @@ const ProfileView = () => {
         },
     ];
 
-    // burda 
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
-
+    const userTravelerPosts1 = useSelector(state => state.userPosts.userTravelerPosts);
+    // burda 
 
     useEffect(() => {
-        console.log('aswdaw');
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
     }, [dispatch]);
-
 
     useEffect(() => {
 
@@ -211,8 +208,8 @@ const ProfileView = () => {
     const renderSenderPosts = () => {
         return (
             <div className="profile-posts-div">
-                {userSenderPosts.length !== 0 ?
-                    userSenderPosts.map((post, index) => (
+                {userSenderPosts1.length !== 0 ?
+                    userSenderPosts1.map((post, index) => (
                         <div key={index} className="profile-post-item">
                             <div className="post-image">
                                 <img src={post.imageUrl} alt={post.id} />
@@ -242,7 +239,7 @@ const ProfileView = () => {
     const renderTravelerPosts = () => {
         return (
             <div className="profile-posts-div">
-                {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
+                {userTravelerPosts1.length !== 0 ? userTravelerPosts1.map((post, index) => (
                     <div key={index} className="profile-post-item">
                         <div className="profile-post-details">
 
@@ -294,7 +291,7 @@ const ProfileView = () => {
 
             <div className="profile-button-div-one ">
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
-                <Link className='btn btn-success btn-lg' to="./CreateSenderPost">Create Sender Post</Link>
+                <Link className='btn btn-success btn-lg' to="../csp">Create Sender Post</Link>
             </div>
             <br />
 
