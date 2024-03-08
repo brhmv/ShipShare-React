@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authSlice } from './AuthSlice';
-import postSlice from './PostSlice';
+import travelPostSlice from './TravelPostSlice';
+import senderPostSlice from './SenderPostSlice';
 
 const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
-        post: postSlice.reducer
+        postTravel: travelPostSlice,
+        postSender: senderPostSlice
     },
-
 });
 
 export default store;

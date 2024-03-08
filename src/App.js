@@ -53,7 +53,7 @@ class App extends Component {
 
           <Route path='/user/:userId' element={<User />} />
 
-          <Route path="/chat/:userId" element={<Chat/>}/>
+          <Route path="/chat/:userId" element={<Chat />} />
 
 
           <Route path="/Contact" element={<Contact />} />
@@ -68,7 +68,7 @@ class App extends Component {
           <Route path="/csp" element={<CreateSenderPost />} />
 
           <Route path="/Faq" element={<Faq />} />
-          <Route path="/Chat/:id" element={<Chat />} />
+          <Route path="/Chat" element={<Chat />} />
           <Route path="/ServiceDetails" element={<ServiceDetails />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
