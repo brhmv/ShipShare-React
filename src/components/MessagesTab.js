@@ -10,7 +10,7 @@ const MessagesTab = ({
   conversationName,
 }) => {
   const [connection, setConnection] = useState(null);
-  const [messages,setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [ownId, setOwnId] = useState("");
   const ref = useRef();
@@ -30,7 +30,7 @@ const MessagesTab = ({
     newConnection.on("ReceiveMessage", (message, conId) => {
       console.log(conId);
       console.log(conversationId);
-      if (conId == conversationId) {
+      if (conId === conversationId) {
         setMessages(prevMessages => [...prevMessages, message]);
         ref.current?.scrollIntoView({ behavior: "smooth" });
       }
@@ -45,8 +45,8 @@ const MessagesTab = ({
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch(`https://localhost:7189/api/Conversation/getMessagesConversationId/${conversationId}`,{
-        method : "GET",
+      const response = await fetch(`https://localhost:7189/api/Conversation/getMessagesConversationId/${conversationId}`, {
+        method: "GET",
         headers: { Authorization: `Bearer ${Cookies.get("accessToken")}` }
       });
       if (response.ok) {

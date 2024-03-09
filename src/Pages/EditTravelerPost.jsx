@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import '../assets/EditSenderPost.css'
+import { useDispatch } from 'react-redux'
+import { updateTravellerPost } from "../Store/UserPostsSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const EditPost = ({ post, onSave, onCancel }) => {
+
+const EditPost = ({ post, onCancel }) => {
     const [editedPost, setEditedPost] = useState(post);
+    const dispatch = useDispatch();
 
-    // const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setEditedPost({ ...editedPost, [name]: value });
-    // };
 
-    const vehicleCategories = ['Plane', 'Car', 'Bike', 'Train', 'Ship', 'Other'];
 
-    var itemTypes = ['Documents & Books', 'Health & Beauty', 'Food & Beverages', 'Toys & Games', 'Clothing', 'Sports & Outdoor', 'Furniture', 'Electronics', 'Automotive', 'other'];
+    // const vehicleCategories = ['Plane', 'Car', 'Bike', 'Train', 'Ship', 'Other'];
+
+    // var itemTypes = ['Documents & Books', 'Health & Beauty', 'Food & Beverages', 'Toys & Games', 'Clothing', 'Sports & Outdoor', 'Furniture', 'Electronics', 'Automotive', 'other'];
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,12 +25,52 @@ const EditPost = ({ post, onSave, onCancel }) => {
     };
 
     const handleSave = () => {
-        onSave(editedPost);
+        console.log("handleSave called");
+
+        const formData = new FormData();
+
+        formData.append('Title', editedPost.title);
+        formData.append('Description', editedPost.description);
+        formData.append('StartDestination', editedPost.startDestination);
+        formData.append('EndDestination', editedPost.endDestination);
+        formData.append('Price', +editedPost.price);
+        formData.append('DeadlineDate', editedPost.deadlineDate);
+        formData.append('Id', editedPost.id);
+
+
+        console.log("post to search");
+        console.log(post);
+
+
+        console.log("formData:");
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+
+
+        dispatch(updateTravellerPost({ postId: editedPost.id, postData: formData }));
+
+        toast.success("Sender Post updated Succesfully!", {
+            position: "top-right",
+        });
     };
 
     return (
         <div className="edit-post-container">
             <h2 className='modal-h2'>Edit Post</h2>
+
+            <div className='modal-div'>
+                <label className='modal-label'>Title:</label>
+                <span>  </span>
+                <input
+                    type="text"
+                    name="title"
+                    value={editedPost.title}
+                    onChange={handleInputChange}
+                />
+            </div>
+
+            <hr />
 
             <div className='modal-div'>
                 <label className='modal-label'>Description:</label>
@@ -94,7 +137,7 @@ const EditPost = ({ post, onSave, onCancel }) => {
 
             <hr />
 
-            <div className='modal-div'>
+            {/* <div className='modal-div'>
                 <label className='modal-label'>Wehicle Type:</label>
                 <br />
                 <br />
@@ -105,11 +148,11 @@ const EditPost = ({ post, onSave, onCancel }) => {
                         <option key={index} value={type}>{type}</option>
                     ))}
                 </select>
-            </div>
+            </div> */}
 
-            <hr />
+            {/* <hr /> */}
 
-            <div className='modal-div'>
+            {/* <div className='modal-div'>
                 <label className='modal-label'>Item Type: </label>
                 <br />
                 <br />
@@ -120,14 +163,7 @@ const EditPost = ({ post, onSave, onCancel }) => {
                         <option key={index} value={type}>{type}</option>
                     ))}
                 </select>
-            </div>
-
-            {/* <p><strong>Title:</strong> {post.title}</p>
-            <p><strong>Image:</strong> {post.image}</p>
-            <p><strong>Item Category:</strong> {post.itemCategory}</p>
-            <p><strong>Item Weight:</strong> {post.itemWeight}</p>
-            <p><strong>Is Available:</strong> {post.isAvailable ? 'Yes' : 'No'}</p>
-            <p><strong>Price:</strong> {post.price}</p> */}
+            </div> */}
 
             <div className='modal-butons'>
                 <button className='btn btn-success m-3 f_size_20' onClick={handleSave}>Save</button>
