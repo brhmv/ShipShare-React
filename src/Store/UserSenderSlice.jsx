@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const fetchUserPosts = createAsyncThunk('post/fetchUserPosts', async () => {
     try {
         const accessToken = Cookies.get('accessToken');
-        const response = await fetch("https://localhost:7189/api/TravellerPost/getAllTravellerPosts", {
+        const response = await fetch("https://localhost:7189/api/TravellerPost/getUserTravellerPosts", {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },
@@ -13,7 +13,6 @@ export const fetchUserPosts = createAsyncThunk('post/fetchUserPosts', async () =
 
         const data = await response.json();
         return data["$values"];
-
     } catch (error) {
         console.log(error);
         throw error;
@@ -73,7 +72,7 @@ const postSlice = createSlice({
             })
             .addCase(fetchUserPosts.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.userTravelerPosts = action.payload;
+                state.userTravelerPosts = action.payload; // Corrected this line
             })
             .addCase(fetchUserPosts.rejected, (state, action) => {
                 state.status = 'idle';

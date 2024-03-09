@@ -28,14 +28,10 @@ function TarvelerPosts() {
     };
 
     useEffect(() => {
-        console.log('s');
         dispatch(getPosts());
-        console.log('x');
     }, [dispatch]);
 
     useEffect(() => {
-        console.log('z');
-
         setFilteredPosts(travelerPosts);
     }, [travelerPosts]);
 

@@ -29,7 +29,6 @@ const ProfileView = () => {
     const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
 
-
     const usersArray = [
         {
             id: 1,
@@ -122,14 +121,12 @@ const ProfileView = () => {
 
 
     useEffect(() => {
-        console.log('aswdaw');
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
         console.log("sender posts")
         console.log(userSenderPosts1);
 
     }, [dispatch]);
-
 
     useEffect(() => {
 
@@ -299,7 +296,9 @@ const ProfileView = () => {
 
             <div className="profile-button-div-one ">
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
+
                 <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
+
             </div>
             <br />
 
