@@ -84,3 +84,4 @@ const postSlice = createSlice({
 export const { setUserSenderPosts, setUserTravelerPosts } = postSlice.actions;
 
 export default postSlice.reducer;
+
