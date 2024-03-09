@@ -9,9 +9,6 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { GiWeight } from "react-icons/gi";
 import Cookies from 'js-cookie';
 
-
-
-
 function CreateSenderPost() {
     const [description, setDescription] = useState('');
     const [startDestination, setStartDestination] = useState('');
@@ -21,7 +18,7 @@ function CreateSenderPost() {
     const [itemTitle, setItemTitle] = useState('');
     const [itemWeight, setItemWeight] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
