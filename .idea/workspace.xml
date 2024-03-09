@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b513448-ad9c-4581-8211-f4302c587a9e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Store/apiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store/apiService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ConversationsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ConversationsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomNavbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MessagesTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessagesTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RecipientMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RecipientMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SenderMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SenderMessage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,9 +27,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2dK3d2qF0W5jDL5eEG1R8zLvBNk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +40,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "islam",
+    "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -54,10 +59,16 @@
       <option name="presentableId" value="Default" />
       <updated>1709743029798</updated>
       <workItem from="1709743036545" duration="14964000" />
+      <workItem from="1709986365456" duration="20602000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
 </project>
