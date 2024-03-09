@@ -9,7 +9,7 @@ const store = configureStore({
         auth: authSlice.reducer,
         postTravel: travelPostSlice,
         postSender: senderPostSlice,
-        userPosts : UserSenderSlice,
+        userPosts: UserSenderSlice
     },
 });
 

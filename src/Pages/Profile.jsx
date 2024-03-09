@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import EditTravelerPost from './EditTravelerPost';
 import EditSenderPost from './EditSenderPost';
 import CustomNavbar from '../components/CustomNavbar';
-import { TbRulerMeasure } from "react-icons/tb";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillEye } from "react-icons/ai";
@@ -119,11 +118,14 @@ const ProfileView = () => {
 
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
     const userTravelerPosts1 = useSelector(state => state.userPosts.userTravelerPosts);
-    // burda 
+
 
     useEffect(() => {
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
+        console.log("sender posts")
+        console.log(userSenderPosts1);
+
     }, [dispatch]);
 
     useEffect(() => {
@@ -211,9 +213,12 @@ const ProfileView = () => {
                 {userSenderPosts1.length !== 0 ?
                     userSenderPosts1.map((post, index) => (
                         <div key={index} className="profile-post-item">
+
+
                             <div className="post-image">
-                                <img src={post.imageUrl} alt={post.id} />
+                                <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
                             </div>
+
                             <div className="profile-post-details">
                                 <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
                                 <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
@@ -221,9 +226,9 @@ const ProfileView = () => {
                                 <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
                                 <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
                                 <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
-                                <p className="p-detail"><span className="span-detail">Size:</span> {post.size} <TbRulerMeasure /></p>
-                                <p className="p-detail"><span className="span-detail">Weight:</span> {post.weight} <GiWeight /></p>
+                                <p className="p-detail"><span className="span-detail">Weight:</span> {post.itemWeight} <GiWeight /></p>
                                 <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
+
                                 <div className='d-flex align-content-center justify-content-center'>
                                     <button className="btn btn-warning m-3 f_size_20" onClick={() => handleUpdate(post, 'sender')}>Edit</button>
                                     <button className="btn btn-danger m-3 f_size_20" onClick={() => handleDeletePost(post.id, 'sender')}>Delete</button>
@@ -291,7 +296,9 @@ const ProfileView = () => {
 
             <div className="profile-button-div-one ">
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
-                <Link className='btn btn-success btn-lg' to="../csp">Create Sender Post</Link>
+
+                <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
+
             </div>
             <br />
 
@@ -314,6 +321,8 @@ const ProfileView = () => {
             <br />
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
+
+
 
             {isEditingSender && editPost && (
                 <div className='edit-modal'>
