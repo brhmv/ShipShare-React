@@ -21,7 +21,7 @@ function CreateSenderPost() {
     const [itemTitle, setItemTitle] = useState('');
     const [itemWeight, setItemWeight] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];

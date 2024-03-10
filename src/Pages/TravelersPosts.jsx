@@ -30,7 +30,6 @@ function TarvelerPosts() {
     useEffect(() => {
         console.log('traveller posts');
         dispatch(getPosts());
-        console.log('x');
     }, [dispatch]);
 
     useEffect(() => {

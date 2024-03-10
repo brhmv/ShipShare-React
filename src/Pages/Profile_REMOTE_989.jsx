@@ -10,9 +10,11 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillEye } from "react-icons/ai";
 import { GiWeight } from "react-icons/gi";
-import { fetchUserPosts, fetchUserSenderPosts, deleteSenderPost, deleteTravellerPost } from "../Store/UserPostsSlice";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import { fetchUserPosts, fetchUserSenderPosts } from "../Store/UserSenderSlice";
+
+// import getUserTravelPost from "../Store/UserTravelSlice"
+// import getUserSenderPost from "../Store/UserSenderSlice"
 
 const ProfileView = () => {
     const dispatch = useDispatch();
@@ -115,37 +117,32 @@ const ProfileView = () => {
     ];
 
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
-    const userTravelerPosts1 = useSelector(state => state.userPosts.userTravellerPosts);
+    const userTravelerPosts1 = useSelector(state => state.userPosts.userTravelerPosts);
 
 
     useEffect(() => {
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
-
         console.log("sender posts")
         console.log(userSenderPosts1);
 
-        console.log("traveller posts")
-        console.log(userTravelerPosts1);
+    }, [dispatch]);
 
-    }, [dispatch, editPost]);
+    useEffect(() => {
 
+        const user = usersArray.find(user => user.id === (userId));
+        if (user) {
+            setUserData(user);
+            // setSenderPosts(user.senderPosts);
+            // setTravelerPosts(user.travelerPosts);
+        }
+    }, [userId]);
 
-    // useEffect(() => {
+    useEffect(() => {
+        GetUserData(userId);
 
-    //     const user = usersArray.find(user => user.id === (userId));
-    //     if (user) {
-    //         setUserData(user);
-    //         // setSenderPosts(user.senderPosts);
-    //         // setTravelerPosts(user.travelerPosts);
-    //     }
-    // }, [userId]);
-
-    // useEffect(() => {
-    //     GetUserData(userId);
-
-    //     // fetchUserData(userId);
-    // }, [userId]);
+        // fetchUserData(userId);
+    }, [userId]);
 
     const GetUserData = (userId) => {
         try {
@@ -166,19 +163,11 @@ const ProfileView = () => {
 
     const handleDeletePost = (postId, postType) => {
         if (postType === 'sender') {
-            dispatch(deleteSenderPost(postId));
-
-            toast.success("Sender Post deleted Succesfully!", {
-                position: "top-right",
-            });
-
-        }
-        else if (postType === 'traveler') {
-            dispatch(deleteTravellerPost(postId));
-
-            toast.success("Traveler Post deleted Succesfully!", {
-                position: "top-right",
-            });
+            const updatedPosts = userSenderPosts.filter(post => post.id !== postId);
+            setSenderPosts(updatedPosts);
+        } else if (postType === 'traveler') {
+            const updatedPosts = userTravelerPosts.filter(post => post.id !== postId);
+            setTravelerPosts(updatedPosts);
         }
     };
 
@@ -194,11 +183,29 @@ const ProfileView = () => {
         }
     };
 
+    const handleSavePost = (editedPost) => {
+        if (editPostType === 'sender') {
+            const updatedPosts = userSenderPosts.map(post =>
+                post.id === editedPost.id ? editedPost : post
+            );
+            setSenderPosts(updatedPosts);
+        }
+        else if (editPostType === 'traveler') {
+            const updatedPosts = userTravelerPosts.map(post =>
+                post.id === editedPost.id ? editedPost : post
+            );
+            setTravelerPosts(updatedPosts);
+        }
+        setIsEditingSender(false);
+        setIsEditingTravel(false);
+    };
+
     const handleCancelEdit = () => {
         setIsEditingSender(false);
         setIsEditingTravel(false);
         setEditPost(null);
     };
+
 
     const renderSenderPosts = () => {
         return (
@@ -213,7 +220,6 @@ const ProfileView = () => {
                             </div>
 
                             <div className="profile-post-details">
-                                <p className="p-detail"><span className="span-detail">Title:</span> {post.title}</p>
                                 <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
                                 <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
                                 <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
@@ -238,32 +244,30 @@ const ProfileView = () => {
     const renderTravelerPosts = () => {
         return (
             <div className="profile-posts-div">
-                {userTravelerPosts1.length !== 0 ?
-                    userTravelerPosts1.map((post, index) => (
-                        <div key={index} className="profile-post-item">
-                            <div className="profile-post-details">
+                {userTravelerPosts1.length !== 0 ? userTravelerPosts1.map((post, index) => (
+                    <div key={index} className="profile-post-item">
+                        <div className="profile-post-details">
 
-                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
-                                <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemType}</p>
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
+                            <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
+                            <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                            <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                            <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                            <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemType}</p>
+                            <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
 
-                                <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
+                            <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
 
-                                <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
+                            <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
-                                <div className='d-flex align-content-center justify-content-center'>
+                            <div className='d-flex align-content-center justify-content-center'>
 
-                                    <button className="btn btn-warning m-3 f_size_20" onClick={() => handleUpdate(post, 'traveler')}>Edit</button>
+                                <button className="btn btn-warning m-3 f_size_20" onClick={() => handleUpdate(post, 'traveler')}>Edit</button>
 
-                                    <button className="btn btn-danger m-3 f_size_20" onClick={() => handleDeletePost(post.id, 'traveler')}>Delete</button>
-                                </div>
+                                <button className="btn btn-danger m-3 f_size_20" onClick={() => handleDeletePost(post.id, 'traveler')}>Delete</button>
                             </div>
                         </div>
-                    )) : < h1 > No post Yet.</h1 >
-                }
+                    </div>
+                )) : < h1 > No post Yet.</h1 >}
             </div>
         );
     };
@@ -271,8 +275,6 @@ const ProfileView = () => {
     return (
         <div>
             <CustomNavbar mClass="menu_four" nClass="w_menu ml-auto mr-auto" />
-
-            <ToastContainer position="top-right" />
 
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User Profile" Pdescription="---------------------" />
 
@@ -293,8 +295,10 @@ const ProfileView = () => {
             </div>
 
             <div className="profile-button-div-one ">
-                <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
+
+                <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
+
             </div>
             <br />
 
@@ -315,24 +319,26 @@ const ProfileView = () => {
             </div>
 
             <br />
-
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
+
+
 
             {isEditingSender && editPost && (
                 <div className='edit-modal'>
                     <EditSenderPost
                         post={editPost}
+                        onSave={handleSavePost}
                         onCancel={handleCancelEdit}
                     />
                 </div>
-
             )}
 
             {isEditingTravel && editPost && (
                 <div className='edit-modal'>
                     <EditTravelerPost
                         post={editPost}
+                        onSave={handleSavePost}
                         onCancel={handleCancelEdit}
                     />
                 </div>

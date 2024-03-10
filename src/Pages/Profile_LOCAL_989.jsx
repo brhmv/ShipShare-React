@@ -27,6 +27,7 @@ const ProfileView = () => {
     const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
 
+
     const usersArray = [
         {
             id: 1,

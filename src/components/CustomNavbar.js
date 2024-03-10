@@ -101,9 +101,13 @@ class CustomNavbar extends Component {
                                     </li>
 
 
+
+
                                     <li className="nav-item"><NavLink exact='true' title="About" className="nav-link" to='/About'>About</NavLink></li>
 
                                     <li className="nav-item"><NavLink title="Pricing" className="nav-link" to="/Contact">Contact</NavLink></li>
+
+                                    <li className="nav-item"><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></li>
                                 </ul>
 
                                 {isAuthenticated ? (

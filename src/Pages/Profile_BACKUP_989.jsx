@@ -130,8 +130,12 @@ const ProfileView = () => {
 
     }, [dispatch, editPost]);
 
+<<<<<<< HEAD
 
     // useEffect(() => {
+=======
+    useEffect(() => {
+>>>>>>> master
 
     //     const user = usersArray.find(user => user.id === (userId));
     //     if (user) {
@@ -293,8 +297,15 @@ const ProfileView = () => {
             </div>
 
             <div className="profile-button-div-one ">
+<<<<<<< HEAD
                 <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
+=======
+                <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
+
+                <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
+
+>>>>>>> master
             </div>
             <br />
 
