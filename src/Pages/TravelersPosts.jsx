@@ -11,8 +11,8 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { getPosts } from '../Store/TravelPostSlice';
 
 function TarvelerPosts() {
-
     const dispatch = useDispatch();
+
     const travelerPosts = useSelector((state) => state.postTravel.posts) ?? "Loading posts...";
 
     const [startLocation, setStartLocation] = useState('');
@@ -28,15 +28,15 @@ function TarvelerPosts() {
     };
 
     useEffect(() => {
-        console.log('s');
+        console.log('traveller posts');
         dispatch(getPosts());
         console.log('x');
     }, [dispatch]);
 
     useEffect(() => {
         console.log('z');
-
         setFilteredPosts(travelerPosts);
+
     }, [travelerPosts]);
 
 

@@ -8,8 +8,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { GiWeight } from "react-icons/gi";
 import Cookies from 'js-cookie';
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function CreateSenderPost() {
@@ -28,13 +28,6 @@ function CreateSenderPost() {
         setImage(file);
     };
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,28 +46,33 @@ function CreateSenderPost() {
             formData.append('Title', itemTitle);
 
 
-            for (let pair of formData.entries()) {
-                console.log(pair[0] + ', ' + pair[1]);
-            }
+            // for (let pair of formData.entries()) {
+            //     console.log(pair[0] + ', ' + pair[1]);
+            // }
 
             const accessToken = Cookies.get('accessToken');
             const response = await fetch('https://localhost:7189/api/SenderPost/createSenderPost', {
                 headers: {
-                    // 'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${accessToken}`
                 },
                 method: 'POST',
                 body: formData,
             });
 
-            // const responseData = await response.json();
             console.log(response);
 
 
             if (response.ok) {
-                alert('Post created successfully');
+                toast.success("Sender Post Created Succesfully!", {
+                    position: "top-right",
+                });
+
+
+
             } else {
-                alert('Failed to create post');
+                toast.success("Failed to create post!", {
+                    position: "top-right",
+                });
             }
         } catch (error) {
             console.error('Error creating post:', error);
@@ -86,7 +84,10 @@ function CreateSenderPost() {
     return (
         <div>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Create Sender Post" Pdescription="-----------------------" />
+
+            <ToastContainer position="top-right" />
 
             <div className="container mt-5 senderpost-form">
 
@@ -127,9 +128,6 @@ function CreateSenderPost() {
                         <input type="date" className="form-control" value={deadlineDate} onChange={(e) => setDeadlineDate(e.target.value)} />
                     </div>
 
-                    <hr />
-
-
 
                     <hr />
 
@@ -157,10 +155,14 @@ function CreateSenderPost() {
                         <input type="number" className="form-control" value={price} onChange={(e) => setPrice(e.target.value)} />
                     </div>
 
+                    <hr />
+
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Upload Image:</span></p>
                         <input type="file" className="form-control" onChange={handleImageChange} accept="image/*" />
                     </div>
+
+                    <hr />
 
                     <div className='submit-button-div'>
                         <button type="submit" className="btn btn-primary submit-button">Submit</button>
