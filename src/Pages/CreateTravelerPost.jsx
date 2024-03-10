@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../assets/CreateTravelerPost.css';
-// import { Link } from 'react-router-dom';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
@@ -9,6 +8,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { addPostAsync } from '../Store/TravelPostSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function CreateTravelerPost() {
     const dispatch = useDispatch();
@@ -19,9 +21,7 @@ function CreateTravelerPost() {
     const [endDestination, setEndDestination] = useState('');
     const [deadlineDate, setDeadlineDate] = useState('');
     const [price, setPrice] = useState('');
-    const [vehicleCategory, setVehicleCategory] = useState('');
-    const [image, setImage] = useState(null);
-
+    const [temp, setTemp] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,30 +31,37 @@ function CreateTravelerPost() {
             startDestination,
             endDestination,
             deadlineDate,
-            price,
-            vehicleCategory,
-            // image
+            price
         };
-        dispatch(addPostAsync(postData));
+
+        dispatch(addPostAsync({ postData, setTemp: setTemp }));
+
+
+        if (temp) {
+            toast.success("Sender Post Created Succesfully!", {
+                position: "top-right",
+            });
+        }
+        else {
+            toast.error("Failed to Create Sender Post!", {
+                position: "top-right",
+            });
+        }
     };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-    };
-
-
-    const VehicleCategories = ['Plane', 'Car', 'Bike', 'Train', 'Ship', 'Other'];
-
 
     return (
         <div>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+
+            <ToastContainer position="top-right" />
+
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Create Traveler Post" Pdescription="-----------------------" />
 
             <div className="container mt-5 travelpost-form">
+
                 <br />
-                <form onSubmit={handleSubmit} c>
+
+                <form onSubmit={handleSubmit} >
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Title:</span></p>
@@ -67,7 +74,6 @@ function CreateTravelerPost() {
                     </div>
 
                     <hr />
-
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Start Destination:</span> <FaLocationDot /></p>
@@ -93,22 +99,6 @@ function CreateTravelerPost() {
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Price $:</span></p>
                         <input type="number" className="form-control" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
-                    </div>
-
-                    <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Vehicle Category:</span></p>
-
-                        <select className="form-control" value={vehicleCategory} onChange={(e) => setVehicleCategory(e.target.value)}>
-                            <option value="">Select Category:</option>
-                            {VehicleCategories.map((type, index) => (
-                                <option key={index} value={type}>{type}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className="mb-3">
-                        <p className="p-detail"><span className="span-detail">Upload Image:</span></p>
-                        <input type="file" className="form-control" value={image} onChange={handleImageChange} accept="image/*" />
                     </div>
 
                     <div className='submit-button-div' >

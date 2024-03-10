@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-// import { getUserPosts } from './SenderPostSlice';
 
-const API_URL = 'https://localhost:7189/api/TravellerPosts/createTravellerPost';
 
 export const getPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
     try {
@@ -15,6 +13,7 @@ export const getPosts = createAsyncThunk('post/getAllTravellerPosts', async () =
         });
 
         const data = await response.json();
+        console.log("traveller all posts")
         console.log(data["$values"]);
         return data["$values"];
 
@@ -24,30 +23,10 @@ export const getPosts = createAsyncThunk('post/getAllTravellerPosts', async () =
     }
 });
 
-export const getUserPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
+export const addPostAsync = createAsyncThunk('post/createTraveler', async ({ postData, setTemp }) => {
     try {
         const accessToken = Cookies.get('accessToken');
-        const response = await fetch("https://localhost:7189/api/TravellerPost/getUserTravellerPosts", {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            },
-            method: 'GET',
-        });
-
-        const data = await response.json();
-        console.log(data["$values"]);
-        return data["$values"];
-
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-});
-
-export const addPostAsync = createAsyncThunk('post/createTraveler', async (postData) => {
-    try {
-        const accessToken = Cookies.get('accessToken');
-        const response = await fetch("https://localhost:7189/api/TravellerPosts/createTravellerPost", {
+        const response = await fetch("https://localhost:7189/api/TravellerPost/createTravellerPost", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,6 +40,9 @@ export const addPostAsync = createAsyncThunk('post/createTraveler', async (postD
         }
 
         const data = await response.json();
+
+        setTemp(true);
+
         return data;
     } catch (error) {
         throw error;
@@ -90,7 +72,7 @@ export const editPostAsync = createAsyncThunk('post/editPostAsync', async ({ id,
 
 export const deletePostAsync = createAsyncThunk('post/deletePostAsync', async (postId) => {
     try {
-        const response = await fetch(`${API_URL}/${postId}`, {
+        const response = await fetch(`${"API_URL"}/${postId}`, {
             method: 'DELETE',
         });
         if (!response.ok) {
@@ -106,7 +88,6 @@ const postSlice = createSlice({
     name: 'travelPost',
     initialState: {
         posts: [],
-        userPosts: [],
         status: 'idle',
         error: null,
     },
@@ -131,9 +112,7 @@ const postSlice = createSlice({
         getAllPosts: (state, action) => {
             state.posts = action.payload;
         },
-        getUserPosts: (state, action) => {
-            state.userPosts = action.payload;
-        },
+
     },
 
     extraReducers: (builder) => {
@@ -151,24 +130,6 @@ const postSlice = createSlice({
                 state.status = 'idle';
                 state.error = action.error.message;
             })
-
-            // -----------------------------------------------------
-
-            // .addCase(getUserPosts.fulfilled, (state, action) => {
-            //     state.status = 'idle';
-            //     state.userPosts = action.payload;
-            // })
-
-            // .addCase(getUserPosts.pending, (state) => {
-            //     state.status = 'loading';
-            // })
-
-            // .addCase(getUserPosts.rejected, (state, action) => {
-            //     state.status = 'idle';
-            //     state.error = action.error.message;
-            // })
-
-            // -----------------------------------------------------
 
             .addCase(addPostAsync.fulfilled, (state, action) => {
                 state.posts.push(action.payload);

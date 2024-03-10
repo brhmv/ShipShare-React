@@ -86,11 +86,12 @@ export const signUpAsync = (username, email, password) => async (dispatch) => {
         console.log("responseData");
         console.log(responseData);
         console.log("responseData.accessToken");
-        console.log(responseData.accessToken);
+        // console.log(responseData.accessToken);
 
         dispatch(signUpSuccess(responseData));
         dispatch(setAccessToken(responseData.accessToken));
-    } catch (error) {
+    }
+    catch (error) {
         console.log("signUpFailure(error.message");
         dispatch(signUpFailure(error.message));
     }
