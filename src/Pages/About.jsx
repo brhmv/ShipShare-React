@@ -15,10 +15,27 @@ const About = () => {
 
             <h1>Send anywhere, travel everywhere</h1>
 
-            <p>
-                Having lived in eight cities around the world, founders <strong>Allahverdi Ibrahimov</strong> and <strong>Islam Salamzade</strong> found themselves longing for everything they enjoyed abroad but could no longer find in their new home of San Francisco. They quickly discovered that others felt the same.
-                Inspired by their shared passion for travel, they created Grabr, a trusted peer-to-peer community marketplace connecting shoppers and travelers all around the world. With Grabr, shoppers gain access to the products they love, want and can't get otherwise with a little help from travelers heading their way.
-                Whether craving macarons from Paris or the latest gadget from New York, Grabr offers a faster and friendlier way to shop the globe, and at the same time, empowers travelers to monetize extra space in their suitcases.</p>
+            <br />
+
+            <div className='container process_area bg_color ' >
+
+                <h3 >
+                    Having lived in eight cities around the world, founders <strong>Allahverdi Ibrahimov</strong> and <strong>Islam Salamzade</strong> found themselves longing for everything they enjoyed abroad but could no longer find in their new home of San Francisco. They quickly discovered that others felt the same.
+                    Inspired by their shared passion for travel, they created ShipShare, a trusted peer-to-peer community marketplace connecting shoppers and travelers all around the world. </h3>
+
+                <br />
+
+                <h3>With ShipShare, shoppers gain access to the products they love, want and can't get otherwise with a little help from travelers heading their way.</h3>
+
+                <br />
+
+                <h3>ShipShare offers a faster and friendlier way to shop the globe, and at the same time, empowers travelers to monetize extra space in their suitcases.</h3>
+
+                <br />
+
+                <h3>Our travelers usually deliver a handful of items and earn upwards per trip. Not only will you make money traveling, you'll meet amazing locals along the way.</h3>
+            </div>
+
 
             <Footer FooterData={FooterData} />
         </div>

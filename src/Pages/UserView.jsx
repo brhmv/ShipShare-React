@@ -10,133 +10,66 @@ import { TbRulerMeasure } from "react-icons/tb";
 import { AiFillEye } from "react-icons/ai";
 import { GiWeight } from "react-icons/gi";
 import '../assets/UserView.css';
+import { useSelector, useDispatch } from 'react-redux';
+// import getAllSenderPosts from '../Store/SenderPostSlice';
+import { getPosts } from '../Store/TravelPostSlice';
+import { getPostSS } from '../Store/SenderPostSlice';
 
 
 function UserView() {
+    const dispatch = useDispatch();
+
     const { userId } = useParams();
-    const [userData, setUserData] = useState(null);
+    // const [userData, setUserData] = useState(null);
     const [userSenderPosts, setSenderPosts] = useState([]);
     const [userTravelerPosts, setTravelerPosts] = useState([]);
 
     const [postType, setPostType] = useState('sender');
 
-    const usersArray = [
-        {
-            id: "123e4567-e89b-12d3-a456-426614174006",
-            name: 'David white',
-            email: 'john@example.com',
-            senderPosts: [
-                {
-                    id: 1,
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    description: 'Sender Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'other',
-                    price: 10,
-                    size: 13,
-                    weight: 30,
-                    views: 20
-                },
-                {
-                    id: 2,
-                    description: 'Sender Post 1 Description',
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'Electronics',
-                    price: 10,
-                    size: 13,
-                    weight: 30,
-                    views: 20
-                },
-                {
-                    id: 3,
-                    description: 'Sender Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'Automotive',
-                    price: 10,
-                    weight: 30,
-                    size: 13,
-                    views: 20
-                },
-            ],
-            travelerPosts: [
-                {
-                    id: 4,
-                    description: 'Traveler Post 1 Description',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Car',
-                    price: 10,
-                    views: 20
-                },
-                {
-                    id: 5,
-                    description: 'Traveler Post 1 Description',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Bike',
-                    price: 10,
-                    views: 20
-                },
-                {
-                    id: 6,
-                    description: 'Traveler Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: 'Deadline Date 1',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Ship',
-                    price: 10,
-                    views: 20
-                }
-            ]
-        },
-    ];
+    const FetchTravelerPosts = useSelector((state) => state.postTravel.posts);
+
+    const FetchSenderPosts = useSelector((state) => state.postTravel.posts);
 
     useEffect(() => {
-        const user = usersArray.find(user => user.id === userId);
+        dispatch(getPosts());
+        dispatch(getPostSS());
 
-        if (user) {
-            setUserData(user);
-            setSenderPosts(user.senderPosts);
-            setTravelerPosts(user.travelerPosts);
-        }
-    }, [userId]);
+        console.log("FetchSenderPosts");
+        console.log(FetchSenderPosts);
 
-
-    useEffect(() => {
-        GetUserData(parseInt(userId));
-
-        // fetchUserData(userId);
-    }, [userId]);
+        console.log("FetchTravelerPosts");
+        console.log(FetchTravelerPosts);
 
 
-    const GetUserData = (userId) => {
-        try {
-            const user = usersArray.find(user => user.id === userId);
-            if (user) {
-                setUserData(user);
-                setSenderPosts(user.senderPosts);
-                setTravelerPosts(user.travelerPosts);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    }
+        const senderPosts = FetchTravelerPosts.filter(post => post.userId === userId);
+        const travelerPosts = FetchSenderPosts.filter(post => post.userId === userId);
+
+        setSenderPosts(senderPosts);
+        setTravelerPosts(travelerPosts);
+
+    }, [userId, dispatch]);
+
+
+
+    // useEffect(() => {
+    //     GetUserData(parseInt(userId));
+
+    //     // fetchUserData(userId);
+    // }, [userId]);
+
+
+    // const GetUserData = (userId) => {
+    //     try {
+    //         const user = usersArray.find(user => user.id === userId);
+    //         if (user) {
+    //             setUserData(user);
+    //             setSenderPosts(user.senderPosts);
+    //             setTravelerPosts(user.travelerPosts);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching user data:', error);
+    //     }
+    // }
 
     const handlePostTypeChange = (type) => {
         setPostType(type);
@@ -210,7 +143,7 @@ function UserView() {
             <h1 className='profile-h1'>User Details</h1>
 
 
-            <div>
+            {/* <div>
                 {userData ? (
                     <div className='user-detail-div'>
                         <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
@@ -220,7 +153,7 @@ function UserView() {
                 ) : (
                     <h1>Loading...</h1>
                 )}
-            </div>
+            </div> */}
 
             <br />
 

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
-const API_URL = 'https://localhost:7189/api/TravellerPosts/createTravellerPost';
 
 export const getPosts = createAsyncThunk('post/getAllSenderPosts', async () => {
     try {
@@ -14,26 +13,7 @@ export const getPosts = createAsyncThunk('post/getAllSenderPosts', async () => {
         });
 
         const data = await response.json();
-        console.log(data["$values"]);
-        return data["$values"];
-
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-});
-
-export const getUserPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
-    try {
-        const accessToken = Cookies.get('accessToken');
-        const response = await fetch("https://localhost:7189/api/TravellerPost/getUserTravellerPosts", {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            },
-            method: 'GET',
-        });
-
-        const data = await response.json();
+        console.log("all sender posts")
         console.log(data["$values"]);
         return data["$values"];
 
@@ -89,7 +69,7 @@ export const editPostAsync = createAsyncThunk('post/editPostAsync', async ({ id,
 
 export const deletePostAsync = createAsyncThunk('post/deletePostAsync', async (postId) => {
     try {
-        const response = await fetch(`${API_URL}/${postId}`, {
+        const response = await fetch(`${"API_URL"}/${postId}`, {
             method: 'DELETE',
         });
         if (!response.ok) {
@@ -106,7 +86,6 @@ const senderPostSlice = createSlice({
     initialState: {
         allPosts: [],
         posts: [],
-        userPosts: [],
         status: 'idle',
         error: null,
     },
@@ -155,6 +134,7 @@ const senderPostSlice = createSlice({
             .addCase(addPostAsync.fulfilled, (state, action) => {
                 state.posts.push(action.payload);
             })
+
             .addCase(editPostAsync.fulfilled, (state, action) => {
                 const { id, newData } = action.payload;
                 const index = state.posts.findIndex(post => post.id === id);
@@ -162,12 +142,13 @@ const senderPostSlice = createSlice({
                     state.posts[index] = { ...state.posts[index], ...newData };
                 }
             })
+
             .addCase(deletePostAsync.fulfilled, (state, action) => {
                 state.posts = state.posts.filter(post => post.id !== action.payload);
             });
     },
 });
 
-export const { addPost, editPost, deletePost, getPost, getAllPosts } = senderPostSlice.actions;
+export const { addPost, editPost, deletePost, getPost: getPostSS, getAllPosts } = senderPostSlice.actions;
 
 export default senderPostSlice.reducer;
