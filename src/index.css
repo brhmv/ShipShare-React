@@ -75,9 +75,6 @@
     height: 10%;
     padding: 14px;
     justify-content: center;
-    background-color: #629ff3;
-    background-color: #b6b0f9;
-    background-color: #9890f6;
     background-color: #7b71e2;
     gap: 6px;
 }
@@ -85,20 +82,20 @@
 .input-container .button {
     transition: 1s all;
     cursor: pointer;
-    background-color: #4399FF;
+    background-color: #b6b0f9;
     width: max-content;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 100%;
 }
 
 .input-container .button:hover {
     background-color: white;
 
     .sent-icon {
-        color: #4399FF;
+        color: #6d61f3;
     }
 }
 
@@ -108,7 +105,7 @@
     border-radius: 30px;
     border: 0;
     padding: 10px;
-    font-size: 15px;
+    font-size: 100px !important;
 }
 
 .messages-main {
@@ -141,6 +138,8 @@
 .rec-info {
     justify-self: flex-end;
     font-size: 10px;
+    margin-top: 5px;
+    font-weight: 400;
 }
 
 .rec-info {
@@ -163,7 +162,6 @@
 }
 
 .message-header {
-    background-color: #9890f6;
     background-color: #7b71e2;
     display: flex;
     justify-content: space-between;
@@ -187,7 +185,6 @@
 }
 
 .active-conversation {
-    /* border-right: 5px solid #4399FF; */
     border-left: 5px solid #ffffff;
 }
 
@@ -235,7 +232,6 @@
 }
 
 .conversation-name {
-    /* color: #4399FF; */
     font-weight: 600;
     font-size: 30px;
     color: #F0F0F0;
@@ -256,4 +252,11 @@
 
 .all-conversations::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.welcome-chat-div {
+    font-size: 50px;
+    font-weight: 600;
+    color: #6d61f3;
+    margin: auto;
 }
