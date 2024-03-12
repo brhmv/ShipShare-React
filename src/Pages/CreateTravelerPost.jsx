@@ -38,12 +38,12 @@ function CreateTravelerPost() {
 
 
         if (temp) {
-            toast.success("Sender Post Created Succesfully!", {
+            toast.success("Traveler Post Created Succesfully!", {
                 position: "top-right",
             });
         }
         else {
-            toast.error("Failed to Create Sender Post!", {
+            toast.error("Failed to Create Traveler Post!", {
                 position: "top-right",
             });
         }

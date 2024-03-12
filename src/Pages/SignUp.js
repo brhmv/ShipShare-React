@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import SignUpForm from '../components/SignUpForm';
@@ -12,6 +12,7 @@ const SignUp = () => {
     // const reloadNavbar = () => {
     //     setNavKey(prevKey => prevKey + 1);
     // };
+
     return (
         <div className="body_wrapper">
             <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" />

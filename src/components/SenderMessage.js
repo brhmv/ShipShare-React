@@ -1,6 +1,6 @@
 import { TiTick } from "react-icons/ti";
 
-const SenderMessage = ({msg}) => {
+const SenderMessage = ({ msg }) => {
 
     const dateString = msg.createdDate;
     const date = new Date(dateString);
@@ -13,12 +13,14 @@ const SenderMessage = ({msg}) => {
             })
             .join(':');
     }
-    return(
+
+    return (
         <div className="sender-message">
             {msg.text}
+
             <div className="sender-info">
                 {getFormattedTime(date)}
-                <TiTick/>
+                <TiTick />
             </div>
         </div>
     );

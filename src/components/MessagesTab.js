@@ -1,19 +1,19 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import SenderMessage from "./SenderMessage";
 import RecipientMessage from "./RecipientMessage";
 import * as signalR from "@microsoft/signalr";
 import Cookies from "js-cookie";
-import {Oval} from "react-loader-spinner";
-import {IoSend} from "react-icons/io5";
+import { Oval } from "react-loader-spinner";
+import { IoSend } from "react-icons/io5";
 import InputEmoji from 'react-input-emoji'
 
 
 const MessagesTab = ({
-                         conversationId,
-                         recipientId,
-                         conversationName,
-                         setLastMessage
-                     }) => {
+    conversationId,
+    recipientId,
+    conversationName,
+    setLastMessage
+}) => {
     const [connection, setConnection] = useState(null);
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
@@ -35,17 +35,17 @@ const MessagesTab = ({
         });
 
         newConnection.on("setIsConnected", async (message) => {
-                message === "true" ? setIsConnected(true) : setIsConnected(false);
-            }
+            message === "true" ? setIsConnected(true) : setIsConnected(false);
+        }
         )
 
         newConnection.on("ReceiveMessage", (message, conId) => {
             console.log(message);
             if (conId === conversationId) {
-                const sentMessage = {text: message.text, createdDate: Date.now(),conversationId : conversationId};
+                const sentMessage = { text: message.text, createdDate: Date.now(), conversationId: conversationId };
                 setMessages(prevMessages => [...prevMessages, sentMessage]);
                 setLastMessage(sentMessage);
-                ref.current?.scrollIntoView({behavior: "smooth"});
+                ref.current?.scrollIntoView({ behavior: "smooth" });
             }
         });
 
@@ -60,7 +60,7 @@ const MessagesTab = ({
         try {
             const response = await fetch(`https://localhost:7189/api/Conversation/getMessagesConversationId/${conversationId}`, {
                 method: "GET",
-                headers: {Authorization: `Bearer ${Cookies.get("accessToken")}`}
+                headers: { Authorization: `Bearer ${Cookies.get("accessToken")}` }
             });
             if (response.ok) {
                 const data = await response.json();
@@ -77,13 +77,16 @@ const MessagesTab = ({
 
     const sendMessage = async () => {
         setMessage("");
-        const sentMessage = {text: message, senderId: ownId, createdDate: Date.now(),conversationId : conversationId};
-        setMessages(prevMessages => [...prevMessages, sentMessage]);
-        ref.current?.scrollIntoView({behavior: "smooth"});
-        await connection
-            .invoke("SendMessageAsync", conversationId, recipientId, message)
-            .catch((err) => console.log(err));
-        setLastMessage(sentMessage);
+
+        if (message !== "") {
+            const sentMessage = { text: message, senderId: ownId, createdDate: Date.now(), conversationId: conversationId };
+            setMessages(prevMessages => [...prevMessages, sentMessage]);
+            ref.current?.scrollIntoView({ behavior: "smooth" });
+            await connection
+                .invoke("SendMessageAsync", conversationId, recipientId, message)
+                .catch((err) => console.log(err));
+            setLastMessage(sentMessage);
+        }
     };
 
     useEffect(() => {
@@ -105,7 +108,7 @@ const MessagesTab = ({
 
     useEffect(() => {
         if (ref.current) {
-            ref.current.scrollIntoView({behavior: "smooth", block: "end"});
+            ref.current.scrollIntoView({ behavior: "smooth", block: "end" });
         }
     }, [messages]);
 
@@ -114,35 +117,36 @@ const MessagesTab = ({
             <div className="message-header">
                 {conversationName}
                 <div>
-                    Connection status :
+                    Status :
                     {isConnected ? <span className="connected">
-                        Connected!
-                    </span> : <span className="not-connected"> Not Connected!</span>}
+                        Connected
+                    </span> : <span className="not-connected"> Not Connected</span>}
                 </div>
             </div>
-            {
-                isLoading && <div className="loader">
-                    <Oval
-                        visible={true}
-                        height="80"
-                        width="80"
-                        color="#4fa94d"
-                        ariaLabel="oval-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                    />
-                </div>
-            }
+
+            {isLoading && <div className="loader">
+                <Oval
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                />
+            </div>}
+
             {!isLoading && <div id="messageMain" className="messages-main scroll-container">
                 {messages.map((message, index) => {
                     if (ownId) {
                         if (message.senderId === ownId) {
-                            return <SenderMessage key={index} msg={message}/>;
-                        } else return <RecipientMessage key={index} msg={message}/>;
+                            return <SenderMessage key={index} msg={message} />;
+                        } else return <RecipientMessage key={index} msg={message} />;
                     }
                 })}
-                <div ref={ref}/>
+                <div ref={ref} />
             </div>}
+
             <div className="input-container">
                 <InputEmoji
                     type="text"
@@ -151,11 +155,17 @@ const MessagesTab = ({
                     onChange={setMessage}
                     className="message-input"
                     cleanOnEnter
+                    onEnter={sendMessage}
+                    style={{ color: 'red' }}
                 />
+
                 <div className="button" onClick={sendMessage}>
-                    <IoSend className="sent-icon"/>
+                    <IoSend className="sent-icon" />
                 </div>
+
             </div>
+
+
         </div>
     );
 };

@@ -1,21 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ConversationsTab from "../components/ConversationsTab";
 import "../index.css";
 import Cookies from "js-cookie";
 import MessagesTab from "../components/MessagesTab";
-import {Comment} from "react-loader-spinner";
-import CustomNavbar from "../components/CustomNavbar";
+import { Comment } from "react-loader-spinner";
 
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
     const [conversationName, setConversationName] = useState("");
-    const {userId} = useParams();
+    const { userId } = useParams();
     const token = Cookies.get("accessToken");
     const [conversationId, setConversationId] = useState(null);
     const [messagesTabIsOpen, setMessagesTabIsOpen] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [lastMessage,setLastMessage] = useState();
+    const [lastMessage, setLastMessage] = useState();
 
     useEffect(() => {
         if (userId) {
@@ -35,7 +34,7 @@ const Chat = () => {
     const getAllConversations = () => {
         try {
             fetch(`https://localhost:7189/api/Conversation/getAllConversations`, {
-                headers: {Authorization: `Bearer ${token}`},
+                headers: { Authorization: `Bearer ${token}` },
                 method: "GET",
             })
                 .then((res) => {
@@ -54,7 +53,7 @@ const Chat = () => {
             let response = await fetch(
                 `https://localhost:7189/api/Conversation/createConversation/${userId}`,
                 {
-                    headers: {Authorization: `Bearer ${token}`},
+                    headers: { Authorization: `Bearer ${token}` },
                     method: "POST",
                 }
             )
@@ -69,41 +68,46 @@ const Chat = () => {
     };
 
     return (
-            <div className="chat-container">
-                {loading ? ( // Conditional rendering based on loading state
-                    <div className="loader">
-                        <Comment
-                            visible={true}
-                            height="80"
-                            width="80"
-                            ariaLabel="comment-loading"
-                            wrapperStyle={{}}
-                            wrapperClass="comment-wrapper"
-                            color="#fff"
-                            backgroundColor="#F4442E"
+        <div className="chat-container">
+
+            {loading ? (
+                <div className="loader">
+                    <Comment
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="comment-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="comment-wrapper"
+                        color="#fff"
+                        backgroundColor="#6d61f3"
+                    />
+                </div>
+            ) : (
+                <>
+
+
+
+                    <ConversationsTab
+                        setMessagesTabIsOpen={setMessagesTabIsOpen}
+                        conversations={conversations}
+                        setConversationId={setConversationId}
+                        setConversationName={setConversationName}
+                        lastMessage={lastMessage}
+                        userId={userId}
+                    />
+
+                    {messagesTabIsOpen ? (
+                        <MessagesTab
+                            setLastMessage={setLastMessage}
+                            conversationId={conversationId}
+                            recipientId={userId}
+                            conversationName={conversationName}
                         />
-                    </div>
-                ) : (
-                    <>
-                        <ConversationsTab
-                            setMessagesTabIsOpen={setMessagesTabIsOpen}
-                            conversations={conversations}
-                            setConversationId={setConversationId}
-                            setConversationName={setConversationName}
-                            lastMessage = {lastMessage}
-                            userId={userId}
-                        />
-                        {messagesTabIsOpen && (
-                            <MessagesTab
-                                setLastMessage = {setLastMessage}
-                                conversationId={conversationId}
-                                recipientId={userId}
-                                conversationName={conversationName}
-                            />
-                        )}
-                    </>
-                )}
-            </div>
+                    ) : <div className="welcome-chat-div">Welcome To Live Chat!</div>}
+                </>
+            )}
+        </div>
     );
 };
 

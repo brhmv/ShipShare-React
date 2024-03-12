@@ -14,93 +14,6 @@ import { getPosts } from '../Store/SenderPostSlice';
 function TarvelerPosts() {
     const dispatch = useDispatch();
 
-    // const senderPosts = [
-    //     {
-    //         id: 6,
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         startDestination: "City A",
-    //         endDestination: "City B",
-    //         deadlineDate: "2022-12-31",
-    //         itemType: "Clothing",
-    //         itemSize: "Medium",
-    //         itemWeight: 1.5,
-    //         price: 25.99,
-    //         views: 100,
-    //         isAvailable: true,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    //     {
-    //         id: 5,
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         startDestination: "City A",
-    //         endDestination: "City B",
-    //         deadlineDate: "2022-12-31",
-    //         itemType: "Clothing",
-    //         itemSize: "Medium",
-    //         itemWeight: 1.5,
-    //         price: 25.99,
-    //         views: 10,
-    //         isAvailable: true,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    //     {
-    //         id: 4,
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         startDestination: "City A",
-    //         endDestination: "City B",
-    //         deadlineDate: "2022-12-31",
-    //         itemType: "Clothing",
-    //         itemSize: "Medium",
-    //         itemWeight: 1.5,
-    //         price: 25.99,
-    //         views: 40,
-    //         isAvailable: true,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    //     {
-    //         id: 3,
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         startDestination: "City A",
-    //         endDestination: "City B",
-    //         deadlineDate: "2022-12-31",
-    //         itemType: "Clothing",
-    //         itemSize: "Medium",
-    //         itemWeight: 1.5,
-    //         price: 25.99,
-    //         views: 300,
-    //         isAvailable: true,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    //     {
-    //         id: 2,
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         startDestination: "City A",
-    //         endDestination: "City B",
-    //         deadlineDate: "2022-12-31",
-    //         itemType: "Clothing",
-    //         itemSize: "Medium",
-    //         itemWeight: 1.5,
-    //         price: 25.99,
-    //         views: 50,
-    //         isAvailable: true,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    //     {
-    //         id: 1,
-    //         description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    //         startDestination: "City C",
-    //         endDestination: "City D",
-    //         deadlineDate: "2023-01-15",
-    //         itemType: "Electronics",
-    //         itemSize: "Small",
-    //         itemWeight: 0.8,
-    //         price: 49.99,
-    //         views: 20,
-    //         isAvailable: false,
-    //         image: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
-    //     },
-    // ];
-
     const senderPosts = useSelector((state) => state.postSender.allPosts) ?? "Loading posts...";
 
     const [startLocation, setStartLocation] = useState('');
@@ -187,8 +100,8 @@ function TarvelerPosts() {
 
             <div className='posts'>
                 {filteredPosts.map(post => (
-                    <Link key={post.id} to={`/post/${post.id}`} className="post-link">
-                        <div key={post.id} className="post-item" onClick={<Link to='/notifictaion'></Link>}>
+                    <Link key={post.id} to={`/SenderPost/${post.id}`} className="post-link">
+                        <div key={post.id} className="post-item" >
 
                             <div className="post-image">
                                 <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
