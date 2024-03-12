@@ -1,14 +1,16 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import '../assets/Conersation.css';
 
-const ConversationsTab = ({setConversationName, setMessagesTabIsOpen, conversations, setConversationId,lastMessage,userId}) => {
+
+const ConversationsTab = ({ setConversationName, setMessagesTabIsOpen, conversations, setConversationId, lastMessage, userId }) => {
     const [selectedIndex, setSelectedIndex] = useState(-1);
     let [conversationIdNames, setConversationIdNames] = useState([]);
 
     useEffect(() => {
         conversationIdNames.forEach(conversation => {
             if (conversation.id === lastMessage.conversationId) {
-                conversation.messages["$values"] = [...conversation.messages["$values"],lastMessage];
+                conversation.messages["$values"] = [...conversation.messages["$values"], lastMessage];
                 let index = conversationIdNames.indexOf(conversation);
                 let newArr = [...conversationIdNames];
                 newArr[index] = conversation;
@@ -26,7 +28,7 @@ const ConversationsTab = ({setConversationName, setMessagesTabIsOpen, conversati
             fetch(`https://localhost:7189/api/Conversation/getConversationId/${userId}`,
                 {
                     method: "GET",
-                    headers: {"Authorization": `Bearer ${Cookies.get("accessToken")}`}
+                    headers: { "Authorization": `Bearer ${Cookies.get("accessToken")}` }
                 })
                 .then(res => res.json())
                 .then(data2 => {
@@ -36,17 +38,18 @@ const ConversationsTab = ({setConversationName, setMessagesTabIsOpen, conversati
                 })
                 .catch(err => console.log(err));
         }
-    },[userId]);
+    }, [userId]);
+
     const fetchConversationNames = async () => {
         const names = await Promise.all(
             conversations.map(async (conversation) => {
                 try {
                     const response = await fetch(`https://localhost:7189/api/Conversation/getUsernameWithConversationId/${conversation.id}`, {
                         method: "GET",
-                        headers: {Authorization: `Bearer ${Cookies.get("accessToken")}`},
+                        headers: { Authorization: `Bearer ${Cookies.get("accessToken")}` },
                     });
                     const data = await response.text();
-                    return {id: conversation.id, name: data, messages: conversation.messages};
+                    return { id: conversation.id, name: data, messages: conversation.messages };
                 } catch (error) {
                     console.error("Error fetching conversation name:", error);
                     return null;
@@ -66,6 +69,7 @@ const ConversationsTab = ({setConversationName, setMessagesTabIsOpen, conversati
             })
             .join(':');
     }
+
     const loadMessages = (conversation, index) => {
         setConversationId(conversation.id);
         setConversationName(conversation.name);
@@ -92,6 +96,7 @@ const ConversationsTab = ({setConversationName, setMessagesTabIsOpen, conversati
                         >
                             <div className="conversation-header">
                                 <span className="conversation-name">{conversation.name}</span>
+
                                 <span className="last-date">{lastDateFormatted ? lastDateFormatted : "00:00"}</span>
                             </div>
                             <span className="last-message">{lastMessage ? lastMessage.text : "Start to chat!"}</span>

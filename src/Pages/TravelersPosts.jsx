@@ -8,7 +8,8 @@ import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
-import { getPosts } from '../Store/TravelPostSlice';
+import { getTravellerPosts } from '../Store/TravelPostSlice';
+import { Oval } from "react-loader-spinner";
 
 function TarvelerPosts() {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function TarvelerPosts() {
 
     useEffect(() => {
         console.log('traveller posts');
-        dispatch(getPosts());
+        dispatch(getTravellerPosts());
     }, [dispatch]);
 
     useEffect(() => {
@@ -89,24 +90,35 @@ function TarvelerPosts() {
             <hr />
 
             <div className='posts'>
-                {filteredPosts.map(post => (
-                    <Link key={post.id} to={`/post/${post.id}`} className="post-link">
-                        <div key={post.id} className="post-item">
+                {filteredPosts.length !== 0 ?
+                    filteredPosts.map(post => (
+                        <Link key={post.id} to={`/post/${post.id}`} className="post-link">
+                            <div key={post.id} className="post-item">
 
-                            <div className="post-details">
+                                <div className="post-details">
 
-                                <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
 
-                                <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
 
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
 
-                                <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
+                                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                ))}
+                        </Link>
+                    )) : <Oval
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        margin-left="1220px"
+                    />
+                }
             </div>
 
             <hr />
