@@ -33,3 +33,15 @@
     text-align: left;
     padding-left: 10px;
 }
+
+.user-detail-div {
+    background-color: #6d61f3 !important;
+    margin: auto;
+    margin: 0px 30px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.bold-span {
+    font-weight: 600;
+}

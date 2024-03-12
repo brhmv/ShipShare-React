@@ -4,17 +4,19 @@ import Cookies from 'js-cookie';
 
 export const getPosts = createAsyncThunk('post/getAllSenderPosts', async () => {
     try {
-        const accessToken = Cookies.get('accessToken');
+        // const accessToken = Cookies.get('accessToken');
         const response = await fetch("https://localhost:7189/api/SenderPost/getAllSenderPosts", {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
+                // 'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+
             },
             method: 'GET',
         });
 
         const data = await response.json();
-        console.log("all sender posts")
-        console.log(data["$values"]);
+        // console.log("all sender posts")
+        // console.log(data["$values"]);
         return data["$values"];
 
     } catch (error) {
@@ -104,7 +106,7 @@ const senderPostSlice = createSlice({
             const postId = action.payload;
             state.posts = state.posts.filter(post => post.id !== postId);
         },
-        getPost: (state, action) => {
+        getSenderPost: (state, action) => {
             state.posts = action.payload;
         },
 
@@ -149,6 +151,6 @@ const senderPostSlice = createSlice({
     },
 });
 
-export const { addPost, editPost, deletePost, getPost: getPostSS, getAllPosts } = senderPostSlice.actions;
+export const { addPost, editPost, deletePost, getSenderPost, getAllPosts } = senderPostSlice.actions;
 
 export default senderPostSlice.reducer;

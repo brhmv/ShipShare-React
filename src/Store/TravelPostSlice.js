@@ -2,19 +2,21 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 
-export const getPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
+export const getTravellerPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
     try {
-        const accessToken = Cookies.get('accessToken');
+        // const accessToken = Cookies.get('accessToken');
         const response = await fetch("https://localhost:7189/api/TravellerPost/getAllTravellerPosts", {
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
+                // 'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+
             },
             method: 'GET',
         });
 
         const data = await response.json();
-        console.log("traveller all posts")
-        console.log(data["$values"]);
+        // console.log("traveller all posts")
+        // console.log(data["$values"]);
         return data["$values"];
 
     } catch (error) {
@@ -106,7 +108,7 @@ const postSlice = createSlice({
             const postId = action.payload;
             state.posts = state.posts.filter(post => post.id !== postId);
         },
-        getPost: (state, action) => {
+        getTravellerPost: (state, action) => {
             state.posts = action.payload;
         },
         getAllPosts: (state, action) => {
@@ -117,16 +119,16 @@ const postSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(getPosts.fulfilled, (state, action) => {
+            .addCase(getTravellerPosts.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.posts = action.payload;
             })
 
-            .addCase(getPosts.pending, (state) => {
+            .addCase(getTravellerPosts.pending, (state) => {
                 state.status = 'loading';
             })
 
-            .addCase(getPosts.rejected, (state, action) => {
+            .addCase(getTravellerPosts.rejected, (state, action) => {
                 state.status = 'idle';
                 state.error = action.error.message;
             })
@@ -147,6 +149,6 @@ const postSlice = createSlice({
     },
 });
 
-export const { addPost, editPost, deletePost, getPost, getAllPosts } = postSlice.actions;
+export const { addPost, editPost, deletePost, getTravellerPost, getAllPosts } = postSlice.actions;
 
 export default postSlice.reducer;

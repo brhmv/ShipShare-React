@@ -23,6 +23,7 @@ import CreateSenderPost from "./Pages/CreateSenderPost.jsx";
 import Profile from "./Pages/Profile.jsx";
 import Chat from "./Pages/Chat.jsx";
 import User from "./Pages/UserView.jsx";
+import SenderPost from "./Pages/Sender-Post.jsx";
 
 class App extends Component {
 
@@ -47,12 +48,13 @@ class App extends Component {
           <Route path="/Stats" element={<Stats />} />
 
           <Route path='/post/:postId' element={<Post />} />
+          <Route path='/SenderPost/:postId' element={<SenderPost />} />
 
           <Route path='/profile/:userId' element={<Profile />} />
           <Route path='/profile' element={<Profile />} />
 
           <Route path='/user/:userId' element={<User />} />
-          <Route path="/chat/:userId?" element={<Chat/>}/>
+          <Route path="/chat/:userId?" element={<Chat />} />
 
 
           <Route path="/Contact" element={<Contact />} />

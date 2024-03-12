@@ -6,86 +6,73 @@ import { Link, useParams } from 'react-router-dom';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import React, { useState, useEffect } from 'react';
-import { TbRulerMeasure } from "react-icons/tb";
 import { AiFillEye } from "react-icons/ai";
-import { GiWeight } from "react-icons/gi";
 import '../assets/UserView.css';
 import { useSelector, useDispatch } from 'react-redux';
-// import getAllSenderPosts from '../Store/SenderPostSlice';
-import { getPosts } from '../Store/TravelPostSlice';
-import { getPostSS } from '../Store/SenderPostSlice';
+import { getTravellerPosts } from '../Store/TravelPostSlice';
+import { getPosts } from '../Store/SenderPostSlice';
+import { Oval } from "react-loader-spinner";
 
+
+import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
 
 function UserView() {
     const dispatch = useDispatch();
 
     const { userId } = useParams();
-    // const [userData, setUserData] = useState(null);
+
+
     const [userSenderPosts, setSenderPosts] = useState([]);
     const [userTravelerPosts, setTravelerPosts] = useState([]);
-
     const [postType, setPostType] = useState('sender');
-
     const FetchTravelerPosts = useSelector((state) => state.postTravel.posts);
+    const FetchSenderPosts = useSelector((state) => state.postSender.allPosts);
 
-    const FetchSenderPosts = useSelector((state) => state.postTravel.posts);
+
+    const user = useSelector((state) => state.auth.userdetails);
+
+    // const [userData, setUserData] = useState(null);
+
 
     useEffect(() => {
+
+        dispatch(getTravellerPosts());
+
         dispatch(getPosts());
-        dispatch(getPostSS());
 
-        console.log("FetchSenderPosts");
-        console.log(FetchSenderPosts);
+    }, [dispatch])
 
-        console.log("FetchTravelerPosts");
-        console.log(FetchTravelerPosts);
+    useEffect(() => {
 
+        const travelerPosts = FetchTravelerPosts.filter(post => post.userId === userId);
+        const senderPosts = FetchSenderPosts.filter(post => post.userId === userId);
 
-        const senderPosts = FetchTravelerPosts.filter(post => post.userId === userId);
-        const travelerPosts = FetchSenderPosts.filter(post => post.userId === userId);
-
-        setSenderPosts(senderPosts);
         setTravelerPosts(travelerPosts);
+        setSenderPosts(senderPosts);
 
-    }, [userId, dispatch]);
-
-
-
-    // useEffect(() => {
-    //     GetUserData(parseInt(userId));
-
-    //     // fetchUserData(userId);
-    // }, [userId]);
+    }, [userId, FetchSenderPosts, FetchTravelerPosts]);
 
 
-    // const GetUserData = (userId) => {
-    //     try {
-    //         const user = usersArray.find(user => user.id === userId);
-    //         if (user) {
-    //             setUserData(user);
-    //             setSenderPosts(user.senderPosts);
-    //             setTravelerPosts(user.travelerPosts);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error fetching user data:', error);
-    //     }
-    // }
+    useEffect(() => {
+        dispatch(getUserDetailsWithIdAsync(userId));
+    }, [userId]);
+
 
     const handlePostTypeChange = (type) => {
         setPostType(type);
     };
-
 
     const renderSenderPosts = () => {
         return (
             <div className="user-posts-div">
                 {userSenderPosts.length !== 0 ?
                     userSenderPosts.map((post, index) => (
-                        <Link key={post.id} to={`/post/${post.id}`} className="post-link">
+
+                        <Link key={post.id} to={`/SenderPost/${post.id}`} className="post-link">
                             <div key={index} className="user-post-item">
 
                                 <div className="post-image">
-                                    <img src={post.imageUrl} alt={post.id} />
+                                    <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
                                 </div>
 
                                 <div className="user-post-details">
@@ -95,14 +82,20 @@ function UserView() {
                                     <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
                                     <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
                                     <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
-                                    <p className="p-detail"><span className="span-detail">Size:</span> {post.size} <TbRulerMeasure /></p>
-                                    <p className="p-detail"><span className="span-detail">Weight:</span> {post.weight} <GiWeight /></p>
                                     <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
                                 </div>
                             </div>
                         </Link>
-                    )) : < h1 > No post Yet.</h1 >
+                    )) : <Oval
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
                 }
             </div >
         );
@@ -110,26 +103,40 @@ function UserView() {
 
     const renderTravelerPosts = () => {
         return (
-            <div className="userTravelerPosts-div">
+            <div className="user-posts-div">
                 {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
-                    <div key={index} className="post">
-                        <div className="post-details">
+                    <Link key={post.id} to={`/post/${post.id}`} className="post-link">
 
-                            <span className="span-detail">Description:</span><p className="p-detail"> {post.description}</p>
-                            <span className="span-detail">Start Destination:</span><p className="p-detail"> {post.startDestination} <FaLocationDot /></p>
-                            <span className="span-detail">End Destination:</span><p className="p-detail"> {post.endDestination} <FaLocationDot /></p>
-                            <span className="span-detail">Deadline Date:</span><p className="p-detail"> {post.deadlineDate} <FaCalendarAlt /></p>
-                            <span className="span-detail">Item Category:</span><p className="p-detail"> {post.itemType}</p>
-                            <span className="span-detail">Price:</span><p className="p-detail"> {post.price}</p>
+                        <div key={index} className="user-post-item">
+                            <div className="user-post-details">
 
-                            <span className="span-detail">Vehicle Category:</span><p className="p-detail"> {post.vehicleCategory}</p>
+                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
+                                <p className="p-detail"> <span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                                <p className="p-detail"> <span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                                <p className="p-detail"> <span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                <p className="p-detail"> <span className="span-detail">Item Category:</span> {post.itemType}</p>
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
 
-                            <span className="span-detail">Views:</span><p className="p-detail"> {post.views} <AiFillEye /></p>
+                                <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
 
+                                <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
+
+                            </div>
                         </div>
-                    </div>
-                )) : < h1 > No post Yet.</h1 >}
+                    </Link>))
+                    : <Oval
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />}
+
+
             </div>
+
         );
     };
 
@@ -142,18 +149,17 @@ function UserView() {
             <br />
             <h1 className='profile-h1'>User Details</h1>
 
-
-            {/* <div>
-                {userData ? (
+            <div>
+                {user ? (
                     <div className='user-detail-div'>
-                        <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
-                        <p className='user-detail'><span className='bold-span'>Email: </span>{userData.email}</p>
+                        <p className='user-detail'><span className='bold-span'>Name:</span> {user.username}</p>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{user.email}</p>
                         <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>
                     </div>
                 ) : (
                     <h1>Loading...</h1>
                 )}
-            </div> */}
+            </div>
 
             <br />
 
@@ -173,10 +179,9 @@ function UserView() {
             </div>
 
 
-
-
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
+
 
             <Footer FooterData={FooterData} />
         </div >

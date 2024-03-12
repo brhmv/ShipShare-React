@@ -5,12 +5,12 @@ import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPosts } from '../Store/TravelPostSlice';
 import { Link, useParams } from 'react-router-dom';
 import { AiFillEye } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaDollarSign } from "react-icons/fa";
+import { getTravellerPosts } from '../Store/TravelPostSlice';
 
 function TravelerPost() {
     const dispatch = useDispatch();
@@ -21,10 +21,9 @@ function TravelerPost() {
 
     const post = travelerPosts.find((e) => e.id === postId);
 
-    <h1>{post.UserId}</h1>
 
     useEffect(() => {
-        dispatch(getPosts());
+        dispatch(getTravellerPosts());
     }, [dispatch]);
 
 
