@@ -17,6 +17,7 @@ const SenderMessage = ({ msg }) => {
     return (
         <div className="sender-message">
             {msg.text}
+
             <div className="sender-info">
                 {getFormattedTime(date)}
                 <TiTick />

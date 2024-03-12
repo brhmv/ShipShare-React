@@ -77,13 +77,16 @@ const MessagesTab = ({
 
     const sendMessage = async () => {
         setMessage("");
-        const sentMessage = { text: message, senderId: ownId, createdDate: Date.now(), conversationId: conversationId };
-        setMessages(prevMessages => [...prevMessages, sentMessage]);
-        ref.current?.scrollIntoView({ behavior: "smooth" });
-        await connection
-            .invoke("SendMessageAsync", conversationId, recipientId, message)
-            .catch((err) => console.log(err));
-        setLastMessage(sentMessage);
+
+        if (message !== "") {
+            const sentMessage = { text: message, senderId: ownId, createdDate: Date.now(), conversationId: conversationId };
+            setMessages(prevMessages => [...prevMessages, sentMessage]);
+            ref.current?.scrollIntoView({ behavior: "smooth" });
+            await connection
+                .invoke("SendMessageAsync", conversationId, recipientId, message)
+                .catch((err) => console.log(err));
+            setLastMessage(sentMessage);
+        }
     };
 
     useEffect(() => {
@@ -152,6 +155,8 @@ const MessagesTab = ({
                     onChange={setMessage}
                     className="message-input"
                     cleanOnEnter
+                    onEnter={sendMessage}
+                    style={{ color: 'red' }}
                 />
 
                 <div className="button" onClick={sendMessage}>

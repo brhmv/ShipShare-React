@@ -85,6 +85,9 @@ const Chat = () => {
                 </div>
             ) : (
                 <>
+
+
+
                     <ConversationsTab
                         setMessagesTabIsOpen={setMessagesTabIsOpen}
                         conversations={conversations}
@@ -94,14 +97,14 @@ const Chat = () => {
                         userId={userId}
                     />
 
-                    {messagesTabIsOpen && (
+                    {messagesTabIsOpen ? (
                         <MessagesTab
                             setLastMessage={setLastMessage}
                             conversationId={conversationId}
                             recipientId={userId}
                             conversationName={conversationName}
                         />
-                    )}
+                    ) : <div className="welcome-chat-div">Welcome To Live Chat!</div>}
                 </>
             )}
         </div>
