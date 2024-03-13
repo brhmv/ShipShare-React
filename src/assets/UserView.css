@@ -45,3 +45,8 @@
 .bold-span {
     font-weight: 600;
 }
+
+.profile-h1-tag {
+    color: black !important;
+    font-weight: 700;
+}

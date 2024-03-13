@@ -57,11 +57,11 @@ function CreateTravelerPost() {
 
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Create Traveler Post" Pdescription="-----------------------" />
 
-            <div className="container mt-5 travelpost-form">
+            <div className="container mt-5 travelpost-form create-container">
 
                 <br />
 
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={handleSubmit}  >
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Title:</span></p>

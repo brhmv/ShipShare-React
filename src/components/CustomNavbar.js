@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Sticky from 'react-stickynode';
 import Cookies from 'js-cookie';
+import { IoNotifications } from "react-icons/io5";
 
 
 class CustomNavbar extends Component {
@@ -34,22 +35,23 @@ class CustomNavbar extends Component {
                             <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="menu_toggle">
                                     <span className="hamburger">
-                                        <span>Asada</span>
+                                        <span></span>
                                         <br />
-                                        <span>aefsaef</span>
+                                        <span></span>
                                         <br />
-                                        <span>sefef</span>
+                                        <span></span>
                                         <br />
                                     </span>
                                     <span className="hamburger-cross">
-                                        <span>sef</span>
-                                        <span>sef</span>
+                                        <span></span>
+                                        <span></span>
                                     </span>
                                 </span>
                             </button>
 
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul className={`navbar-nav menu ml-auto ${nClass}`}>
+                                {/* <ul className={`navbar-nav menu ml-auto ${nClass} `}> */}
+                                <ul className={`navbar-nav menu`}>
                                     <li className="nav-item dropdown submenu mega_menu mega_menu_two">
                                         <Link to="../home" className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Home
@@ -97,23 +99,32 @@ class CustomNavbar extends Component {
                                         <ul role="menu" className=" dropdown-menu">
                                             <li className="nav-item"><NavLink exact='true' title="Team" className="nav-link" to='/Team'>Team</NavLink></li>
                                             <li className="nav-item"><NavLink exact='true' title="Faq" className="nav-link" to='/Faq'>Faq</NavLink></li>
+                                            <li className="nav-item"><NavLink exact='true' title="About" className="nav-link" to='/About'>About</NavLink></li>
+                                            <li className="nav-item"><NavLink title="Pricing" className="nav-link" to="/Contact">Contact</NavLink></li>
                                         </ul>
                                     </li>
 
 
 
 
-                                    <li className="nav-item"><NavLink exact='true' title="About" className="nav-link" to='/About'>About</NavLink></li>
 
-                                    <li className="nav-item"><NavLink title="Pricing" className="nav-link" to="/Contact">Contact</NavLink></li>
 
                                     <li className="nav-item"><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></li>
+
                                 </ul>
 
                                 {isAuthenticated ? (
                                     <div className='nav-buttons-div'>
-                                        <NavLink exact='true' title="MyProfile" className={`btn_get btn_hover ${hbtnClass} nav-buuton`} to='/Profile'>My Profile</NavLink>
-                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buuton`} onClick={this.handleSignOut}>Sign Out</button>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}><NavLink title="Notification" className="nav-link" to="/notification"><IoNotifications /></NavLink></button>
+                                        <NavLink exact='true' title="MyProfile" className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} to='/Profile'>Profile</NavLink>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} onClick={this.handleSignOut}>Sign Out</button>
+
+
+
+                                        {/* <Link to="/SignUp" className="btn_hover agency_banner_btn wow fadeInLeft p-3 fs-26" data-wow-delay="0.5s"><IoNotifications /></Link>
+                                        <Link to="/SignUp" className="btn_hover agency_banner_btn wow fadeInLeft fs-26" data-wow-delay="0.5s">My Profile</Link>
+                                        <Link to="/SignUp" className="btn_hover agency_banner_btn wow fadeInLeft fs-26" data-wow-delay="0.5s">Sign Out</Link> */}
+
                                     </div>
                                 ) : (
                                     <div className='nav-buttons-div'>
