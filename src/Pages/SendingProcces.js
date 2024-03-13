@@ -9,6 +9,7 @@ const SendingProcess = () => {
     return (
         <div className="body_wrapper">
             <CustomNavbar slogo="sticky_logo" mClass="menu_four" nClass="w_menu ml-auto mr-auto" />
+
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Proccess For Senders" Pdescription="ShipShare is the go-to way to send products." />
 
             <section className="process_area bg_color ">

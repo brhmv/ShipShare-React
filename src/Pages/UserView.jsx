@@ -147,11 +147,11 @@ function UserView() {
             <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User View" Pdescription="--------" />
 
             <br />
-            <h1 className='profile-h1'>User Details</h1>
 
             <div>
                 {user ? (
                     <div className='user-detail-div'>
+                        <h1 className='profile-h1-tag'>User Details</h1>
                         <p className='user-detail'><span className='bold-span'>Name:</span> {user.username}</p>
                         <p className='user-detail'><span className='bold-span'>Email: </span>{user.email}</p>
                         <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>
