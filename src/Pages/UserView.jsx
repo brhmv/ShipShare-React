@@ -12,26 +12,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTravellerPosts } from '../Store/TravelPostSlice';
 import { getPosts } from '../Store/SenderPostSlice';
 import { Oval } from "react-loader-spinner";
+import Review from "../components/Review"
+import { GiWeight } from "react-icons/gi";
 
 
 import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
 
 function UserView() {
     const dispatch = useDispatch();
-
     const { userId } = useParams();
-
 
     const [userSenderPosts, setSenderPosts] = useState([]);
     const [userTravelerPosts, setTravelerPosts] = useState([]);
     const [postType, setPostType] = useState('sender');
     const FetchTravelerPosts = useSelector((state) => state.postTravel.posts);
     const FetchSenderPosts = useSelector((state) => state.postSender.allPosts);
-
-
     const user = useSelector((state) => state.auth.userdetails);
-
-    // const [userData, setUserData] = useState(null);
 
 
     useEffect(() => {
@@ -52,7 +48,6 @@ function UserView() {
 
     }, [userId, FetchSenderPosts, FetchTravelerPosts]);
 
-
     useEffect(() => {
         dispatch(getUserDetailsWithIdAsync(userId));
     }, [userId]);
@@ -65,6 +60,19 @@ function UserView() {
     const renderSenderPosts = () => {
         return (
             <div className="user-posts-div">
+
+                {userSenderPosts === null &&
+                    <Oval
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                }
+
                 {userSenderPosts.length !== 0 ?
                     userSenderPosts.map((post, index) => (
 
@@ -80,14 +88,26 @@ function UserView() {
                                     <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
                                     <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
                                     <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
-                                    <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
-                                    <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
+                                    <p className="p-detail"><span className="span-detail">Item type: </span>{post.itemType}</p>
+                                    <p className="p-detail"><span className="span-detail">Item weight: </span>{post.itemWeight} <GiWeight /></p>
+                                    <p className="p-detail"><span className="span-detail">Price:</span> {post.price}$ </p>
                                     <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
                                 </div>
                             </div>
                         </Link>
-                    )) : <Oval
+                    )) : <h1>No Post Yet!</h1>}
+            </div >
+        );
+    };
+
+    const renderTravelerPosts = () => {
+        return (
+            <div className="user-posts-div">
+
+
+                {userTravelerPosts === null &&
+                    <Oval
                         visible={true}
                         height="80"
                         width="80"
@@ -97,13 +117,10 @@ function UserView() {
                         wrapperClass=""
                     />
                 }
-            </div >
-        );
-    };
 
-    const renderTravelerPosts = () => {
-        return (
-            <div className="user-posts-div">
+
+
+
                 {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
                     <Link key={post.id} to={`/post/${post.id}`} className="post-link">
 
@@ -114,25 +131,13 @@ function UserView() {
                                 <p className="p-detail"> <span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
                                 <p className="p-detail"> <span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
                                 <p className="p-detail"> <span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
-                                <p className="p-detail"> <span className="span-detail">Item Category:</span> {post.itemType}</p>
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
-
-                                <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
-
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price}$</p>
                                 <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
                             </div>
                         </div>
                     </Link>))
-                    : <Oval
-                        visible={true}
-                        height="80"
-                        width="80"
-                        color="#4fa94d"
-                        ariaLabel="oval-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                    />}
+                    : <h1>No Post Yet!</h1>}
 
 
             </div>
@@ -181,6 +186,16 @@ function UserView() {
 
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
+
+
+
+
+            <div>
+                {user && <h1>Reviews of {user.username}</h1>}
+
+                <Review userId={userId} />
+
+            </div>
 
 
             <Footer FooterData={FooterData} />

@@ -8,7 +8,6 @@ import CustomNavbar from '../components/CustomNavbar';
 import Breadcrumb from '../components/Breadcrumb';
 import { getPosts } from '../Store/SenderPostSlice';
 import React, { useEffect } from 'react';
-// import Review from "../components/Review"
 
 const SenderPost = () => {
 
@@ -69,7 +68,6 @@ const SenderPost = () => {
                 </div>
 
 
-                {/* <Review /> */}
 
             </div>
 

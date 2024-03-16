@@ -19,19 +19,22 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async () => 
     }
 });
 
-export const createReview = createAsyncThunk('review/createReview', async ({ reviewData, postId }) => {
+export const createReview = createAsyncThunk('review/createReview', async ({ reviewData, userId }) => {
     try {
-        const response = await fetch(`https://localhost:7189/api/Review/createReview/${postId}`, {
+        const response = await fetch(`https://localhost:7189/api/Review/createReview/${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(reviewData),
         });
+
         if (!response.ok) {
             throw new Error('Failed to create review');
         }
+
         const data = await response.json();
+
         return data;
     } catch (error) {
         throw error;
