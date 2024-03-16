@@ -54,7 +54,6 @@ a:focus {
 
 
 .notif {
-  border-radius: 50% !important;
   font-size: 25px !important;
   padding: 0px !important;
 }
@@ -435,9 +434,13 @@ button:focus {
 }
 
 .btn_get {
-  font: 500 14px/47px "Poppins", sans-serif;
+  display : flex;
+  align-items: center;
+  justify-content: center;
+  font-family : "Poppins", sans-serif;
+  white-space : nowrap;
   color: #6754e2;
-  border: 2px solid #ccc5fa;
+  border: 2px solid #5e2ced;
   border-radius: 4px;
   -webkit-box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
   box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
@@ -939,7 +942,7 @@ button:focus {
 /*====================================================*/
 /*============== header_area css ==============*/
 .header_area {
-  position: fixed;
+  
   width: 100%;
   left: 0;
   z-index: 20;
@@ -947,7 +950,7 @@ button:focus {
 }
 
 .menu_one {
-  padding: 0px;
+  padding: 0px 30px;
 }
 
 .menu_one .btn_get {
@@ -1751,7 +1754,7 @@ button:focus {
 }
 
 .menu_four .btn_get {
-  border-color: #fff;
+  border-color: #5e2ced !important;
   padding: 0px 30px;
   background: #fff;
   min-width: 120px;
@@ -2014,6 +2017,15 @@ button:focus {
 .navbar-toggler {
   padding: 0px;
   margin-left: 20px;
+}
+
+#navbarSupportedContent {
+  justify-content: space-between !important;
+}
+
+.custom-container {
+  width: 100% !important;
+  padding: 10px; 
 }
 
 .navbar-toggler:focus {
@@ -25671,10 +25683,6 @@ a .h_head:hover {
   display: flex;
   flex-flow: row;
   height: 5vh;
-}
-
-.nav-buuton {
-  width: 7vw;
 }
 
 
