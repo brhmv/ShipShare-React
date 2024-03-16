@@ -260,3 +260,17 @@
     color: #6d61f3;
     margin: auto;
 }
+
+.reset-password {
+    display: flex;
+    flex-direction: column;
+    gap : 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar {
+    background-color:white;
+    border-bottom: 1px solid #eee;
+}

@@ -5,7 +5,7 @@ import FooterData from '../components/Footer/FooterData';
 
 const NotFound = () => (
   <div className="body_wrapper">
-    <CustomNavbar hbtnClass="new_btn" />
+     <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
     <section className="error_two_area">
       <div className="container flex">
         <div className="error_content_two text-center">

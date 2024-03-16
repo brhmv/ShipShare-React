@@ -270,11 +270,11 @@ const ProfileView = () => {
 
     return (
         <div>
-            <CustomNavbar mClass="menu_four" nClass="w_menu ml-auto mr-auto" />
+             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             <ToastContainer position="top-right" />
 
-            <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User Profile" Pdescription="---------------------" />
+            {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User Profile" Pdescription="---------------------" /> */}
 
             <br />
 

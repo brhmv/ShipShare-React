@@ -61,9 +61,6 @@
     .saas_home_img img,.software_img img{
         max-width: 100%;
     }
-    .container.custom_container{
-        max-width: 1170px;
-    }
     .service_item{
         padding: 47px 15px 0px;
     }

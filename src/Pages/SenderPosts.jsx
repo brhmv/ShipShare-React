@@ -53,7 +53,7 @@ function TarvelerPosts() {
         <div >
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
-            <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Posts of Senders" Pdescription="-----------------------" />
+            {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Posts of Senders" Pdescription="-----------------------" /> */}
 
             <br />
 

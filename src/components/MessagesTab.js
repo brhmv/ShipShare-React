@@ -76,9 +76,8 @@ const MessagesTab = ({
     };
 
     const sendMessage = async () => {
-        setMessage("");
-
-        if (message !== "") {
+        if (message.length !== 0) {
+            setMessage("");
             const sentMessage = { text: message, senderId: ownId, createdDate: Date.now(), conversationId: conversationId };
             setMessages(prevMessages => [...prevMessages, sentMessage]);
             ref.current?.scrollIntoView({ behavior: "smooth" });
