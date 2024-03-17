@@ -44,9 +44,11 @@
 
 .bold-span {
     font-weight: 600;
+    color: black;
 }
 
 .profile-h1-tag {
+    /* color: rgb(255, 255, 255) !important; */
     color: black !important;
     font-weight: 700;
 }

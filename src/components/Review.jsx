@@ -1,97 +1,113 @@
 import React, { useState, useEffect } from 'react';
-import { addReview, fetchReviews } from '../Store/ReviewSlice';
+import { createReview, fetchReviews } from '../Store/ReviewSlice';
 import '../assets/Review.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
+import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
 
-const Review = ({ userId }) => {
+const Review = ({ userId, user }) => {
     const dispatch = useDispatch();
     const [rating, setRating] = useState(0);
     const [text, setText] = useState('');
-
     const reviews = useSelector((state) => state.review.reviews);
 
     const handleAddReview = () => {
-        dispatch(addReview({ userId, rating, text }));
-        setRating(0);
-        setText('');
+        if (rating !== 0 && text !== '') {
+            dispatch(createReview({ rating, text, user }));
+            setRating(0);
+            setText('');
+            toast.success("Review Created Succesfully!", {
+                position: "top-right",
+            });
+        }
+        else {
+            toast.error("Failed to create review!", {
+                position: "top-right",
+            });
+        }
     };
 
     useEffect(() => {
-        dispatch(fetchReviews());
+        dispatch(fetchReviews(userId));
+        console.log(`Review `);
+        console.log(reviews);
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getUserDetailsWithIdAsync(userId));
-
-    }, [dispatch])
-
+    const renderStars = (numStars) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= numStars)
+                stars.push(<span key={i}><FaStar /></span>);
+            else
+                stars.push(<span key={i}><FaRegStar /></span>);
+        }
+        return stars;
+    };
 
     return (
         <div>
-            <h2>Reviews</h2>
-
             {reviews ? (
-                <ul>
+                <div className='reviews-div'>
                     {reviews.map((review) => (
-                        <div key={review.id}>
-                            <p >Rating: {review.rating}</p>
-                            <p>{review.text}</p>
-                            <p>By: {review.reviewSender?.name}</p>
+                        <div key={review.id} className='review-item'>
+                            <div className="review-item-1">
+
+                                <p className='p-detail'><span className='bold-span'>Posted By:</span> {review.reviewSenderId}</p>
+
+                                <p className='red-star'><span className='rate-span'>Rating:</span> {renderStars(review.rating)}</p>
+
+                            </div>
+
+                            <div className="review-item-2">
+                                <p className='p-review'>
+                                    <span className='bold-span'>Comment:</span>
+                                    {review.text}
+                                </p>
+                            </div>
                         </div>
                     ))}
-                </ul>
+                </div>
             ) : (
                 <h1>No reviews yet.</h1>
-            )}
+            )
+            }
+            <ToastContainer position="top-right" />
 
+            <div className="comment-box">
+                <h1 className='profile-h1-tag'>Add your review!</h1>
+                {/* <img src="https://i.imgur.com/xELPaag.jpg" width="70" class="rounded-circle mt-2" /> */}
 
-            <div class="card">
-                <div class="row">
-                    {/* <div class="col-2">
-                        <img src="https://i.imgur.com/xELPaag.jpg" width="70" class="rounded-circle mt-2" />
-                    </div> */}
+                <div className="stars">
 
-                    <div class="col-10">
-                        <div class="comment-box ml-2">
-                            <h4>Add a comment</h4>
-
-                            <div class="rating">
-                                <input type="radio" name="rating" value="5" id="5" onChange={(e) => setRating(parseInt(e.target.value))} />
-                                <label for="5" className='fs-40px'>☆</label>
-                                <input type="radio" name="rating" value="4" id="4" onChange={(e) => setRating(parseInt(e.target.value))} />
-                                <label for="4">☆</label>
-                                <input type="radio" name="rating" value="3" id="3" onChange={(e) => setRating(parseInt(e.target.value))} />
-                                <label for="3">☆</label>
-                                <input type="radio" name="rating" value="2" id="2" onChange={(e) => setRating(parseInt(e.target.value))} />
-                                <label for="2">☆</label>
-                                <input type="radio" name="rating" value="1" id="1" onChange={(e) => setRating(parseInt(e.target.value))} />
-                                <label for="1">☆</label>
-                            </div>
-
-
-                            <div class="comment-area">
-                                <textarea
-                                    class="form-control" placeholder="Write review" rows="4"
-                                    onChange={(e) => setText(e.target.value)}
-                                    value={text}
-                                ></textarea>
-                            </div>
-
-                            <div class="comment-btns mt-2">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="pull-right">
-                                            <button class="btn btn-sm send-btn" onClick={handleAddReview}>Send</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="rating">
+                        <input type="radio" name="rating" value="5" id="5" onChange={(e) => setRating(parseInt(e.target.value))} />
+                        <label htmlFor="5" className='fs-40px'>☆</label>
+                        <input type="radio" name="rating" value="4" id="4" onChange={(e) => setRating(parseInt(e.target.value))} />
+                        <label htmlFor="4">☆</label>
+                        <input type="radio" name="rating" value="3" id="3" onChange={(e) => setRating(parseInt(e.target.value))} />
+                        <label htmlFor="3">☆</label>
+                        <input type="radio" name="rating" value="2" id="2" onChange={(e) => setRating(parseInt(e.target.value))} />
+                        <label htmlFor="2">☆</label>
+                        <input type="radio" name="rating" value="1" id="1" onChange={(e) => setRating(parseInt(e.target.value))} />
+                        <label htmlFor="1">☆</label>
                     </div>
                 </div>
+
+                <div className="comment-area">
+                    <textarea
+                        className="text-review" placeholder="Write review" rows="4"
+                        onChange={(e) => setText(e.target.value)}
+                        value={text}
+                    ></textarea>
+                </div>
+
+                <div className="mt-3">
+                    <button className="btn btn-sm send-review-btn" onClick={handleAddReview}>Send</button>
+                </div>
+
             </div>
-        </div>
+        </div >
     );
 };
 

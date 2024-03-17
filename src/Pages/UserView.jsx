@@ -1,7 +1,7 @@
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+// import Breadcrumb from '../components/Breadcrumb';
 import { Link, useParams } from 'react-router-dom';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -14,9 +14,9 @@ import { getPosts } from '../Store/SenderPostSlice';
 import { Oval } from "react-loader-spinner";
 import Review from "../components/Review"
 import { GiWeight } from "react-icons/gi";
-
-
 import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
+
+
 
 function UserView() {
     const dispatch = useDispatch();
@@ -147,7 +147,7 @@ function UserView() {
 
     return (
         <div className='privacy'>
-             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+            <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User View" Pdescription="--------" /> */}
 
@@ -183,20 +183,18 @@ function UserView() {
                 </button>
             </div>
 
-
             {postType === 'sender' && renderSenderPosts()}
             {postType === 'traveler' && renderTravelerPosts()}
 
-
-
-
             <div>
-                {user && <h1>Reviews of {user.username}</h1>}
 
-                <Review userId={userId} />
 
+                <div className='user-detail-div'>
+
+                    {user && <h1 className='profile-h1-tag'>Reviews of {user.username}</h1>}
+                    {user && <Review userId={userId} user={user} />}
+                </div>
             </div>
-
 
             <Footer FooterData={FooterData} />
         </div >

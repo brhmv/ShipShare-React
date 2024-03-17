@@ -83,12 +83,13 @@ class CustomNavbar extends Component {
                                         </ul>
                                     </li> */}
 
-                                    <li className="nav-item"><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></li>
+                                    {/* <li className="nav-item"><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></li> */}
 
                                 </ul>
 
                                 {isAuthenticated ? (
                                     <div className='nav-buttons-div'>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></button>
                                         <button className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}><NavLink title="Notification" className="nav-link" to="/notification"><IoNotifications /></NavLink></button>
                                         <NavLink exact='true' title="MyProfile" className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} to='/Profile'>Profile</NavLink>
                                         <button className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} onClick={this.handleSignOut}>Sign Out</button>

@@ -3,14 +3,16 @@
      flex-flow: column;
      justify-content: center;
      text-align: center;
-     background-color: #d0d0d0;
+     /* background-color: #d0d0d0; */
      margin: 0%;
  }
 
  .user-detail {
      font-size: 30px !important;
-     color: rgb(0, 0, 0) !important;
+     /* color: rgb(0, 0, 0) !important; */
+     color: rgb(242, 237, 237) !important;
      margin: 20px;
+     font-weight: 500;
  }
 
  /*

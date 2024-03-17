@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 const initialState = {
     reviews: [],
@@ -6,27 +7,36 @@ const initialState = {
     error: null,
 };
 
-export const fetchReviews = createAsyncThunk('review/fetchReviews', async () => {
+export const fetchReviews = createAsyncThunk('review/fetchReviews', async (userId) => {
     try {
-        const response = await fetch('https://localhost:7189/api/Review/createReview');
+        const response = await fetch(`https://localhost:7189/api/Review/getUserReviews/${userId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch reviews');
         }
         const data = await response.json();
-        return data;
+        return data["$values"];
     } catch (error) {
         throw error;
     }
 });
 
-export const createReview = createAsyncThunk('review/createReview', async ({ reviewData, userId }) => {
+export const createReview = createAsyncThunk('review/createReview', async ({ rating, text, user }) => {
     try {
-        const response = await fetch(`https://localhost:7189/api/Review/createReview/${userId}`, {
+        console.log("rating:");
+        console.log(rating);
+        console.log("text  :");
+        console.log(text);
+        console.log("user:");
+        console.log(user);
+        const accessToken = Cookies.get('accessToken');
+
+        const response = await fetch(`https://localhost:7189/api/Review/createReview/${user.id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(reviewData),
+            body: JSON.stringify({ rating, text, }),
         });
 
         if (!response.ok) {
@@ -34,6 +44,9 @@ export const createReview = createAsyncThunk('review/createReview', async ({ rev
         }
 
         const data = await response.json();
+
+        console.log("data rev");
+        console.log(data);
 
         return data;
     } catch (error) {

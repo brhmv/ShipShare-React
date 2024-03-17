@@ -140,7 +140,6 @@ export const getUserDetailsWithIdAsync = createAsyncThunk(
 
             const data = await response.json();
 
-            debugger;
             console.log("data");
             console.log(data);
             return data;

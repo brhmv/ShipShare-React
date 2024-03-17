@@ -1,7 +1,7 @@
+// import Breadcrumb from '../components/Breadcrumb';
 import '../assets/Profile.css';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Breadcrumb from '../components/Breadcrumb';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import EditTravelerPost from './EditTravelerPost';
 import EditSenderPost from './EditSenderPost';
@@ -13,109 +13,25 @@ import { GiWeight } from "react-icons/gi";
 import { fetchUserPosts, fetchUserSenderPosts, deleteSenderPost, deleteTravellerPost } from "../Store/UserPostsSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
+import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
 
 const ProfileView = () => {
     const dispatch = useDispatch();
-    const { userId } = useParams();
-    const [userData, setUserData] = useState(null);
-    const [userSenderPosts, setSenderPosts] = useState([]);
-    const [userTravelerPosts, setTravelerPosts] = useState([]);
-
+    // const { userId } = useParams();
     const [isEditingSender, setIsEditingSender] = useState(false);
     const [isEditingTravel, setIsEditingTravel] = useState(false);
     const [editPost, setEditPost] = useState(null);
     const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
 
-    const usersArray = [
-        {
-            id: 1,
-            name: 'John Doe',
-            email: 'john@example.com',
-            senderPosts: [
-                {
-                    id: 1,
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    description: 'Sender Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'other',
-                    price: 10,
-                    size: 13,
-                    weight: 30,
-                    views: 20
-                },
-                {
-                    id: 2,
-                    description: 'Sender Post 1 Description',
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'Electronics',
-                    price: 10,
-                    size: 13,
-                    weight: 30,
-                    views: 20
-                },
-                {
-                    id: 3,
-                    description: 'Sender Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2021_Ferrari_F8_Tributo.jpg/800px-2021_Ferrari_F8_Tributo.jpg',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '10-10-2021',
-                    itemType: 'Automotive',
-                    price: 10,
-                    weight: 30,
-                    size: 13,
-                    views: 20
-                },
-            ],
-            travelerPosts: [
-                {
-                    id: 1,
-                    description: 'Traveler Post 1 Description',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '33-33-2033',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Car',
-                    price: 10,
-                    views: 20
-                },
-                {
-                    id: 2,
-                    description: 'Traveler Post 1 Description',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    startDestination: 'Start Destination 1',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '11-11-2011',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Bike',
-                    price: 10,
-                    views: 20
-                },
-                {
-                    id: 3,
-                    description: 'Traveler Post 1 Description',
-                    startDestination: 'Start Destination 1',
-                    imageUrl: 'https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg?v=1559232362&w=929&h=523&vtcrop=y',
-                    endDestination: 'End Destination 1',
-                    deadlineDate: '22-22-2022',
-                    itemType: 'Item Category 1',
-                    vehicleCategory: 'Ship',
-                    price: 10,
-                    views: 20
-                }
-            ]
-        },
-    ];
-
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
     const userTravelerPosts1 = useSelector(state => state.userPosts.userTravellerPosts);
+
+
+    const [userIDD, setUserIDD] = useState(null);
+    const user = useSelector((state) => state.auth.userdetails);
+
 
 
     useEffect(() => {
@@ -141,24 +57,42 @@ const ProfileView = () => {
     //     }
     // }, [userId]);
 
-    // useEffect(() => {
-    //     GetUserData(userId);
-
-    //     // fetchUserData(userId);
-    // }, [userId]);
-
-    const GetUserData = (userId) => {
+    useEffect(() => {
+        debugger;
         try {
-            const user = usersArray.find(user => user.id === userId);
-            if (user) {
-                setUserData(user);
-                setSenderPosts(user.senderPosts);
-                setTravelerPosts(user.travelerPosts);
-            }
+            const jwt = require('jsonwebtoken');
+
+            const token = Cookies.get('accessToken');
+
+            const decodedToken = jwt.decode(token);
+
+            const userId = decodedToken ? decodedToken.userId : null;
+
+            setUserIDD(userId);
+
+            dispatch(getUserDetailsWithIdAsync(userId));
+
+            console.log("userId");
+
+            console.log(userId);
+
         } catch (error) {
             console.error('Error fetching user data:', error);
         }
-    }
+    }, [dispatch]);
+
+    // const GetUserData = (userId) => {
+    //     try {
+    //         const user = usersArray.find(user => user.id === userId);
+    //         if (user) {
+    //             setUserData(user);
+    //             setSenderPosts(user.senderPosts);
+    //             setTravelerPosts(user.travelerPosts);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching user data:', error);
+    //     }
+    // }
 
     const handlePostTypeChange = (type) => {
         setPostType(type);
@@ -270,7 +204,7 @@ const ProfileView = () => {
 
     return (
         <div>
-             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+            <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             <ToastContainer position="top-right" />
 
@@ -281,11 +215,11 @@ const ProfileView = () => {
             <h1 className='profile-h1'>User Details</h1>
 
             <div>
-                {userData ? (
+                {user ? (
                     <div className='user-detail-div'>
-                        <p className='user-detail'><span className='bold-span'>User ID: </span>{userData.id}</p>
-                        <p className='user-detail'><span className='bold-span'>Name:</span> {userData.name}</p>
-                        <p className='user-detail'><span className='bold-span'>Email: </span>{userData.email}</p>
+                        <p className='user-detail'><span className='bold-span'>User ID: </span>{user.id}</p>
+                        <p className='user-detail'><span className='bold-span'>Name:</span> {user.name}</p>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{user.email}</p>
                     </div>
                 ) : (
                     <div>Loading...</div>

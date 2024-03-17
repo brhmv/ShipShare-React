@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/CreateSenderPost.css';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
@@ -66,11 +66,9 @@ function CreateSenderPost() {
                 toast.success("Sender Post Created Succesfully!", {
                     position: "top-right",
                 });
-
-
-
-            } else {
-                toast.success("Failed to create post!", {
+            }
+            else {
+                toast.error("Failed to create post!", {
                     position: "top-right",
                 });
             }
@@ -83,7 +81,7 @@ function CreateSenderPost() {
 
     return (
         <div>
-             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+            <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Create Sender Post" Pdescription="-----------------------" /> */}
 

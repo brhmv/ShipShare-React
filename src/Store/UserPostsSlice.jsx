@@ -13,11 +13,6 @@ export const fetchUserPosts = createAsyncThunk('post/fetchUserTravellerPosts', a
 
         const data = await response.json();
 
-
-
-        console.log("data[values]");
-        console.log(data["$values"]);
-
         return data["$values"];
 
     } catch (error) {

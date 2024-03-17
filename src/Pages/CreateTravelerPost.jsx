@@ -51,7 +51,7 @@ function CreateTravelerPost() {
 
     return (
         <div>
-             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+            <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             <ToastContainer position="top-right" />
 

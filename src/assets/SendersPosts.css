@@ -60,6 +60,7 @@
  }
 
  .p-detail {
+     overflow-wrap: break-word !important;
      font-size: 25px;
      margin: 5px 0;
      max-width: 400px;
