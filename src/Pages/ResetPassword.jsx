@@ -30,8 +30,9 @@ const ResetPassword = () => {
             <ToastContainer position="top-right" />
 
             <div className="reset-password">
-                <input type="password" value={password} onChange={(e) => setPassword(e.currentTarget.value)}/>
-                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.currentTarget.value)}/>
+                <h6>Reset your password</h6>
+                <input placeholder="Enter your password" type="password" value={password} onChange={(e) => setPassword(e.currentTarget.value)}/>
+                <input placeholder="Enter your password again" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.currentTarget.value)}/>
                 <button onClick={resetPasswordHandler}>Reset Password</button>
             </div>
         </div>

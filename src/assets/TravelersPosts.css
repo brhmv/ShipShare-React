@@ -6,6 +6,7 @@
      display: grid !important;
      grid-template-columns: auto auto auto !important;
      padding: 10px 20px;
+     column-gap: 10px;
      row-gap: 10px;
      min-width: 430px;
      /* background-color: #6d61f3 !important; */
