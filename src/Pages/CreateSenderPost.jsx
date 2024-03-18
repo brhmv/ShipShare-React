@@ -31,7 +31,7 @@ function CreateSenderPost() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        debugger;
 
         try {
             const formData = new FormData();
@@ -49,6 +49,9 @@ function CreateSenderPost() {
             // for (let pair of formData.entries()) {
             //     console.log(pair[0] + ', ' + pair[1]);
             // }
+
+            console.log("formData")
+            console.log(formData)
 
             const accessToken = Cookies.get('accessToken');
             const response = await fetch('https://localhost:7189/api/SenderPost/createSenderPost', {
