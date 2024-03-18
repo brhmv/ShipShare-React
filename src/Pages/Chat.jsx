@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ConversationsTab from "../components/ConversationsTab";
-import "../index.css";
+// import "../index.css";
+import "../assets/Chat.css";
 import Cookies from "js-cookie";
 import MessagesTab from "../components/MessagesTab";
 import { Comment } from "react-loader-spinner";
@@ -68,7 +69,7 @@ const Chat = () => {
 
   return (
     <div>
-       <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+      {/* <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" /> */}
       <div className="chat-container">
         {loading ? (
           <div className="loader">
