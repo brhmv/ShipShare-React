@@ -57,6 +57,14 @@ function UserView() {
         setPostType(type);
     };
 
+    const formatDate = (dateString) => {
+        const dateTime = new Date(dateString);
+        const day = dateTime.getDate();
+        const month = dateTime.getMonth() + 1;
+        const year = dateTime.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+
     const renderSenderPosts = () => {
         return (
             <div className="user-posts-div">
@@ -84,10 +92,10 @@ function UserView() {
                                 </div>
 
                                 <div className="user-post-details">
-                                    <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-                                    <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-                                    <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                    <p className="p-detail"><span className="span-detail">Description:</span> <span className='p-span-2'>{post.description}</span> </p>
+                                    <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
+                                    <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
+                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
                                     <p className="p-detail"><span className="span-detail">Item type: </span>{post.itemType}</p>
                                     <p className="p-detail"><span className="span-detail">Item weight: </span>{post.itemWeight} <GiWeight /></p>
                                     <p className="p-detail"><span className="span-detail">Price:</span> {post.price}$ </p>
@@ -104,8 +112,6 @@ function UserView() {
     const renderTravelerPosts = () => {
         return (
             <div className="user-posts-div">
-
-
                 {userTravelerPosts === null &&
                     <Oval
                         visible={true}
@@ -118,19 +124,16 @@ function UserView() {
                     />
                 }
 
-
-
-
                 {userTravelerPosts.length !== 0 ? userTravelerPosts.map((post, index) => (
                     <Link key={post.id} to={`/post/${post.id}`} className="post-link">
 
                         <div key={index} className="user-post-item">
                             <div className="user-post-details">
 
-                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-                                <p className="p-detail"> <span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-                                <p className="p-detail"> <span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-                                <p className="p-detail"> <span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                <p className="p-detail"><span className="span-detail">Description:</span> <span className='p-span-2'>{post.description}</span></p>
+                                <p className="p-detail"> <span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"> <span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"> <span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
                                 <p className="p-detail"><span className="span-detail">Price:</span> {post.price}$</p>
                                 <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
@@ -138,8 +141,6 @@ function UserView() {
                         </div>
                     </Link>))
                     : <h1>No Post Yet!</h1>}
-
-
             </div>
 
         );

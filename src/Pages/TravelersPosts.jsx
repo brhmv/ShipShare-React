@@ -28,7 +28,6 @@ function TarvelerPosts() {
         setFilteredPosts(filtered);
     };
 
-
     const formatDate = (dateString) => {
         const dateTime = new Date(dateString);
         const day = dateTime.getDate();
@@ -38,14 +37,11 @@ function TarvelerPosts() {
     };
 
     useEffect(() => {
-        console.log('traveller posts');
         dispatch(getTravellerPosts());
     }, [dispatch]);
 
     useEffect(() => {
-        console.log('z');
         setFilteredPosts(travelerPosts);
-
     }, [travelerPosts]);
 
 
@@ -106,9 +102,9 @@ function TarvelerPosts() {
 
                                 <div className="post-details">
 
-                                    <p className="p-detail"><span className="span-detail">Start Destination: </span> {post.startDestination}<FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
 
-                                    <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
+                                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
 
                                     <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
 
