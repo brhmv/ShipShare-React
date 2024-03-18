@@ -9,7 +9,8 @@ export const authSlice = createSlice({
         accessToken: null,
         loading: false,
         error: null,
-        userdetails: null
+        userdetails: null,
+        mydetails: null
     },
 
     reducers: {
@@ -56,6 +57,10 @@ export const authSlice = createSlice({
         setUserDetails: (state, action) => {
             state.userdetails = action.payload;
         },
+
+        setMyDetails: (state, action) => {
+            state.mydetails = action.payload;
+        },
     },
 
     extraReducers: (builder) => {
@@ -63,6 +68,10 @@ export const authSlice = createSlice({
             .addCase(getUserDetailsWithIdAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.userdetails = action.payload;
+            })
+            .addCase(getMyDetailsAsync.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.mydetails = action.payload;
             });
     }
 
@@ -115,8 +124,7 @@ export const signUpAsync = (username, email, password) => async (dispatch) => {
 };
 
 
-export const getUserDetailsWithIdAsync = createAsyncThunk(
-    'auth/getUserDetailsWithId',
+export const getUserDetailsWithIdAsync = createAsyncThunk('auth/getUserDetailsWithId',
     async (userId) => {
         try {
             console.log("getUserDetailsWithId called");
@@ -147,4 +155,27 @@ export const getUserDetailsWithIdAsync = createAsyncThunk(
             throw error;
         }
     }
+);
+
+export const getMyDetailsAsync = createAsyncThunk('auth/getMyDetails', async () => {
+    try {
+        const accessToken = Cookies.get('accessToken');
+
+        const response = await fetch(`https://localhost:7189/api/Auth/getMyDetails`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                },
+                method: 'GET',
+            });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user details');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
 );

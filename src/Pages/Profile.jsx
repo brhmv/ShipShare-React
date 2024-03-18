@@ -1,4 +1,3 @@
-// import Breadcrumb from '../components/Breadcrumb';
 import '../assets/Profile.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,10 +10,11 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillEye } from "react-icons/ai";
 import { GiWeight } from "react-icons/gi";
 import { fetchUserPosts, fetchUserSenderPosts, deleteSenderPost, deleteTravellerPost } from "../Store/UserPostsSlice";
+import { getMyDetailsAsync } from "../Store/AuthSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cookies from 'js-cookie';
-import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
+import { FaDollarSign } from "react-icons/fa";
+import Review from "../components/Review"
 
 const ProfileView = () => {
     const dispatch = useDispatch();
@@ -22,77 +22,28 @@ const ProfileView = () => {
     const [isEditingSender, setIsEditingSender] = useState(false);
     const [isEditingTravel, setIsEditingTravel] = useState(false);
     const [editPost, setEditPost] = useState(null);
-    const [editPostType, setEditPostType] = useState(null);
+    // const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
 
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
     const userTravelerPosts1 = useSelector(state => state.userPosts.userTravellerPosts);
 
 
-    const [userIDD, setUserIDD] = useState(null);
-    const user = useSelector((state) => state.auth.userdetails);
+    const myDetails = useSelector((state) => state.auth.mydetails);
 
 
 
     useEffect(() => {
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
-
-        console.log("sender posts")
-        console.log(userSenderPosts1);
-
-        console.log("traveller posts")
-        console.log(userTravelerPosts1);
-
     }, [dispatch, editPost]);
 
 
-    // useEffect(() => {
-
-    //     const user = usersArray.find(user => user.id === (userId));
-    //     if (user) {
-    //         setUserData(user);
-    //         // setSenderPosts(user.senderPosts);
-    //         // setTravelerPosts(user.travelerPosts);
-    //     }
-    // }, [userId]);
-
     useEffect(() => {
         debugger;
-        try {
-            const jwt = require('jsonwebtoken');
+        dispatch(getMyDetailsAsync())
+    }, [dispatch, myDetails]);
 
-            const token = Cookies.get('accessToken');
-
-            const decodedToken = jwt.decode(token);
-
-            const userId = decodedToken ? decodedToken.userId : null;
-
-            setUserIDD(userId);
-
-            dispatch(getUserDetailsWithIdAsync(userId));
-
-            console.log("userId");
-
-            console.log(userId);
-
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    }, [dispatch]);
-
-    // const GetUserData = (userId) => {
-    //     try {
-    //         const user = usersArray.find(user => user.id === userId);
-    //         if (user) {
-    //             setUserData(user);
-    //             setSenderPosts(user.senderPosts);
-    //             setTravelerPosts(user.travelerPosts);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error fetching user data:', error);
-    //     }
-    // }
 
     const handlePostTypeChange = (type) => {
         setPostType(type);
@@ -118,7 +69,7 @@ const ProfileView = () => {
 
     const handleUpdate = (post, type) => {
         setEditPost(post);
-        setEditPostType(type);
+        // setEditPostType(type);
 
         if (type === 'sender') {
             setIsEditingSender(true);
@@ -143,7 +94,7 @@ const ProfileView = () => {
 
 
                             <div className="post-image">
-                                <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
+                                <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "null"} alt={post.id} />
                             </div>
 
                             <div className="profile-post-details">
@@ -163,10 +114,18 @@ const ProfileView = () => {
                                 </div>
                             </div>
                         </div>
-                    )) : < h1 > No post Yet.</h1 >
+                    )) : <h1 className='profile-h1-tag m-5'>No posts yet.</h1>
                 }
             </div >
         );
+    };
+
+    const formatDate = (dateString) => {
+        const dateTime = new Date(dateString);
+        const day = dateTime.getDate();
+        const month = dateTime.getMonth() + 1;
+        const year = dateTime.getFullYear();
+        return `${day}/${month}/${year}`;
     };
 
     const renderTravelerPosts = () => {
@@ -177,14 +136,11 @@ const ProfileView = () => {
                         <div key={index} className="profile-post-item">
                             <div className="profile-post-details">
 
-                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
-                                <p className="p-detail"><span className="span-detail">Item Category:</span> {post.itemType}</p>
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price}</p>
-
-                                <p className="p-detail"><span className="span-detail">Vehicle Category:</span> {post.vehicleCategory}</p>
+                                <p className="p-detail"><span className="span-detail">Description:</span> <span className='p-span-2'>{post.description}</span></p>
+                                <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <FaDollarSign /></p>
 
                                 <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
@@ -196,9 +152,9 @@ const ProfileView = () => {
                                 </div>
                             </div>
                         </div>
-                    )) : < h1 > No post Yet.</h1 >
+                    )) : <h1 className='profile-h1-tag m-5'>No posts yet.</h1>
                 }
-            </div>
+            </div >
         );
     };
 
@@ -208,18 +164,15 @@ const ProfileView = () => {
 
             <ToastContainer position="top-right" />
 
-            {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="User Profile" Pdescription="---------------------" /> */}
-
             <br />
 
-            <h1 className='profile-h1'>User Details</h1>
-
             <div>
-                {user ? (
+                {myDetails ? (
                     <div className='user-detail-div'>
-                        <p className='user-detail'><span className='bold-span'>User ID: </span>{user.id}</p>
-                        <p className='user-detail'><span className='bold-span'>Name:</span> {user.name}</p>
-                        <p className='user-detail'><span className='bold-span'>Email: </span>{user.email}</p>
+                        <h1 className='profile-h1-tag'>User Details</h1>
+                        {/* <p className='user-detail'><span className='bold-span'>User ID: </span>{myDetails.id}</p> */}
+                        <p className='user-detail'><span className='bold-span'>Name:</span> {myDetails.username}</p>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{myDetails.email}</p>
                     </div>
                 ) : (
                     <div>Loading...</div>
@@ -227,11 +180,11 @@ const ProfileView = () => {
             </div>
 
             <div className="profile-button-div-one ">
-                <Link className='btn btn-success btn-lg' to="../CreateSenderPost">Create Sender Post</Link>
+                <Link className='btn btn-success btn-lg fs-46 ' to="../CreateSenderPost">Create Sender Post</Link>
                 <Link className='btn btn-success btn-lg' to="../CreateTravelerPost">Create Traveler Post</Link>
             </div>
-            <br />
 
+            <br />
 
             <div className="profile-button-div">
                 <button
@@ -260,7 +213,6 @@ const ProfileView = () => {
                         onCancel={handleCancelEdit}
                     />
                 </div>
-
             )}
 
             {isEditingTravel && editPost && (
@@ -271,6 +223,15 @@ const ProfileView = () => {
                     />
                 </div>
             )}
+
+
+
+            <div className='user-detail-div'>
+
+                {myDetails && <h1 className='profile-h1-tag'>Reviews of {myDetails.username}</h1>}
+                {myDetails && <Review userId={myDetails.id} user={myDetails} isMe={true} />}
+            </div>
+
         </div>
     );
 };

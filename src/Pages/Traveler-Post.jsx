@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+// import Breadcrumb from '../components/Breadcrumb';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { AiFillEye } from "react-icons/ai";
@@ -27,6 +27,14 @@ function TravelerPost() {
     }, [dispatch]);
 
 
+    const formatDate = (dateString) => {
+        const dateTime = new Date(dateString);
+        const day = dateTime.getDate();
+        const month = dateTime.getMonth() + 1;
+        const year = dateTime.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+
     return (
         <div className='privacy'>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
@@ -48,7 +56,7 @@ function TravelerPost() {
                     <hr />
                     <p><strong>End Destination:</strong> {post.endDestination} <FaLocationDot /></p>
                     <hr />
-                    <p><strong>Deadline Date:</strong> {post.deadlineDate} <FaCalendarAlt /></p>
+                    <p><strong>Deadline Date:</strong> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
                     <hr />
                     <p><strong>Price:</strong> {post.price} <FaDollarSign /></p>
                     <hr />

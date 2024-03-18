@@ -20,7 +20,7 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (userI
     }
 });
 
-export const createReview = createAsyncThunk('review/createReview', async ({ rating, text, user }) => {
+export const createReview = createAsyncThunk('review/createReview', async ({ rating, text, postedBy, user }) => {
     try {
         console.log("rating:");
         console.log(rating);
@@ -36,7 +36,7 @@ export const createReview = createAsyncThunk('review/createReview', async ({ rat
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ rating, text, }),
+            body: JSON.stringify({ rating, text, postedBy }),
         });
 
         if (!response.ok) {

@@ -47,7 +47,13 @@ function TarvelerPosts() {
     }, [senderPosts]);
 
 
-
+    const formatDate = (dateString) => {
+        const dateTime = new Date(dateString);
+        const day = dateTime.getDate();
+        const month = dateTime.getMonth() + 1;
+        const year = dateTime.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     return (
         <div >
@@ -113,7 +119,7 @@ function TarvelerPosts() {
 
                                 <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
 
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate}  <FaCalendarAlt /></p>
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)}  <FaCalendarAlt /></p>
 
                                 <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
 

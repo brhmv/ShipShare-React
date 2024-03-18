@@ -138,10 +138,18 @@
      color: rgb(255, 255, 255) !important;
      align-items: center;
      gap: 5px;
+
+
+
  }
 
  .span-detail {
      font-weight: 700;
+ }
+
+ .p-span-2 {
+     word-break: break-all;
+     overflow-wrap: break-word !important;
  }
 
  .edit-modal {

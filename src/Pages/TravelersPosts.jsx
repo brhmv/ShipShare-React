@@ -3,7 +3,7 @@ import '../assets/TravelersPosts.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
@@ -28,6 +28,15 @@ function TarvelerPosts() {
         setFilteredPosts(filtered);
     };
 
+
+    const formatDate = (dateString) => {
+        const dateTime = new Date(dateString);
+        const day = dateTime.getDate();
+        const month = dateTime.getMonth() + 1;
+        const year = dateTime.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+
     useEffect(() => {
         console.log('traveller posts');
         dispatch(getTravellerPosts());
@@ -42,7 +51,7 @@ function TarvelerPosts() {
 
     return (
         <div >
-             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
+            <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
 
             {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Posts of Tarvelers" Pdescription="-----------------------" /> */}
 
@@ -101,7 +110,7 @@ function TarvelerPosts() {
 
                                     <p className="p-detail"><span className="span-detail">End Destination: </span> {post.endDestination} <FaLocationDot /></p>
 
-                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
 
                                     <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
