@@ -115,9 +115,9 @@ function TarvelerPosts() {
 
                             <div className="post-details">
 
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
+                                <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
 
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
+                                <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
 
                                 <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)}  <FaCalendarAlt /></p>
 

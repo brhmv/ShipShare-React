@@ -53,6 +53,7 @@ const ProfileView = () => {
         if (postType === 'sender') {
             dispatch(deleteSenderPost(postId));
 
+
             toast.success("Sender Post deleted Succesfully!", {
                 position: "top-right",
             });
@@ -98,13 +99,13 @@ const ProfileView = () => {
                             </div>
 
                             <div className="profile-post-details">
-                                <p className="p-detail"><span className="span-detail">Title:</span> {post.title}</p>
-                                <p className="p-detail"><span className="span-detail">Description:</span> {post.description}</p>
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> {post.startDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> {post.endDestination} <FaLocationDot /></p>
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {post.deadlineDate} <FaCalendarAlt /></p>
+                                <p className="p-detail"><span className="span-detail">Title:</span> <span className='p-span-2'>{post.title}</span></p>
+                                <p className="p-detail"><span className="span-detail">Description:</span> <span className='p-span-2'>{post.description}</span> </p>
+                                <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
+                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
                                 <p className="p-detail"><span className="span-detail">Item Category: </span>{post.itemType}</p>
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} </p>
+                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <FaDollarSign /></p>
                                 <p className="p-detail"><span className="span-detail">Weight:</span> {post.itemWeight} <GiWeight /></p>
                                 <p className="p-detail"><span className="span-detail">Views:</span> {post.views} <AiFillEye /></p>
 
@@ -135,7 +136,7 @@ const ProfileView = () => {
                     userTravelerPosts1.map((post, index) => (
                         <div key={index} className="profile-post-item">
                             <div className="profile-post-details">
-
+                                <p className="p-detail"><span className="span-detail">Title:</span> <span className='p-span-2'>{post.title}</span></p>
                                 <p className="p-detail"><span className="span-detail">Description:</span> <span className='p-span-2'>{post.description}</span></p>
                                 <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
                                 <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
@@ -157,6 +158,11 @@ const ProfileView = () => {
             </div >
         );
     };
+
+    ProfileView.defaultProps = {
+        myDetails: null,
+    };
+
 
     return (
         <div>
