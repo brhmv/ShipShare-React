@@ -25,6 +25,7 @@ import Chat from "./Pages/Chat.jsx";
 import User from "./Pages/UserView.jsx";
 import SenderPost from "./Pages/Sender-Post.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 
 class App extends Component {
 
@@ -70,6 +71,7 @@ class App extends Component {
           <Route path="/csp" element={<CreateSenderPost />} />
 
           <Route path="resetPassword/:token?" element={<ResetPassword/>}/>
+          <Route path="forgotPassword" element={<ForgotPassword/>}/>
 
           <Route path="/Faq" element={<Faq />} />
           <Route path="/Chat" element={<Chat />} />

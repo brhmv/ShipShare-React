@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/CreateTravelerPost.css';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
@@ -10,9 +9,11 @@ import { useDispatch } from 'react-redux';
 import { addPostAsync } from '../Store/TravelPostSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
 
 
 function CreateTravelerPost() {
+    useTokenExpiration();
     const dispatch = useDispatch();
     //change
     const [description, setDescription] = useState('');
@@ -111,6 +112,7 @@ function CreateTravelerPost() {
             </div>
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div>
     );
 }

@@ -5,38 +5,30 @@ import Cookies from 'js-cookie';
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        isAuthenticated: false,
+        isAuthenticated: Cookies.get("accessToken") ? true : false,
         accessToken: null,
-        loading: false,
         error: null,
         userdetails: null,
         mydetails: null
     },
 
     reducers: {
+        signOut : (state) => {
+            state.isAuthenticated = false;
+            Cookies.remove("accessToken");
+        },
         signInStart: (state) => {
-            state.loading = true;
             state.error = null;
         },
         signInSuccess: (state, action) => {
-            state.loading = false;
-            state.accessToken = action.payload.accessToken;
-            state.isAuthenticated = true;
-            // console.log("isAuthenticated auth");
-            // console.log(state.isAuthenticated);
-            state.error = null;
+            console.log(action.payload);
+            state.accessToken = action.payload.accessToken; 
+            state.isAuthenticated = state.accessToken ? true : false;
+            state.error = action.payload.statusText;
         },
-
-        signInFailure: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-        },
-
         signUpStart: (state) => {
-            state.loading = true;
             state.error = null;
         },
-
         signUpSuccess: (state, action) => {
             state.loading = false;
             state.accessToken = action.payload.accessToken;
@@ -48,12 +40,6 @@ export const authSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-
-        setAccessToken: (state, action) => {
-            state.accessToken = action.payload;
-            Cookies.set('accessToken', state.accessToken, { expires: 7 });
-        },
-
         setUserDetails: (state, action) => {
             state.userdetails = action.payload;
         },
@@ -75,28 +61,18 @@ export const authSlice = createSlice({
             });
     }
 
-
 });
 
-export const { signInStart, signInSuccess, signInFailure, signUpStart, signUpSuccess, signUpFailure, setAccessToken, setUserDetails } = authSlice.actions;
-
+export const { signInStart, signInSuccess, signUpStart, signUpSuccess, signUpFailure, setAccessToken, setUserDetails,signOut } = authSlice.actions;
 
 export const signInAsync = (email, password) => async (dispatch) => {
     dispatch(signInStart());
-    try {
-        const responseData = await signIn(email, password);
+    const responseData = await signIn(email, password);
+    dispatch(signInSuccess(responseData));
+    if (responseData.accessToken) 
+        Cookies.set("accessToken",responseData.accessToken);
 
-        console.log("responseData");
-        console.log(responseData);
-        console.log("responseData.accessToken");
-        console.log(responseData.accessToken);
-
-        dispatch(signInSuccess(responseData));
-        dispatch(setAccessToken(responseData.accessToken));
-
-    } catch (error) {
-        dispatch(signInFailure(error.message));
-    }
+    
 };
 
 export const signUpAsync = (username, email, password) => async (dispatch) => {

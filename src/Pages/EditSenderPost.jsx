@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-// import '../asEditSenderPost.css'
 import '../assets/EditSenderPost.css'
 import { updateSenderPost } from "../Store/UserPostsSlice";
 import { useDispatch } from 'react-redux'
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
 
 const EditSenderPost = ({ post, onCancel }) => {
+    useTokenExpiration();
     const dispatch = useDispatch();
 
     const [editedPost, setEditedPost] = useState(post);
@@ -171,6 +172,7 @@ const EditSenderPost = ({ post, onCancel }) => {
                 <button className='btn btn-success m-3 f_size_20' onClick={handleSave}>Save</button>
                 <button className='btn btn-danger' onClick={onCancel}>Cancel</button>
             </div>
+            <ToastContainer/>
         </div >
     );
 };

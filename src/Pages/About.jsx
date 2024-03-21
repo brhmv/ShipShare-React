@@ -1,10 +1,12 @@
 import React from 'react';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 const About = () => {
+    useTokenExpiration();
     return (
         <div className="body_wrapper">
              <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
@@ -36,6 +38,7 @@ const About = () => {
 
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div>
     )
 }

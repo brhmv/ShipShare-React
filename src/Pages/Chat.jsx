@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ConversationsTab from "../components/ConversationsTab";
-// import "../index.css";
 import "../assets/Chat.css";
 import Cookies from "js-cookie";
 import MessagesTab from "../components/MessagesTab";
 import { Comment } from "react-loader-spinner";
-import CustomNavbar from "../components/CustomNavbar";
+import useTokenExpiration from "../customHooks/useTokenExpiration";
+import { ToastContainer } from "react-toastify";
 
 const Chat = () => {
+  useTokenExpiration();
   const [conversations, setConversations] = useState([]);
   const [conversationName, setConversationName] = useState("");
   const { userId } = useParams();
@@ -108,6 +109,7 @@ const Chat = () => {
           </>
         )}
       </div>
+      <ToastContainer/>
     </div>
   );
 };
