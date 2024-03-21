@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../assets/SendersPosts.css';
 import { Link } from 'react-router-dom';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";

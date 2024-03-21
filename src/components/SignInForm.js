@@ -62,7 +62,7 @@ const SignInFrom = () => {
                                     <li><i className="ti-check"></i> Free Features</li>
                                     <li><i className="ti-check"></i> Unlimited User Accounts</li>
                                 </ul>
-                                <button type="button" className="btn_three sign_btn_transparent"><Link to="../SignUp">Sign Up</Link></button>
+                                <button type="button" className="btn_three sign_btn_transparent"><Link className='nav-link fs' to="../SignUp">Sign Up</Link></button>
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@ const SignInFrom = () => {
                                     </div>
 
                                     <div className="d-flex justify-content-between align-items-center">
-                                        <button type="button" className="btn_three" onClick={handleOnClick}>Sign in</button>
+                                        <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
                                         <div className="social_text d-flex ">
                                             <div className="lead-text">Don't have an account?</div>
                                             <ul className="list-unstyled social_tag mb-0">
