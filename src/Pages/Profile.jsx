@@ -40,7 +40,6 @@ const ProfileView = () => {
 
 
     useEffect(() => {
-        debugger;
         dispatch(getMyDetailsAsync())
     }, [dispatch, myDetails]);
 

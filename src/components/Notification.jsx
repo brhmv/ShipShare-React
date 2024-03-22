@@ -9,11 +9,10 @@ const Notification = () => {
     const notifications = useSelector(state => state.notification.notifications);
 
     useEffect(() => {
-        debugger;
         dispatch(fetchNotifications());
 
-        console.log("Notifications");
-        console.log(notifications);
+        // console.log("Notifications");
+        // console.log(notifications);
     }, [dispatch])
 
 
@@ -44,7 +43,7 @@ const Notification = () => {
                         <p className="span-detail fs">{notification.description}</p>
                     </div>
 
-                    <div className="notification-footer">
+                    <div className="nrotification-footer">
 
                         <p className="span-detail">
                             <span className="black-span">

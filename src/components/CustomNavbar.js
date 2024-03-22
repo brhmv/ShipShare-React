@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Sticky from 'react-stickynode';
 import Cookies from 'js-cookie';
-import { IoNotifications } from "react-icons/io5";
+// import { IoNotifications } from "react-icons/io5";
 import Notification from "../components/Notification";
 
 
