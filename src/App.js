@@ -26,6 +26,7 @@ import User from "./Pages/UserView.jsx";
 import SenderPost from "./Pages/Sender-Post.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
+import Notification from "./components/Notification.jsx";
 
 class App extends Component {
 
@@ -60,6 +61,8 @@ class App extends Component {
 
 
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Notification" element={<Notification />} />
+
           <Route path="/TravelersPosts" element={<TravelerPosts />} />
           <Route path="/SendersPosts" element={<SenderPosts />} />
 

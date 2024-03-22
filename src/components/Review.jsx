@@ -10,7 +10,7 @@ const Review = ({ userId, user, isMe }) => {
     const dispatch = useDispatch();
     const [rating, setRating] = useState(0);
     const [text, setText] = useState('');
-    const [postedBy, setPostedBy] = useState('');
+    // const [postedBy, setPostedBy] = useState('');
     const reviews = useSelector((state) => state.review.reviews);
 
     const handleAddReview = () => {
@@ -20,7 +20,7 @@ const Review = ({ userId, user, isMe }) => {
             dispatch(createReview({ rating, text, postedBy: postedByValue, user }));
             setRating(0);
             setText('');
-            setPostedBy('');
+            // setPostedBy('');
 
             toast.success("Review Created Succesfully!", {
                 position: "top-right",
@@ -35,7 +35,7 @@ const Review = ({ userId, user, isMe }) => {
 
     useEffect(() => {
         dispatch(fetchReviews(userId));
-        console.log(`Review `);
+        console.log(`Reviews `);
         console.log(reviews);
     }, [dispatch, userId]);
 
@@ -61,7 +61,7 @@ const Review = ({ userId, user, isMe }) => {
                         <div key={review.id} className='review-item'>
                             <div className="review-item-1">
 
-                                <p className='p-detail'><span className='bold-span'>Posted By:</span> {review.reviewSenderId}</p>
+                                <p className='p-detail'><span className='bold-span'>Posted By:</span> <b>{review.reviewSender.username}</b></p>
 
                                 <p className='red-star'><span className='rate-span'>Rating:</span> {renderStars(review.rating)}</p>
 
@@ -70,7 +70,9 @@ const Review = ({ userId, user, isMe }) => {
                             <div className="review-item-2">
                                 <p className='p-review'>
                                     <span className='bold-span'>Comment:</span>
-                                    {review.text}
+                                    <b>
+                                        {review.text}
+                                    </b>
                                 </p>
                             </div>
                         </div>

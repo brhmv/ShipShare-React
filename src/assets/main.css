@@ -434,11 +434,11 @@ button:focus {
 }
 
 .btn_get {
-  display : flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family : "Poppins", sans-serif;
-  white-space : nowrap;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
   color: #6754e2;
   border: 2px solid #5e2ced;
   border-radius: 4px;
@@ -819,52 +819,6 @@ button:focus {
 /*====================================================*/
 /*====================================================*/
 
-/* .ctn-preloader .loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.ctn-preloader .loader .row {
-  height: 100%;
-}
-
-.ctn-preloader .loader .loader-section {
-  padding: 0px;
-}
-
-.ctn-preloader .loader .loader-section .bg {
-  background-color: #ffffff;
-  height: 100%;
-  left: 0;
-  width: 100%;
-  -webkit-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
-  -o-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
-  transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.ctn-preloader .loader.dark_bg .loader-section .bg {
-  background: #111339;
-}
-
-.ctn-preloader.loaded .animation-preloader {
-  opacity: 0;
-  -webkit-transition: 0.3s ease-out;
-  -o-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
-}
-
-.ctn-preloader.loaded .loader-section .bg {
-  width: 0;
-  -webkit-transition: 0.7s 0.3s allcubic-bezier(0.1, 0.1, 0.1, 1);
-  -o-transition: 0.7s 0.3s allcubic-bezier(0.1, 0.1, 0.1, 1);
-  transition: 0.7s 0.3s allcubic-bezier(0.1, 0.1, 0.1, 1);
-} */
 
 @-webkit-keyframes spinner {
   to {
@@ -942,7 +896,7 @@ button:focus {
 /*====================================================*/
 /*============== header_area css ==============*/
 .header_area {
-  
+
   width: 100%;
   left: 0;
   z-index: 20;
@@ -2025,7 +1979,7 @@ button:focus {
 
 .custom-container {
   width: 100% !important;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .navbar-toggler:focus {
@@ -4961,7 +4915,7 @@ button:focus {
 
 /*================= End breadcrumb_area_two css =================*/
 /*========= blog_breadcrumb_area css ========*/
-.blog_breadcrumb_area {
+/* .blog_breadcrumb_area {
   position: relative;
   height: 600px;
   display: -webkit-box;
@@ -5019,7 +4973,7 @@ button:focus {
   font-family: 'themify';
   font-size: 10px;
   margin: 0px 5px 0px 3px;
-}
+} */
 
 /*========= blog_breadcrumb_area css ========*/
 /*====================================================*/
@@ -6508,115 +6462,8 @@ button:focus {
   color: #5f51fb;
 }
 
-/*===========perfect_solution_area css ==========*/
-/* .perfect_solution_area {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-}
-
-.perfect_solution_area .perfect_solution_left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 150px 0px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content {
-  max-width: 685px;
-  margin-left: auto;
-  margin-right: 0;
-  padding-right: 170px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content h2 {
-  font-size: 40px;
-  line-height: 56px;
-  color: #051441;
-  font-weight: 500;
-  margin-bottom: 32px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content p {
-  font-size: 18px;
-  line-height: 30px;
-  margin-bottom: 50px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content .btn_three {
-  margin-top: 0px;
-  font-size: 15px;
-  background: #5f51fb;
-  padding: 15px 42px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content .btn_three:hover {
-  background: transparent;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content .btn_six {
-  background: transparent;
-  color: #677294;
-  border-color: #dfe3ed;
-  margin-left: 20px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content .btn_six:hover {
-  background: #5f51fb;
-  border-color: #5f51fb;
-  color: #fff;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content.per_solution_content_two {
-  padding-right: 0px;
-  margin-right: auto;
-  margin-left: 0;
-  padding-left: 110px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content.per_solution_content_three {
-  padding-right: 0px;
-  margin-right: auto;
-  margin-left: 0;
-  padding-left: 110px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content.per_solution_content_three h2 {
-  font-weight: 600;
-  line-height: 56px;
-}
-
-.perfect_solution_area .perfect_solution_left .per_solution_content.per_solution_content_three .btn_three {
-  border-radius: 45px;
-  padding: 13px 44px;
-}
-
-.perfect_solution_area .perfect_solution_right {
-  padding: 0px;
-  position: relative;
-}
-
-.perfect_solution_area .perfect_solution_right .bg_img {
-  background: url("../img/new/solution_01.jpg") no-repeat scroll center 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 130%;
-  background-size: cover;
-}
-
-.perfect_solution_area .perfect_solution_right .bg_img.bg_two {
-  background: url("../img/new/solution_02.jpg") no-repeat scroll center 0;
-} */
-
 /*=========== startup_fuatures_area css ==========*/
-.startup_tab {
+/* .startup_tab {
   border: 0px;
   margin-bottom: 50px;
 }
@@ -6757,10 +6604,10 @@ button:focus {
   -webkit-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
   transition: all 0.5s linear;
-}
+} */
 
 /*============== intregration_area css =============*/
-.intregration_logo {
+/* .intregration_logo {
   padding-right: 60px;
   margin-bottom: -30px;
 }
@@ -6931,12 +6778,12 @@ button:focus {
   width: 370px;
   height: 370px;
   left: auto;
-}
+} */
 
 /*====================================================*/
 /*====================================================*/
 /*=========== service_area css ============*/
-.service_area {
+/* .service_area {
   background: #f4f6fa;
 }
 
@@ -7220,8 +7067,9 @@ button:focus {
   }
 }
 
+*/
 /*================ prototype_service_area css =============*/
-.prototype_service_area {
+/* .prototype_service_area {
   background: #fbfbfd;
   padding-bottom: 130px;
   padding-top: 20px;
@@ -7328,10 +7176,10 @@ button:focus {
   padding: 120px 0px 60px;
   position: relative;
   z-index: 1;
-}
+} */
 
 /*============= agency_service_area css =============*/
-.agency_service_area {
+/* .agency_service_area {
   padding: 135px 0px 140px;
 }
 
@@ -7406,7 +7254,7 @@ button:focus {
 }
 
 /*====================== design_developers_area css =================*/
-.design_img img {
+/* .design_img img {
   border: 2px solid #e4ebf2;
   border-radius: 6px;
   background-color: #c3c9ce;
@@ -7419,6 +7267,7 @@ button:focus {
 }
 
 /*============== software_service_area css =============*/
+/*
 .software_service_area {
   background: #f9f9fc;
 }
@@ -7494,9 +7343,11 @@ button:focus {
 
 .software_service_tab_content .software_service_item p {
   font-size: 15px;
-}
+} */
 
 /*============== developer_product_area css ================*/
+
+/*
 .developer_product_area {
   background: #f9f9fc;
   padding: 160px 0px;
@@ -7619,10 +7470,11 @@ button:focus {
 .tab_img_info .tab_img.active {
   position: relative;
   opacity: 1;
-}
+} 
+*/
 
 /*============= app_service_area css ============*/
-.app_service_area {
+/* .app_service_area {
   padding-top: 120px;
   background: #fff;
 }
@@ -7700,10 +7552,10 @@ button:focus {
 
 .app_service_area_two .app_service_info {
   margin-bottom: -30px;
-}
+} */
 
 /*============== service_details_area css ==============*/
-.service_details_img {
+/* .service_details_img {
   margin-left: -80px;
 }
 
@@ -7731,11 +7583,12 @@ button:focus {
 }
 
 .service_details_item+.service_details_item {
-  margin-top: 200px;
+  margin-top: 200px; 
 }
+*/
 
 /*============= saas_service_area css =============*/
-.saas_service_item .saas_service_content .icon {
+/* .saas_service_item .saas_service_content .icon {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -7788,7 +7641,7 @@ button:focus {
 
 .saas_service_item+.saas_service_item {
   margin-top: 180px;
-}
+} */
 
 /*============ payment_service_area css ==============*/
 /* .payment_service_area {
@@ -7851,13 +7704,13 @@ button:focus {
 } */
 
 /*============= stratup_service_area css =============*/
-.stratup_service_img {
+/* .stratup_service_img {
   position: relative;
   padding-top: 20px;
   z-index: 1;
-}
+} */
 
-.stratup_service_img .shape {
+/* .stratup_service_img .shape {
   position: absolute;
   left: -37px;
   right: 0;
@@ -7866,8 +7719,8 @@ button:focus {
   background: url(../img/new/new_shape.png) no-repeat scroll left 0;
   z-index: -1;
   background-size: contain;
-}
-
+} */
+/* 
 .stratup_service_img .phone_img {
   position: absolute;
   left: 0;
@@ -7977,19 +7830,20 @@ button:focus {
   font-weight: 400;
 }
 
+*/
 /*============= progress_bar_area css =============*/
 /*============= service_details_area css =============*/
-.service_details_area .job_info .info_item {
+/* .service_details_area .job_info .info_item {
   padding-left: 0px;
 }
 
 .service_details_area .details_content .sec_title p+p {
   margin-top: 40px;
   margin-bottom: 0;
-}
+} */
 
 /*=========== case_study_area css ==========*/
-.case_study_area .row {
+/* .case_study_area .row {
   margin-bottom: -40px;
 }
 
@@ -8134,8 +7988,9 @@ button:focus {
   font-family: 'themify';
   color: #5e2ced;
 }
-
+*/
 /*============= seo_service_area css =============*/
+/*
 .seo_service_item {
   background-color: white;
   -webkit-box-shadow: 0px 3px 10px 0px rgba(38, 59, 94, 0.1);
@@ -8189,8 +8044,10 @@ button:focus {
   box-shadow: 0px 30px 60px 0px rgba(38, 59, 94, 0.1);
 }
 
+*/
+
 /*=========== case_studies_area css ==========*/
-.case_studies_slider {
+/* .case_studies_slider {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -8249,12 +8106,12 @@ button:focus {
 .studies_item .text p a {
   font-size: 16px;
   color: #6a7695;
-}
+} */
 
 /*====================================================*/
 /*====================================================*/
 /*================= s_pricing_area css ===============*/
-.s_pricing-item {
+/* .s_pricing-item {
   text-align: center;
   background: #f6f7fa;
   border: 1px solid #f6f7fa;
@@ -8373,6 +8230,7 @@ button:focus {
 }
 
 /*=========== s_subscribe_area css ============*/
+/*
 .s_subscribe_area {
   position: relative;
   z-index: 1;
@@ -8465,10 +8323,11 @@ button:focus {
   padding: 0px;
   font-size: 30px;
   z-index: 3;
-}
+} 
+*/
 
 /*================= pricing_area css ==============*/
-.pricing_area {
+/* .pricing_area {
   background: #fbfbfd;
 }
 
@@ -8644,6 +8503,7 @@ button:focus {
 }
 
 /*=================== pricing_area_two css ===============*/
+/*
 .pricing_area_two {
   background: #f6f7fa;
 }
@@ -8693,8 +8553,9 @@ button:focus {
 .price_content_three .price_item:hover {
   border-color: #dfdcfe;
 }
-
+*/
 /*================== call_action_area css ================*/
+/*
 .call_action_area {
   min-height: 900px;
   position: relative;
@@ -8761,10 +8622,11 @@ button:focus {
 .call_action_area .action_content .action_btn:hover {
   -webkit-box-shadow: none;
   box-shadow: none;
-}
+} 
+*/
 
 /*============= design_tab_area css ============*/
-.design_tab_area {
+/* .design_tab_area {
   background: #fbfbfd;
 }
 
@@ -8838,10 +8700,10 @@ button:focus {
   margin-right: -160px;
   padding-left: 120px;
   max-width: 100%;
-}
+} */
 
 /*============= action_area_two css =============*/
-.action_area_two {
+/* .action_area_two {
   background: #f6f6fa;
   padding-bottom: 40px;
 }
@@ -8868,10 +8730,10 @@ button:focus {
 
 .action_img img {
   max-width: 100%;
-}
+} */
 
 /*================= action area three css =================*/
-.action_area_three {
+/* .action_area_three {
   background-image: -moz-linear-gradient(0deg, #5e2ced 0%, #6c3cf4 100%);
   background-image: -webkit-linear-gradient(0deg, #5e2ced 0%, #6c3cf4 100%);
   background-image: -ms-linear-gradient(0deg, #5e2ced 0%, #6c3cf4 100%);
@@ -8931,7 +8793,7 @@ button:focus {
   box-shadow: 0px 20px 30px 0px rgba(12, 0, 46, 0.1);
   color: #fff;
   background: #5e2ced;
-}
+} */
 
 /*=========== payment_priceing_area css ===========*/
 .payment_priceing_area {
@@ -14310,7 +14172,7 @@ p span {
 /*====================================================*/
 /*====================================================*/
 /*=========== blog area css ===========*/
-.blog_grid_item {
+/* .blog_grid_item {
   cursor: pointer;
 }
 
@@ -14549,10 +14411,10 @@ p span {
 
 .comment-box .post_comment .reply-comment .post_author {
   margin-bottom: 0px;
-}
+} */
 
 /*=========== blog sidebar css ===========*/
-.widget_title {
+/* .widget_title {
   margin-bottom: 35px;
 }
 
@@ -14895,6 +14757,7 @@ p span {
 }
 
 /*========= blog_area_two css ===========*/
+/*
 .blog_area_two .blog_list_item:not(:last-child) {
   margin-bottom: 70px;
 }
@@ -15509,7 +15372,7 @@ p span {
 
 .widget_recent_comments #recentcomments .recentcomments:not(:last-child) {
   margin-bottom: 30px;
-}
+} */
 
 /*====================================================*/
 /*====================================================*/
@@ -15700,7 +15563,7 @@ p span {
 }
 
 /*============= shop_grid_area css ==============*/
-.shop_list_area .shop_page_number {
+/* .shop_list_area .shop_page_number {
   margin-top: 70px;
 }
 
@@ -16180,11 +16043,13 @@ p span {
 
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  /* -moz-appearance: none; */
+  /* -moz-appearance: none; 
 }
+*/
+
 
 /*============ shopping_cart_area css =============*/
-.shopping_cart_area .cart_title {
+/* .shopping_cart_area .cart_title {
   border-bottom: 1px solid #e7e7f6;
 }
 
@@ -16496,10 +16361,10 @@ input[type=number]::-webkit-inner-spin-button {
 .checkout_button:hover {
   background: transparent;
   color: #5e2ced;
-}
+} */
 
 /*================== check list css ======================*/
-.return_customer {
+/* .return_customer {
   font: 400 15px/25px "Poppins", sans-serif;
   color: #3d3f45;
   padding-bottom: 20px;
@@ -17192,10 +17057,11 @@ input[type=number]::-webkit-inner-spin-button {
 
 .pr_sidebar .widget_tag ul li a:hover:before {
   opacity: 1;
-}
+} */
 
 /*====================================================*/
 /*====================================================*/
+/* 
 .search_boxs {
   z-index: 20000;
   position: fixed;
@@ -17331,8 +17197,8 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 input[type="text"] {
-  /* -webkit-appearance: none; */
-  outline: none;
+  /* -webkit-appearance: none; 
+outline: none;
 }
 
 .open .search_boxs {
@@ -17356,6 +17222,8 @@ input[type="text"] {
   width: 100%;
   opacity: 1;
 }
+
+*/
 
 /* Css keyframes css
 ============================================================================================ */
@@ -17951,7 +17819,7 @@ input[type="text"] {
 /*====================================================*/
 /*====================================================*/
 /*============ hosting_menu css =============*/
-.hosting_menu.menu_four .btn_get {
+/* .hosting_menu.menu_four .btn_get {
   background: transparent;
   border-color: #818198;
   color: #fff;
@@ -17991,11 +17859,11 @@ input[type="text"] {
 .navbar_fixed .hosting_menu.menu_four .btn_get:hover {
   background: #f8636b;
   border-color: #f8636b;
-}
+} */
 
 /*============ hosting_menu css =============*/
 /*============ erp_menu css =============*/
-.erp_menu .er_btn {
+/* .erp_menu .er_btn {
   margin-left: 0;
   margin-top: 0;
 }
@@ -18017,11 +17885,11 @@ input[type="text"] {
 
 .erp_menu .menu>.nav-item.submenu.mega_menu.mega_menu_two .mega_menu_inner .dropdown-menu .nav-item .item .text:hover {
   color: #4e78f4;
-}
+} */
 
 /*============ erp_menu css =============*/
 /*================= hosting_banner_area css ==============*/
-.hosting_banner_area {
+/* .hosting_banner_area {
   background: #020230;
   min-height: 650px;
   height: 100vh;
@@ -18117,7 +17985,7 @@ input[type="text"] {
 
 .hosting_btn:hover {
   background: #fe4c55;
-}
+} */
 
 /*================= hosting_banner_area css ==============*/
 /*================= domain_search_area css ==============*/
@@ -18452,7 +18320,7 @@ a .h_head:hover {
 
 /*========== h_action_area css ========*/
 /*========== h_blog_area css ========*/
-.h_blog_item {
+/* .h_blog_item {
   background-color: white;
   -webkit-box-shadow: 0px 30px 50px 0px rgba(64, 1, 4, 0.06);
   box-shadow: 0px 30px 50px 0px rgba(64, 1, 4, 0.06);
@@ -18607,7 +18475,7 @@ a .h_head:hover {
 .pos_blog_item:hover {
   -webkit-box-shadow: 0px 30px 50px 0px rgba(5, 1, 64, 0.08);
   box-shadow: 0px 30px 50px 0px rgba(5, 1, 64, 0.08);
-}
+} */
 
 /*========== h_blog_area css ========*/
 .h_action_promo_area {
@@ -19272,7 +19140,7 @@ a .h_head:hover {
 }
 
 /*============== erp_service_area css =============*/
-.erp_action_area {
+/* .erp_action_area {
   background: #4e78f4;
   padding: 58px 0px;
 }
@@ -19416,10 +19284,10 @@ a .h_head:hover {
 
 .h_price_body .h_p_list:hover {
   background: #fdfafa;
-}
+} */
 
 /*=========== erp_features_area css =============*/
-.erp_item_features+.erp_item_features {
+/* .erp_item_features+.erp_item_features {
   margin-top: 200px;
 }
 
@@ -19665,10 +19533,10 @@ a .h_head:hover {
 .flex-row-reverse .erp_content_two {
   padding-right: 125px;
   padding-left: 0;
-}
+} */
 
 /*=========== erp_analytics_area css ============*/
-.erp_analytics_area {
+/* .erp_analytics_area {
   background: url("../img/erp-home/background.png") no-repeat scroll center 0/cover;
   padding: 100px 0px 220px;
 }
@@ -20029,10 +19897,10 @@ a .h_head:hover {
 .animation_inner>div:nth-child(20) {
   bottom: 0px;
   right: 0;
-}
+} */
 
 /*============= pos_banner_area css ===========*/
-.pos_banner_area {
+/* .pos_banner_area {
   height: 100vh;
   min-height: 650px;
   display: -webkit-box;
@@ -20148,7 +20016,7 @@ a .h_head:hover {
 
 .pos_banner_text .video_btn span:before {
   display: none;
-}
+} */
 
 /*============= pos_banner_area css ===========*/
 /* .ticket_area {
@@ -20796,10 +20664,10 @@ a .h_head:hover {
   background: transparent;
 }
 */
-.menu_pos .container .menu_toggle .hamburger span,
+/* .menu_pos .container .menu_toggle .hamburger span,
 .menu_pos .container .menu_toggle .hamburger-cross span {
   background: #fff;
-}
+} */
 
 /*============ support_home_area css ============*/
 /* .support_home_area {
@@ -25683,9 +25551,13 @@ a .h_head:hover {
   display: flex;
   flex-flow: row;
   height: 5vh;
+  padding: 0px;
 }
-
 
 .violet {
   color: #6d61f3;
+}
+
+.menuw>.nav-item {
+  padding-top: 10px !important;
 }

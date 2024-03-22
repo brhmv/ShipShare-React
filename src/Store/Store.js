@@ -4,6 +4,7 @@ import travelPostSlice from './TravelPostSlice';
 import senderPostSlice from './SenderPostSlice';
 import UserPostsSlice from './UserPostsSlice';
 import ReviewSlice from './ReviewSlice';
+import NotificationSlice from './NotificationSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         postSender: senderPostSlice,
         userPosts: UserPostsSlice, //profile post
         review: ReviewSlice,
+        notification: NotificationSlice
     },
 });
 

@@ -111,80 +111,53 @@ const CustomNavbar = (props) => {
                   </ul>
                 </li>
 
-                {/* <li className="dropdown submenu nav-item">
-                                        <Link to="./" title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</Link>
-                                        <ul role="menu" className=" dropdown-menu">
-                                            <li className="nav-item"><NavLink exact='true' title="Team" className="nav-link" to='/Team'>Team</NavLink></li>
-                                            <li className="nav-item"><NavLink exact='true' title="Faq" className="nav-link" to='/Faq'>Faq</NavLink></li>
-                                            <li className="nav-item"><NavLink exact='true' title="About" className="nav-link" to='/About'>About</NavLink></li>
-                                            <li className="nav-item"><NavLink title="Pricing" className="nav-link" to="/Contact">Contact</NavLink></li>
+                                </ul>
+
+                                {isAuthenticated ? (
+                                    <div className={`nav-buttons-div`} >
+
+                                        <ul className={`navbar-nav menuw menu`}>
+
+                                            <li className="dropdown submenu nav-item">
+                                                <Link title="Pages" className="dropdown-toggle nav-link notiff" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" to="#">Notifications</Link>
+                                                <ul role="menu" className="dropdown-menu  dropdown-menuw ">
+                                                    <Notification />
+                                                </ul>
+                                            </li>
                                         </ul>
-                                    </li> */}
 
-                {/* <li className="nav-item"><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></li> */}
-              </ul>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}><NavLink title="Chat" className="nav-link" to="/chat">Chat</NavLink></button>
 
-              {isAuthenticated ? (
-                <div className="nav-buttons-div">
-                  <button
-                    className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}
-                  >
-                    <NavLink title="Chat" className="nav-link" to="/chat">
-                      Chat
-                    </NavLink>
-                  </button>
-                  <button
-                    className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}
-                  >
-                    <NavLink
-                      title="Notification"
-                      className="nav-link"
-                      to="/notification"
-                    >
-                      <IoNotifications />
-                    </NavLink>
-                  </button>
-                  <NavLink
-                    exact="true"
-                    title="MyProfile"
-                    className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`}
-                    to="/Profile"
-                  >
-                    Profile
-                  </NavLink>
-                  <button
-                    className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`}
-                    onClick={handleSignOut}
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              ) : (
-                <div className="nav-buttons-div">
-                  <NavLink
-                    exact="true"
-                    title="SignIn"
-                    className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`}
-                    to="/SignIn"
-                  >
-                    Sign In
-                  </NavLink>
-                  <NavLink
-                    exact="true"
-                    title="SignIn"
-                    className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`}
-                    to="/SignUp"
-                  >
-                    Sign Up
-                  </NavLink>
-                </div>
-              )}
-            </div>
-          </div>
-        </nav>
-      </header>
-    </Sticky>
-  );
-};
+                                        {/* <ul className={`navbar-nav menuw menu`}>
+
+                                            <li className="dropdown submenu nav-item"><button className={`btn_get btn_hover ${hbtnClass} nav-buton notif`}><NavLink title="Notification" className="nav-link dropdown-toggle" to="/notification" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" to="#"><IoNotifications /></NavLink></button>
+                                                <ul role="menu" className=" dropdown-menu">
+                                                    <li>
+
+                                                        <Notification />
+
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                        </ul> */}
+
+                                        <NavLink exact='true' title="MyProfile" className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} to='/Profile'>Profile</NavLink>
+                                        <button className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} onClick={this.handleSignOut}>Sign Out</button>
+                                    </div>
+                                ) : (
+                                    <div className='nav-buttons-div'>
+                                        <NavLink exact='true' title="SignIn" className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} to='/SignIn'>Sign In</NavLink>
+                                        <NavLink exact='true' title="SignIn" className={`btn_get btn_hover ${hbtnClass} nav-buuton fs`} to='/SignUp'>Sign Up</NavLink>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+            </Sticky >
+        );
+    }
+}
 
 export default CustomNavbar;

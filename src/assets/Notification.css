@@ -1,0 +1,44 @@
+.notification-div {
+    overflow-y: auto !important;
+    max-height: 50vh !important;
+}
+
+.notification-div p {
+    font-size: 20px !important;
+}
+
+
+.dropdown-menuw {
+    margin: 0px;
+    border: 0px;
+    border-radius: 10px;
+    left: -40px;
+    min-width: 600px !important;
+    padding: 0px;
+    background: #6d61f3 !important;
+    -webkit-box-shadow: -1px 2px 19px 3px rgba(14, 0, 40, 0.05);
+    box-shadow: -1px 2px 19px 3px rgba(14, 0, 40, 0.05);
+    scroll-behavior: auto !important;
+    max-height: 700px;
+}
+
+.notif-item {
+    padding: 10px;
+}
+
+.notif-h {
+    color: rgb(255, 174, 0);
+}
+
+.black-span {
+    color: black;
+}
+
+.notif-desc {
+    text-align: center;
+}
+
+.notif-desc p {
+    font-size: 25px !important;
+
+}

@@ -30,30 +30,6 @@ const SignUpForm = () => {
         console.log("handle on click end");
     };
 
-    // const [signUpSuccess, setsignUpSuccess] = useState(false);
-
-    // async function handleOnClick() {
-    //     const data = { 'userName': userName, 'email': email, 'password': password }
-
-    // const response = await fetch('https://localhost:7189/api/auth/signUp', {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    // }).catch(err => console.log(err));
-
-    //     const responseData = await response.json();
-
-    //     Cookies.set('accessToken', responseData.accessToken, { expires: new Date(responseData.expiration) });
-
-    //     console.log(responseData);
-
-    //     setsignUpSuccess(true);
-
-    //     navigate('/home');
-    // }
-
     return (
         <section className="sign_in_area bg_color sec_pad">
             <div className="container">
@@ -69,7 +45,7 @@ const SignUpForm = () => {
                                     <li><i className="ti-check"></i> Unlimited User Accounts</li>
                                 </ul>
 
-                                <button type="submit" className="btn_three sign_btn_transparent"><Link to="../SignIn">Sign In</Link></button>
+                                <button type="submit" className="btn_three sign_btn_transparent"><Link className='nav-link fs' to="../SignIn">Sign In</Link></button>
                             </div>
                         </div>
 
@@ -125,7 +101,7 @@ const SignUpForm = () => {
                                     </div>
 
                                     <div className="d-flex justify-content-between align-items-center">
-                                        <button type="submit" className="btn_three" onClick={handleOnClick}>Sign Up</button>
+                                        <button type="submit" className="btn_three fs" onClick={handleOnClick}>Sign Up</button>
 
                                         <div className="social_text d-flex ">
                                             <div className="lead-text">Or Sign up Using</div>
