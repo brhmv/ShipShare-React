@@ -28,6 +28,7 @@ import ResetPassword from "./Pages/ResetPassword.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import Notification from "./components/Notification.jsx";
 import ScrollToTop from "./ScrollToTop.js";
+import { ToastContainer } from "react-toastify";
 
 class App extends Component {
 
@@ -85,6 +86,8 @@ class App extends Component {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer />
+
       </Router>
     );
   }

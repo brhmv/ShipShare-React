@@ -26,19 +26,14 @@ export const authSlice = createSlice({
             state.isAuthenticated = state.accessToken ? true : false;
             state.error = action.payload.statusText;
         },
-        signUpStart: (state) => {
-            state.error = null;
-        },
         signUpSuccess: (state, action) => {
-            state.loading = false;
-            state.accessToken = action.payload.accessToken;
-            state.isAuthenticated = true;
-            state.error = null;
-        },
-
-        signUpFailure: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
+            if (action.payload.accessToken) {
+                Cookies.set("accessToken",action.payload.accessToken);
+                Cookies.set("refreshToken",action.payload.refreshToken);
+                state.isAuthenticated = true;
+            }
+            else 
+                state.error = action.payload.error;
         },
         setUserDetails: (state, action) => {
             state.userdetails = action.payload;
@@ -63,7 +58,7 @@ export const authSlice = createSlice({
 
 });
 
-export const { signInStart, signInSuccess, signUpStart, signUpSuccess, signUpFailure, setAccessToken, setUserDetails,signOut } = authSlice.actions;
+export const { signInStart, signInSuccess, signUpSuccess, setAccessToken, setUserDetails,signOut } = authSlice.actions;
 
 export const signInAsync = (email, password) => async (dispatch) => {
     dispatch(signInStart());
@@ -76,27 +71,9 @@ export const signInAsync = (email, password) => async (dispatch) => {
 };
 
 export const signUpAsync = (username, email, password) => async (dispatch) => {
-    console.log("SignUpAsync called");
-
-    dispatch(signUpStart());
-    console.log("SignUpStart done");
-
-    try {
-
-        const responseData = await signUp(username, email, password);
-
-        console.log("responseData");
-        console.log(responseData);
-        console.log("responseData.accessToken");
-        // console.log(responseData.accessToken);
-
-        dispatch(signUpSuccess(responseData));
-        dispatch(setAccessToken(responseData.accessToken));
-    }
-    catch (error) {
-        console.log("signUpFailure(error.message");
-        dispatch(signUpFailure(error.message));
-    }
+    dispatch(signInStart());
+    const responseData = await signUp(username, email, password);
+    dispatch(signUpSuccess(responseData));
 };
 
 
