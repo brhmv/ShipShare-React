@@ -10,8 +10,6 @@ import { Oval } from "react-loader-spinner";
 import useTokenExpiration from "../customHooks/useTokenExpiration";
 import { ToastContainer } from "react-toastify";
 import { IoIosAirplane, IoIosSend } from "react-icons/io";
-import { GiConfirmed } from "react-icons/gi";
-import { MdInfo } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaManatSign } from "react-icons/fa6";
 
