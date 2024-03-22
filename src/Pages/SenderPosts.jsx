@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
-import { FaLocationDot } from "react-icons/fa6";
+import { IoIosAirplane, IoIosSend } from "react-icons/io";
+import { GiConfirmed } from "react-icons/gi";
+import { MdInfo } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
+import { FaManatSign } from "react-icons/fa6";
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../Store/SenderPostSlice';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
@@ -108,8 +111,20 @@ function TarvelerPosts() {
 
             <div className='posts'>
                 {filteredPosts.map(post => (
-                    <Link key={post.id} to={`/SenderPost/${post.id}`} className="post-link">
-                        <div key={post.id} className="post-item" >
+                    <div>
+                        {<div className="card" style={{width: "24rem"}}>
+                            <img height={200} class="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id}/>
+                            <div className="card-body">
+                                <h5 className="card-title">{post.title}</h5>
+                                <p className="card-text d-flex align-items-center gap-1">Deadline date : {formatDate(post.deadlineDate)} <FaCalendarAlt/></p>
+                                <p className="card-text d-flex align-items-center gap-1">Start destination : {post.startDestination} <IoIosSend/></p>
+                                <p className="card-text d-flex align-items-center gap-1">End destination : {post.endDestination} <IoIosAirplane/></p>
+                                <p className="card-text d-flex align-items-center gap-1">Item type : {post.itemType} <MdInfo/></p>
+                                <p className="card-text d-flex align-items-center gap-1">Price: {post.price} <FaManatSign/></p>
+                                <Link to={`/SenderPost/${post.id}`} className="btn btn-primary">Details</Link>
+                            </div>
+                        </div>}
+                        {/* <div key={post.id} className="post-item" >
 
                             <div className="post-image">
                                 <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
@@ -128,8 +143,8 @@ function TarvelerPosts() {
                                 <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
 
                             </div>
-                        </div>
-                    </Link>
+                        </div> */}
+                    </div>
                 ))}
             </div>
 

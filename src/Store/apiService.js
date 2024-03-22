@@ -21,24 +21,30 @@ export const signIn = async (email, password) => {
 };
 
 export const signUp = async (username, email, password) => {
-  console.log("sign up fetch started");
-
-  const response = await fetch("https://localhost:7189/api/Auth/signUp", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, email, password }),
-  }).catch((err) => {
-    console.error(err);
-  });
-
-  if (!response.ok) {
-    throw new Error("Sign-up failed");
+  let responseData = {
+    accessToken : "",
+    refreshToken : "",
+    error : ""
   }
+  try {
+    const response = await fetch("https://localhost:7189/api/Auth/signUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, email, password }),
+    })
+    let temp = await response.json();
 
-  var temp = await response.json();
-  console.log(temp);
-
-  return temp;
+    if (response.ok) {
+      responseData.accessToken = temp.accessToken;
+      responseData.refreshToken = temp.refreshToken;
+    }
+    else 
+      responseData.error = temp.status;
+  }
+  catch (error) {
+    responseData.error = error;
+  }
+  return responseData;
 };

@@ -55,7 +55,11 @@ a:focus {
 
 .notif {
   font-size: 25px !important;
-  padding: 0px !important;
+}
+
+.notiff {
+  border : 2px solid #5e2ced;
+  border-radius : 4px;
 }
 
 .row.m0 {
@@ -271,7 +275,7 @@ button:focus {
 }
 
 .bg_color {
-  background: #fbfbfd;
+  background: #fafafa;
 }
 
 .dk_bg_one {
@@ -444,7 +448,6 @@ button:focus {
   border-radius: 4px;
   -webkit-box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
   box-shadow: 0px 20px 24px 0px rgba(0, 11, 40, 0.1);
-  padding: 0px 23px;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   -webkit-transition-property: color;
@@ -455,6 +458,8 @@ button:focus {
   transition: all 0.3s ease;
   min-width: 120px;
   text-align: center;
+  font-size: 18px !important;
+  font-weight: 600 !important;
 }
 
 .btn_get.new_btn {
@@ -905,10 +910,6 @@ button:focus {
 
 .menu_one {
   padding: 0px 30px;
-}
-
-.menu_one .btn_get {
-  margin-left: 40px;
 }
 
 .navbar-brand img {
@@ -12451,12 +12452,12 @@ button:focus {
   font: 400 15px/60px "Poppins", sans-serif;
   color: #222d39;
   height: 60px;
+  border : 1px solid #b2b2b2;
   border-radius: 4px;
   background-color: white;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
   box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
   width: 100%;
-  border: 1px solid #fff;
   padding-left: 30px;
 }
 
@@ -12659,7 +12660,8 @@ button:focus {
 
 /*==================== sign_in_area css ==================*/
 .sign_info {
-  border: 20px solid #fff;
+  border: 1px solid #b2b2b2;
+  border-radius : 4px;
   background: #fbfbfd;
   padding: 80px 50px;
   -webkit-box-shadow: 0px 50px 100px 0px rgba(12, 0, 46, 0.05);
@@ -25549,6 +25551,8 @@ a .h_head:hover {
 
 .nav-buttons-div {
   display: flex;
+  gap : 20px;
+  align-items: center;
   flex-flow: row;
   height: 5vh;
   padding: 0px;
@@ -25556,8 +25560,4 @@ a .h_head:hover {
 
 .violet {
   color: #6d61f3;
-}
-
-.menuw>.nav-item {
-  padding-top: 10px !important;
 }
