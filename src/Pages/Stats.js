@@ -1,7 +1,7 @@
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-import Breadcrumb from '../components/Breadcrumb';
+import { ToastContainer } from 'react-toastify';
 
 function Stats() {
 
@@ -32,6 +32,7 @@ function Stats() {
 
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div >
     );
 }

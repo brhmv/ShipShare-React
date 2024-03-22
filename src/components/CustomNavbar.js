@@ -1,78 +1,115 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import Sticky from 'react-stickynode';
-import Cookies from 'js-cookie';
-// import { IoNotifications } from "react-icons/io5";
-import Notification from "../components/Notification";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useFetcher, useNavigate } from "react-router-dom";
+import Sticky from "react-stickynode";
+import { IoNotifications } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../Store/AuthSlice";
 
+const CustomNavbar = (props) => {
+  const { mClass, cClass, slogo, hbtnClass } = props;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
-class CustomNavbar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isAuthenticated: !!Cookies.get('accessToken')
-        };
-    }
+  const handleSignOut = () => {
+    dispatch(signOut());
+    navigate("/signIn");
+  };
 
-    handleSignOut = () => {
-        Cookies.remove('accessToken');
-        this.setState({ isAuthenticated: false });
-    };
+  return (
+    <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
+      <header className="header_area">
+        <nav className={`navbar navbar-expand-lg menu_one ${mClass}`}>
+          <div className={`container ${cClass}`}>
+            <Link className={`navbar-brand ${slogo}`} to="/home">
+              <img src={require("../img/logoL.png")} alt="" />
+              <img src={require("../img/logoL.png")} alt="logo" />
+            </Link>
 
-    render() {
-        var { mClass, cClass, slogo, hbtnClass } = this.props;
-        const { isAuthenticated } = this.state;
+            <button
+              className="navbar-toggler collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="menu_toggle">
+                <span className="hamburger">
+                  <span></span>
+                  <br />
+                  <span></span>
+                  <br />
+                  <span></span>
+                  <br />
+                </span>
+                <span className="hamburger-cross">
+                  <span></span>
+                  <span></span>
+                </span>
+              </span>
+            </button>
 
-        return (
-            <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
-                <header className="header_area">
-                    <nav className={`navbar navbar-expand-lg menu_one ${mClass}`}>
-                        <div className={`container ${cClass}`}>
-                            <Link className={`navbar-brand ${slogo}`} to="/home">
-                                <img src={require("../img/logoL.png")} alt="" />
-                                <img src={require("../img/logoL.png")} alt="logo" />
-                            </Link>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className={`navbar-nav menu`}>
+                <li className="nav-item dropdown submenu mega_menu mega_menu_two">
+                  <Link
+                    to="../home"
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Home
+                  </Link>
+                </li>
 
-                            <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="menu_toggle">
-                                    <span className="hamburger">
-                                        <span></span>
-                                        <br />
-                                        <span></span>
-                                        <br />
-                                        <span></span>
-                                        <br />
-                                    </span>
-                                    <span className="hamburger-cross">
-                                        <span></span>
-                                        <span></span>
-                                    </span>
-                                </span>
-                            </button>
-
-                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul className={`navbar-nav menu`}>
-                                    <li className="nav-item dropdown submenu mega_menu mega_menu_two">
-                                        <Link to="../home" className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Home
-                                        </Link>
-                                    </li>
-
-                                    <li className="dropdown submenu nav-item">
+                {/* <li className="dropdown submenu nav-item">
                                         <Link to="./" title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">How ShipShare Works</Link>
                                         <ul role="menu" className=" dropdown-menu">
                                             <li className="nav-item"><NavLink exact='true' title="For Senders" className="nav-link nav-tog-fs" to='/SendingProcess'>For Senders</NavLink></li>
                                             <li className="nav-item"><NavLink exact='true' title="For Travelers" className="nav-link nav-tog-fs" to='/TravelingProcess'>For Travelers</NavLink></li>
                                         </ul>
-                                    </li>
+                                    </li> */}
 
-
-                                    <li className="dropdown submenu nav-item"><Link title="Pages" className="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" to="#">Posts</Link>
-                                        <ul role="menu" className=" dropdown-menu">
-                                            <li className="nav-item"><NavLink title="TravelersPosts" className="nav-link nav-tog-fs" to='/TravelersPosts'>Travelers Posts</NavLink></li>
-                                            <li className="nav-item"><NavLink title="SendersPosts" className="nav-link nav-tog-fs" to='/SendersPosts'>Senders Posts</NavLink></li>
-                                        </ul>
-                                    </li>
+                <li className="dropdown submenu nav-item">
+                  <Link
+                    title="Pages"
+                    className="dropdown-toggle nav-link"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    to="#"
+                  >
+                    Posts
+                  </Link>
+                  <ul role="menu" className=" dropdown-menu">
+                    <li className="nav-item">
+                      <NavLink
+                        title="TravelersPosts"
+                        className="nav-link nav-tog-fs"
+                        to="/TravelersPosts"
+                      >
+                        Travelers Posts
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        title="SendersPosts"
+                        className="nav-link nav-tog-fs"
+                        to="/SendersPosts"
+                      >
+                        Senders Posts
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
 
                                 </ul>
 

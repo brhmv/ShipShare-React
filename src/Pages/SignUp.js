@@ -4,6 +4,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import SignUpForm from '../components/SignUpForm';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
+import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
 
@@ -22,6 +23,7 @@ const SignUp = () => {
             <SignUpForm />
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div>
     )
 }

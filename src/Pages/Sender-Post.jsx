@@ -1,11 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
-// import "../assets/Sender-Post.css";
 import "../assets/Traveler-Post.css";
 import { useSelector, useDispatch } from 'react-redux';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import { getPosts } from '../Store/SenderPostSlice';
 import React, { useEffect } from 'react';
 import { AiFillEye } from "react-icons/ai";
@@ -13,6 +11,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { GiWeight } from "react-icons/gi";
 import { FaDollarSign } from "react-icons/fa";
+import { InfinitySpin } from 'react-loader-spinner';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 
 const SenderPost = () => {
@@ -25,7 +26,7 @@ const SenderPost = () => {
 
     const post = senderPosts.find((e) => e.id === postId);
 
-
+    useTokenExpiration();
     useEffect(() => {
         dispatch(getPosts());
     }, [dispatch]);
@@ -40,8 +41,12 @@ const SenderPost = () => {
         return `${day}/${month}/${year}`;
     };
 
-    if (!post) {
-        return null;
+    if (post === undefined) {
+        return (
+            <div className='w-100 vh-100 d-flex justify-content-center align-items-center'>
+                <InfinitySpin/>
+            </div>
+        );
     }
 
     return (
@@ -53,8 +58,8 @@ const SenderPost = () => {
 
 
                 <div className='poster-div'>
-                    {/* <span className="post-details-title">Posted by:</span> */}
-                    <Link to={`/user/${post.userId}`} className='btn btn-success btn-lg' >Go to user page</Link>
+                    <span className="post-details-title">Posted by:</span>
+                    <Link to={`/user/${post.userId}`} className='btn btn-success btn-lg' >{post.user.username}</Link>
                 </div>
 
                 <div className="post-details-container">
@@ -83,6 +88,7 @@ const SenderPost = () => {
             </div>
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div>
 
     );

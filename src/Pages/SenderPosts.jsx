@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import '../assets/SendersPosts.css';
 import { Link } from 'react-router-dom';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../Store/SenderPostSlice';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 
 function TarvelerPosts() {
+    useTokenExpiration();
     const dispatch = useDispatch();
 
     const senderPosts = useSelector((state) => state.postSender.allPosts) ?? "Loading posts...";
@@ -133,7 +135,7 @@ function TarvelerPosts() {
 
 
             <Footer FooterData={FooterData} />
-
+            <ToastContainer/>
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import { Link, useParams } from 'react-router-dom';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -11,12 +10,12 @@ import '../assets/UserView.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTravellerPosts } from '../Store/TravelPostSlice';
 import { getPosts } from '../Store/SenderPostSlice';
-import { Oval } from "react-loader-spinner";
+import { MagnifyingGlass, Oval } from "react-loader-spinner";
 import Review from "../components/Review"
 import { GiWeight } from "react-icons/gi";
 import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
-
-
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 function UserView() {
     const dispatch = useDispatch();
@@ -28,7 +27,7 @@ function UserView() {
     const FetchTravelerPosts = useSelector((state) => state.postTravel.posts);
     const FetchSenderPosts = useSelector((state) => state.postSender.allPosts);
     const user = useSelector((state) => state.auth.userdetails);
-
+    useTokenExpiration();
 
     useEffect(() => {
 
@@ -163,7 +162,9 @@ function UserView() {
                         <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>
                     </div>
                 ) : (
-                    <h1>Loading...</h1>
+                    <div className='d-flex w-100 justify-content-center align-items-center'>
+                        <MagnifyingGlass/>
+                    </div>
                 )}
             </div>
 
@@ -198,6 +199,7 @@ function UserView() {
             </div>
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div >
     );
 }

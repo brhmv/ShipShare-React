@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { AiFillEye } from "react-icons/ai";
@@ -11,16 +10,18 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaDollarSign } from "react-icons/fa";
 import { getTravellerPosts } from '../Store/TravelPostSlice';
+import { InfinitySpin } from 'react-loader-spinner';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 function TravelerPost() {
     const dispatch = useDispatch();
-
     const { postId } = useParams();
-
     const travelerPosts = useSelector((state) => state.postTravel.posts);
-
+    
     const post = travelerPosts.find((e) => e.id === postId);
-
+    
+    useTokenExpiration();
 
     useEffect(() => {
         dispatch(getTravellerPosts());
@@ -35,16 +36,22 @@ function TravelerPost() {
         return `${day}/${month}/${year}`;
     };
 
+    if (post === undefined) {
+        return (
+            <div className='w-100 vh-100 d-flex justify-content-center align-items-center'>
+                <InfinitySpin/>
+            </div>
+        );
+    }
+
     return (
         <div className='privacy'>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
-            {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Traveler Post Details" Pdescription="-----------------------" /> */}
-
             <div className="post-details-container">
 
                 <div className='poster-div'>
                     <span className="post-details-title">Posted by:</span>
-                    <Link to={`/user/${post.userId}`} className='btn btn-success btn-lg' >User who posted</Link>
+                    <Link to={`/user/${post.userId}`} className='btn btn-success btn-lg' >{post.user.username}</Link>
                 </div>
 
                 <div className="travel-post-details">
@@ -68,6 +75,7 @@ function TravelerPost() {
             </div>
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div >
     );
 }

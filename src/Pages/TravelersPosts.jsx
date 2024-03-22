@@ -3,23 +3,25 @@ import '../assets/TravelersPosts.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { getTravellerPosts } from '../Store/TravelPostSlice';
 import { Oval } from "react-loader-spinner";
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 function TarvelerPosts() {
     const dispatch = useDispatch();
-
     const travelerPosts = useSelector((state) => state.postTravel.posts) ?? "Loading posts...";
 
     const [startLocation, setStartLocation] = useState('');
     const [endLocation, setEndLocation] = useState('');
     const [filteredPosts, setFilteredPosts] = useState(travelerPosts);
 
+    useTokenExpiration();
+    
     const handleSearch = () => {
         const filtered = travelerPosts.filter(post =>
             post.startDestination.toLowerCase().includes(startLocation.toLowerCase()) &&
@@ -48,8 +50,6 @@ function TarvelerPosts() {
     return (
         <div >
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
-
-            {/* <Breadcrumb breadcrumbClass="breadcrumb_area" imgName="breadcrumb/banner_bg.png" Ptitle="Posts of Tarvelers" Pdescription="-----------------------" /> */}
 
             <br />
 
@@ -129,7 +129,7 @@ function TarvelerPosts() {
             <hr />
 
             <Footer FooterData={FooterData} />
-
+            <ToastContainer/>
         </div>
     );
 }

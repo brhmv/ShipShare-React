@@ -8,8 +8,11 @@ import CoreFeatures from '../components/Features/CoreFeatures';
 import AppGetstarted from '../components/AppGetstarted';
 import Footer from '../components/Footer/Footer';
 import SecurityTestimonial from '../components/Testimonial/SecurityTestimonial';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
+    useTokenExpiration();
     return (
         <div className="body_wrapper">
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
@@ -25,7 +28,7 @@ const Home = () => {
             <AppGetstarted />
 
             <Footer FooterData={FooterData} />
-
+            <ToastContainer/>
         </div>
     )
 }

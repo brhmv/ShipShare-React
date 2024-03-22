@@ -14,34 +14,30 @@ import { getMyDetailsAsync } from "../Store/AuthSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaDollarSign } from "react-icons/fa";
-import Review from "../components/Review"
+import Review from "../components/Review";
+import { MagnifyingGlass } from 'react-loader-spinner';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
 
 const ProfileView = () => {
     const dispatch = useDispatch();
-    // const { userId } = useParams();
     const [isEditingSender, setIsEditingSender] = useState(false);
     const [isEditingTravel, setIsEditingTravel] = useState(false);
     const [editPost, setEditPost] = useState(null);
-    // const [editPostType, setEditPostType] = useState(null);
     const [postType, setPostType] = useState('sender');
-
     const userSenderPosts1 = useSelector(state => state.userPosts.userSenderPosts);
     const userTravelerPosts1 = useSelector(state => state.userPosts.userTravellerPosts);
-
-
     const myDetails = useSelector((state) => state.auth.mydetails);
 
+    useTokenExpiration();
 
-
-    useEffect(() => {
+    useEffect(() => {;
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
-    }, [dispatch, editPost]);
-
+    }, [dispatch,editPost]);
 
     useEffect(() => {
         dispatch(getMyDetailsAsync())
-    }, [dispatch, myDetails]);
+    }, [dispatch]);
 
 
     const handlePostTypeChange = (type) => {
@@ -158,16 +154,9 @@ const ProfileView = () => {
         );
     };
 
-    ProfileView.defaultProps = {
-        myDetails: null,
-    };
-
-
     return (
         <div>
             <CustomNavbar mClass="menu_four" cClass="custom_container p0" nClass="pl_120 mr-auto ml-auto" hbtnClass="menu_cus" />
-
-            <ToastContainer position="top-right" />
 
             <br />
 
@@ -180,7 +169,9 @@ const ProfileView = () => {
                         <p className='user-detail'><span className='bold-span'>Email: </span>{myDetails.email}</p>
                     </div>
                 ) : (
-                    <div>Loading...</div>
+                    <div className='d-flex w-100 justify-content-center align-items-center'>
+                        <MagnifyingGlass/>
+                    </div>
                 )}
             </div>
 
@@ -236,7 +227,7 @@ const ProfileView = () => {
                 {myDetails && <h1 className='profile-h1-tag'>Reviews of {myDetails.username}</h1>}
                 {myDetails && <Review userId={myDetails.id} user={myDetails} isMe={true} />}
             </div>
-
+            <ToastContainer/>
         </div>
     );
 };

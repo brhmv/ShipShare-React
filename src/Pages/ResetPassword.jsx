@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import CustomNavbar from "../components/CustomNavbar";
-import { Password } from "primereact/password";
+import { ThreeDots } from "react-loader-spinner";
+import "../index.css";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
   const { token } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const resetPasswordHandler = async () => {
+  const resetPasswordHandler = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    console.log(isLoading);
     if (password === confirmPassword) {
       setPassword("");
       setConfirmPassword("");
@@ -20,29 +23,48 @@ const ResetPassword = () => {
         password,
         confirmPassword,
       };
-      console.log(passwordRequest);
-      let res = await fetch("https://localhost:7189/api/Auth/resetpassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(passwordRequest),
-      });
-
-      let data = await res.json();
-      if (res.ok) {
-        toast.success(data.status);
-        navigate("/home");
+  
+      try {
+        let res = await fetch("https://localhost:7189/api/Auth/resetpassword", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(passwordRequest),
+        });
+  
+        let data = await res.json();
+        if (res.ok) {
+          toast.success(data.status);
+        } else {
+          toast.error(data.status);
+        }
+      } catch (error) {
+        toast.error("Something went wrong");
+      } finally {
+        setIsLoading(false); // Set isLoading to false after the fetch operation completes
       }
-      else 
-        toast.error(data.status);
+    } else {
+      setIsLoading(false);
+      toast.error("Please check your password");
     }
-    else 
-        toast.error("Please check your password");
   };
-
   return (
     <div>
+      {isLoading && (
+        <div className="Loading">
+          <ThreeDots
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      )}
       <CustomNavbar
         mClass="menu_four"
         cClass="custom_container p0"
@@ -51,22 +73,34 @@ const ResetPassword = () => {
       />
       <ToastContainer position="top-right" />
 
-      <div className="reset-password">
-        <h6>Reset your password</h6>
+      <form
+        onSubmit={resetPasswordHandler}
+        className="d-flex flex-column w-25 m-auto mt-5 gap-3"
+      >
+        <h6 style={{ fontSize: "32px" }} className="m-auto">
+          Reset your password
+        </h6>
         <input
+          required
           placeholder="Enter your password"
           type="password"
           value={password}
+          className="form-control"
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
         <input
+          required
           placeholder="Enter your password again"
           type="password"
+          className="form-control"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.currentTarget.value)}
         />
-        <button onClick={resetPasswordHandler}>Reset Password</button>
-      </div>
+        <button type="submit" className="btn btn-primary">
+          Reset Password
+        </button>
+      </form>
+      <ToastContainer/>
     </div>
   );
 };

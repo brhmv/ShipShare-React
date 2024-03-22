@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/CreateSenderPost.css';
 import CustomNavbar from '../components/CustomNavbar';
-// import Breadcrumb from '../components/Breadcrumb';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { FaLocationDot } from "react-icons/fa6";
@@ -10,9 +9,11 @@ import { GiWeight } from "react-icons/gi";
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTokenExpiration from '../customHooks/useTokenExpiration';
 
 
 function CreateSenderPost() {
+    useTokenExpiration();
     const [description, setDescription] = useState('');
     const [startDestination, setStartDestination] = useState('');
     const [endDestination, setEndDestination] = useState('');
@@ -175,6 +176,7 @@ function CreateSenderPost() {
             </div>
 
             <Footer FooterData={FooterData} />
+            <ToastContainer/>
         </div>
     );
 }
