@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, ScrollRestoration } from "react-router-dom";
 
 /*------ Pages-----*/
 import Home from "./Pages/Home";
@@ -27,6 +27,8 @@ import SenderPost from "./Pages/Sender-Post.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import Notification from "./components/Notification.jsx";
+import ScrollToTop from "./ScrollToTop.js";
+import { ToastContainer } from "react-toastify";
 
 class App extends Component {
 
@@ -37,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -83,6 +86,8 @@ class App extends Component {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer />
+
       </Router>
     );
   }
