@@ -37,7 +37,7 @@ class Footer extends Component {
                                     <div className="col-lg-3 col-md-6">
                                         <div className="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s">
                                             <ul className="list-unstyled f_list">
-                                                <li><Link to="/privacy">Priavcy & Policy</Link></li>
+                                                <li><Link to="/privacy">Privacy & Policy</Link></li>
                                                 <li><Link to="/about">About</Link></li>
                                                 <li><Link to="/faq">FAQ</Link></li>
                                                 <li><Link to="/team">Team</Link></li>
@@ -55,32 +55,11 @@ class Footer extends Component {
                                                 <li><Link to="/contact">Contact</Link></li>
                                                 <li><Link to="/stats">Statistics</Link></li>
                                                 <li><Link to="/SendingProcess">Sending Process</Link></li>
-                                                <li><Link to="/TravelingProcess">Travleing Process</Link></li>
+                                                <li><Link to="/TravelingProcess">Travelling Process</Link></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </Reveal>
-
-                                // FooterData.AboutWidget.map(widget => {
-                                //     return (
-                                //         <Reveal effect="fadeInLeft" duration={500} key={widget.id}>
-                                //             <div className="col-lg-3 col-md-6">
-                                //                 <div className="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s">
-                                //                     <h3 className="f-title f_600 t_color f_size_18">{widget.title}</h3>
-                                //                     <ul className="list-unstyled f_list">
-                                //                         {
-                                //                             widget.menuItems.map(item => {
-                                //                                 return (
-                                //                                     <li key={item.id}><Link to="/">{item.text}</Link></li>
-                                //                                 )
-                                //                             })
-                                //                         }
-                                //                     </ul>
-                                //                 </div>
-                                //             </div>
-                                //         </Reveal>
-                                //     )
-                                // })
                             }
 
                             {
