@@ -8,11 +8,12 @@ import FooterData from "../components/Footer/FooterData";
 import {getTravellerPosts} from "../Store/TravelPostSlice";
 import {Oval} from "react-loader-spinner";
 import useTokenExpiration from "../customHooks/useTokenExpiration";
-import {ToastContainer} from "react-toastify";
-import {IoIosAirplane, IoIosSend} from "react-icons/io";
-import {FaCalendarAlt} from "react-icons/fa";
-import {FaManatSign} from "react-icons/fa6";
 import {getMyDetailsAsync} from "../Store/AuthSlice";
+import { ToastContainer } from "react-toastify";
+import { IoIosAirplane, IoIosSend } from "react-icons/io";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaManatSign } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 function TarvelerPosts() {
     const dispatch = useDispatch();
@@ -146,13 +147,13 @@ function TarvelerPosts() {
 
                                 <div className="post-details">
 
-                                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
+                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
 
-                                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
+                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
 
-                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
+                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
 
-                                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
+                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
                                 </div>
                             </div> */}

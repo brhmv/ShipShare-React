@@ -15,6 +15,7 @@ const CustomNavbar = (props) => {
     dispatch(signOut());
     navigate("/signIn");
   };
+
   return (
     <Sticky top={0} innerZ={9999} activeClass="navbar_fixed">
       <header className="header_area">
@@ -25,15 +26,7 @@ const CustomNavbar = (props) => {
               <img src={require("../img/logoL.png")} alt="logo" />
             </Link>
 
-            <button
-              className="navbar-toggler collapsed"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+            <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="menu_toggle">
                 <span className="hamburger">
                   <span></span>
@@ -50,20 +43,10 @@ const CustomNavbar = (props) => {
               </span>
             </button>
 
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className={`navbar-nav menu`}>
                 <li className="nav-item dropdown submenu mega_menu mega_menu_two">
-                  <Link
-                    to="../home"
-                    className="nav-link dropdown-toggle"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                  <Link to="../home" className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Home
                   </Link>
                 </li>

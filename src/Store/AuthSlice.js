@@ -13,7 +13,7 @@ export const authSlice = createSlice({
     },
 
     reducers: {
-        signOut : (state) => {
+        signOut: (state) => {
             state.isAuthenticated = false;
             Cookies.remove("accessToken");
         },
@@ -22,17 +22,17 @@ export const authSlice = createSlice({
         },
         signInSuccess: (state, action) => {
             console.log(action.payload);
-            state.accessToken = action.payload.accessToken; 
+            state.accessToken = action.payload.accessToken;
             state.isAuthenticated = state.accessToken ? true : false;
             state.error = action.payload.statusText;
         },
         signUpSuccess: (state, action) => {
             if (action.payload.accessToken) {
-                Cookies.set("accessToken",action.payload.accessToken);
-                Cookies.set("refreshToken",action.payload.refreshToken);
+                Cookies.set("accessToken", action.payload.accessToken);
+                Cookies.set("refreshToken", action.payload.refreshToken);
                 state.isAuthenticated = true;
             }
-            else 
+            else
                 state.error = action.payload.error;
         },
         setUserDetails: (state, action) => {
@@ -58,16 +58,16 @@ export const authSlice = createSlice({
 
 });
 
-export const { signInStart, signInSuccess, signUpSuccess, setAccessToken, setUserDetails,signOut } = authSlice.actions;
+export const { signInStart, signInSuccess, signUpSuccess, setAccessToken, setUserDetails, signOut } = authSlice.actions;
 
 export const signInAsync = (email, password) => async (dispatch) => {
     dispatch(signInStart());
     const responseData = await signIn(email, password);
     dispatch(signInSuccess(responseData));
-    if (responseData.accessToken) 
-        Cookies.set("accessToken",responseData.accessToken);
+    if (responseData.accessToken)
+        Cookies.set("accessToken", responseData.accessToken);
 
-    
+
 };
 
 export const signUpAsync = (username, email, password) => async (dispatch) => {
