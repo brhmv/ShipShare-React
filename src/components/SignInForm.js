@@ -109,15 +109,17 @@ const SignInFrom = ({ setIsLoading }) => {
                     </div>
                   </div>
 
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
-                                        <div className="social_text d-flex ">
-                                            <div className="lead-text">Don't have an account?</div>
-                                            <ul className="list-unstyled social_tag mb-0">
-                                                <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
-                                                <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
-                                                <li><a href="https://google.com"><i className="ti-google"></i></a></li>
-                                            </ul> 
+
+                  <div className="d-flex justify-content-between align-items-center">
+                      <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
+                      <div className="social_text d-flex ">
+                          <div className="lead-text">Don't have an account?</div>
+                          <ul className="list-unstyled social_tag mb-0">
+                              <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
+                              <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
+                              <li><a href="https://google.com"><i className="ti-google"></i></a></li>
+                          </ul> 
+
                     </div>
                   </div>
                 </form>
