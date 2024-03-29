@@ -18,7 +18,6 @@ function TravelerPost() {
     const dispatch = useDispatch();
     const { postId } = useParams();
     const travelerPosts = useSelector((state) => state.postTravel.posts);
-    
     const post = travelerPosts.find((e) => e.id === postId);
     
     useTokenExpiration();
@@ -27,6 +26,11 @@ function TravelerPost() {
         dispatch(getTravellerPosts());
     }, [dispatch]);
 
+    useEffect(() => {
+        fetch(`https://localhost:7189/api/TravellerPost/increaseTravellerPostView/${postId}`,{
+            method : "POST",
+        });
+    },[postId])
 
     const formatDate = (dateString) => {
         const dateTime = new Date(dateString);

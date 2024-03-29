@@ -15,8 +15,8 @@ const AppGetstarted = () => {
                                 <h3 className="f_400 f_p wow fadeInLeft" data-wow-delay="0.2s">ShipShare</h3>
                                 <h2 className="f_700 f_p f_size_40 l_height50 mb_20 wow fadeInLeft" data-wow-delay="0.3s">Mobile app is coming soon.</h2>
                                 <p className="f_400 f_p mb_40 wow fadeInLeft" data-wow-delay="0.4s">Using ShipShare mobile app would be easy and accesible for all users.</p>
-                                <a href=".#" className="app_btn app_btn_one wow fadeInLeft" data-wow-delay="0.5s"><img src={require('../img/home7/google_icon.png')} alt="" />Google Play</a>
-                                <a href=".#" className="app_btn app_btn_two wow fadeInLeft" data-wow-delay="0.6s"><i className="fab fa-apple"></i>App Store</a>
+                                {/* <a href=".#" disabled={true}className="app_btn app_btn_one wow fadeInLeft" data-wow-delay="0.5s"><img src={require('../img/home7/google_icon.png')} alt="" />Google Play</a>
+                                <a href=".#" disabled={true} className="app_btn app_btn_two wow fadeInLeft" data-wow-delay="0.6s"><i className="fab fa-apple"></i>App Store</a> */}
                             </div>
                         </Reveal>
                     </div>

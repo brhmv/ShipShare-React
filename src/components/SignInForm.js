@@ -29,7 +29,9 @@ const SignInFrom = ({ setIsLoading }) => {
     }
   }, [signInInfo, navigate]);
 
-  const handleOnClick = async () => {
+  const handleOnClick = async (e) => {
+    e.preventDefault();
+    window.scrollTo({top: 0,behavior: "smooth"});
     setIsLoading(true);
     dispatch(signInAsync(email, password));
   };
@@ -79,13 +81,14 @@ const SignInFrom = ({ setIsLoading }) => {
               <div className="login_info">
                 <h2 className="f_p f_600 f_size_24 t_color3 mb_40">Sign In</h2>
 
-                <form action="/#" className="login-form sign-in-form">
+                <form onSubmit={handleOnClick} method="post" className="login-form sign-in-form">
                   <div className="form-group text_box">
                     <label className="f_p text_c f_400">Email</label>
                     <input
-                      type="text"
+                      type="email"
                       placeholder="shipshare@gmail.com"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
@@ -96,32 +99,21 @@ const SignInFrom = ({ setIsLoading }) => {
                       type="password"
                       placeholder="**********"
                       value={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
 
                   <div className="extra mb_20">
                     <div className="w-100 checkbox remember d-flex justify-content-between">
-                      <label>
-                        <input type="checkbox" /> Keep me Signed in
-                      </label>
+                      <div className="d-flex justify-content-between align-items-center">
+                          <button type="submit" className="btn_three fs">Sign in</button>
+                      </div>
                       <Link to="/forgotPassword">Forgot Password?</Link>
                     </div>
                   </div>
 
 
-                  <div className="d-flex justify-content-between align-items-center">
-                      <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
-                      <div className="social_text d-flex ">
-                          <div className="lead-text">Don't have an account?</div>
-                          <ul className="list-unstyled social_tag mb-0">
-                              <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
-                              <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
-                              <li><a href="https://google.com"><i className="ti-google"></i></a></li>
-                          </ul> 
-
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>

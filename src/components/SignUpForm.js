@@ -35,6 +35,7 @@ const SignUpForm = ({ setIsLoading }) => {
 
   const handleOnClick = async (e) => {
     e.preventDefault();
+    window.scrollTo({top : 0,behavior : "smooth"});
     setIsLoading(true);
     if (rules) {
       if (password === confirmPassword) {
@@ -160,7 +161,7 @@ const SignUpForm = ({ setIsLoading }) => {
                       Sign Up
                     </button>
 
-                    <div className="social_text d-flex ">
+                    {/* <div className="social_text d-flex ">
                       <div className="lead-text">Or Sign up Using</div>
                       <ul className="list-unstyled social_tag mb-0">
                         <li>
@@ -179,7 +180,7 @@ const SignUpForm = ({ setIsLoading }) => {
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </form>
               </div>

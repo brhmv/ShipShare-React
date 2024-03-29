@@ -10,7 +10,7 @@ class Footer extends Component {
                 <div className="new_footer_top">
                     <div className="container">
                         <div className="row">
-                            {
+                            {/* {
                                 FooterData.CompanyWidget.map(widget => {
                                     return (
                                         <Reveal effect="fadeInLeft" duration={500} key={1}>
@@ -29,7 +29,7 @@ class Footer extends Component {
                                         </Reveal>
                                     )
                                 })
-                            }
+                            } */}
 
                             {
 
@@ -62,7 +62,7 @@ class Footer extends Component {
                                 </Reveal>
                             }
 
-                            {
+                            {/* {
                                 FooterData.SocialLinks.map(widget => {
                                     return (
                                         <Reveal effect="fadeInLeft" duration={500} key={widget.id}>
@@ -83,7 +83,7 @@ class Footer extends Component {
                                         </Reveal>
                                     )
                                 })
-                            }
+                            } */}
                         </div>
 
                     </div>
@@ -101,7 +101,7 @@ class Footer extends Component {
                                 <p className="mb-0 f_400">{FooterData.copywrite}</p>
                             </div>
                             <div className="col-lg-6 col-sm-5 text-right">
-                                <p>  <i className="icon_heart"></i>  <a href="https://itstep.az/" target="_blank" rel="noreferrer">Step İt Academy</a></p>
+                                <p className='text-end'>  <i className="icon_heart"></i>  <a href="https://itstep.az/" target="_blank" rel="noreferrer">Step IT Academy</a></p>
                             </div>
                         </div>
                     </div>

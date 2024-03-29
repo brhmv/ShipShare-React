@@ -59,9 +59,8 @@
      color: rgb(255, 255, 255) !important;
      align-items: center;
      gap: 5px;
-
-
-
+     white-space: nowrap;
+     overflow: hidden;
  }
 
  .span-detail {
