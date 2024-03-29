@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import { IoIosAirplane, IoIosSend } from "react-icons/io";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaManatSign } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 function TarvelerPosts() {
   const dispatch = useDispatch();
@@ -107,7 +108,7 @@ function TarvelerPosts() {
         {filteredPosts.length !== 0 ? (
           filteredPosts.map((post) => (
             <div>
-              {
+              {/* {
                 <div className="card" style={{ width: "24rem" }}>
                   <img
                     height={200}
@@ -138,21 +139,23 @@ function TarvelerPosts() {
                     </Link>
                   </div>
                 </div>
-              }
-              {/* <div key={post.id} className="post-item">
+              } */}
+              <div key={post.id} className="post-item">
+                <Link to={`/post/${post.id}`}>
+                  <div className="post-details">
 
-                                <div className="post-details">
+                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
 
-                                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
+                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
 
-                                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
+                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
 
-                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
+                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
-                                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
+                  </div>
+                </Link>
 
-                                </div>
-                            </div> */}
+              </div>
             </div>
           ))
         ) : (

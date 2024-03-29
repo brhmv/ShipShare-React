@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import EditTravelerPost from './EditTravelerPost';
 import EditSenderPost from './EditSenderPost';
 import CustomNavbar from '../components/CustomNavbar';
+import { fetchUserPosts, fetchUserSenderPosts, deleteSenderPost, deleteTravellerPost } from "../Store/UserPostsSlice";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { AiFillEye } from "react-icons/ai";
 import { GiWeight } from "react-icons/gi";
-import { fetchUserPosts, fetchUserSenderPosts, deleteSenderPost, deleteTravellerPost } from "../Store/UserPostsSlice";
-import { getMyDetailsAsync } from "../Store/AuthSlice";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FaDollarSign } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import { getMyDetailsAsync } from "../Store/AuthSlice";
+import 'react-toastify/dist/ReactToastify.css';
 import Review from "../components/Review";
 import { MagnifyingGlass } from 'react-loader-spinner';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
@@ -30,10 +30,10 @@ const ProfileView = () => {
 
     useTokenExpiration();
 
-    useEffect(() => {;
+    useEffect(() => {
         dispatch(fetchUserPosts());
         dispatch(fetchUserSenderPosts());
-    }, [dispatch,editPost]);
+    }, [dispatch, editPost]);
 
     useEffect(() => {
         dispatch(getMyDetailsAsync())
@@ -87,7 +87,6 @@ const ProfileView = () => {
                 {userSenderPosts1.length !== 0 ?
                     userSenderPosts1.map((post, index) => (
                         <div key={index} className="profile-post-item">
-
 
                             <div className="post-image">
                                 <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "null"} alt={post.id} />
@@ -170,7 +169,7 @@ const ProfileView = () => {
                     </div>
                 ) : (
                     <div className='d-flex w-100 justify-content-center align-items-center'>
-                        <MagnifyingGlass/>
+                        <MagnifyingGlass />
                     </div>
                 )}
             </div>
@@ -227,7 +226,7 @@ const ProfileView = () => {
                 {myDetails && <h1 className='profile-h1-tag'>Reviews of {myDetails.username}</h1>}
                 {myDetails && <Review userId={myDetails.id} user={myDetails} isMe={true} />}
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

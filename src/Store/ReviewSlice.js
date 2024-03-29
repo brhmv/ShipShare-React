@@ -22,12 +22,6 @@ export const fetchReviews = createAsyncThunk('review/fetchReviews', async (userI
 
 export const createReview = createAsyncThunk('review/createReview', async ({ rating, text, postedBy, user }) => {
     try {
-        console.log("rating:");
-        console.log(rating);
-        console.log("text  :");
-        console.log(text);
-        console.log("user:");
-        console.log(user);
         const accessToken = Cookies.get('accessToken');
 
         const response = await fetch(`https://localhost:7189/api/Review/createReview/${user.id}`, {
