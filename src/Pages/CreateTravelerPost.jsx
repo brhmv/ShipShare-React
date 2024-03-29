@@ -26,6 +26,7 @@ function CreateTravelerPost() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const postData = {
             title,
             description,
@@ -36,7 +37,6 @@ function CreateTravelerPost() {
         };
 
         dispatch(addPostAsync({ postData, setTemp: setTemp }));
-
 
         if (temp) {
             toast.success("Traveler Post Created Succesfully!", {
@@ -112,7 +112,7 @@ function CreateTravelerPost() {
             </div>
 
             <Footer FooterData={FooterData} />
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }

@@ -58,22 +58,22 @@ const SignInFrom = ({ setIsLoading }) => {
   //     navigate('/home');
   // }
 
-    return (
-        <section className="sign_in_area bg_color sec_pad">
-            <div className="container">
-                <div className="sign_info">
-                    <div className="row">
-                        <div className="col-lg-5">
-                            <div className="sign_info_content">
-                                <h3 className="f_p f_600 f_size_24 t_color3 mb_40">First time here?</h3>
-                                <h2 className="f_p f_400 f_size_30 mb-30">Join now and get<br /> <span className="f_700">20% OFF</span> for all <br /> posts.</h2>
-                                <ul className="list-unstyled mb-0">
-                                    <li><i className="ti-check"></i> Free Features</li>
-                                    <li><i className="ti-check"></i> Unlimited User Accounts</li>
-                                </ul>
-                                <button type="button" className="btn_three sign_btn_transparent"><Link className='nav-link fs' to="../SignUp">Sign Up</Link></button>
-                            </div>
-                        </div>
+  return (
+    <section className="sign_in_area bg_color sec_pad">
+      <div className="container">
+        <div className="sign_info">
+          <div className="row">
+            <div className="col-lg-5">
+              <div className="sign_info_content">
+                <h3 className="f_p f_600 f_size_24 t_color3 mb_40">First time here?</h3>
+                <h2 className="f_p f_400 f_size_30 mb-30">Join now and get<br /> <span className="f_700">20% OFF</span> for all <br /> posts.</h2>
+                <ul className="list-unstyled mb-0">
+                  <li><i className="ti-check"></i> Free Features</li>
+                  <li><i className="ti-check"></i> Unlimited User Accounts</li>
+                </ul>
+                <button type="button" className="btn_three sign_btn_transparent"><Link className='nav-link fs' to="../SignUp">Sign Up</Link></button>
+              </div>
+            </div>
 
             <div className="col-lg-7">
               <div className="login_info">
@@ -109,15 +109,17 @@ const SignInFrom = ({ setIsLoading }) => {
                     </div>
                   </div>
 
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
-                                        <div className="social_text d-flex ">
-                                            <div className="lead-text">Don't have an account?</div>
-                                            <ul className="list-unstyled social_tag mb-0">
-                                                <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
-                                                <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
-                                                <li><a href="https://google.com"><i className="ti-google"></i></a></li>
-                                            </ul> 
+
+                  <div className="d-flex justify-content-between align-items-center">
+                      <button type="button" className="btn_three fs" onClick={handleOnClick}>Sign in</button>
+                      <div className="social_text d-flex ">
+                          <div className="lead-text">Don't have an account?</div>
+                          <ul className="list-unstyled social_tag mb-0">
+                              <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
+                              <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
+                              <li><a href="https://google.com"><i className="ti-google"></i></a></li>
+                          </ul> 
+
                     </div>
                   </div>
                 </form>

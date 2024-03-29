@@ -5,15 +5,17 @@ import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer/Footer';
 import FooterData from '../components/Footer/FooterData';
 import { IoIosAirplane, IoIosSend } from "react-icons/io";
-import { GiConfirmed } from "react-icons/gi";
-import { MdInfo } from "react-icons/md";
+// import { GiConfirmed } from "react-icons/gi";
+// import { MdInfo } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
-import { FaManatSign } from "react-icons/fa6";
+// import { FaManatSign } from "react-icons/fa6";
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../Store/SenderPostSlice';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
 import { ToastContainer } from 'react-toastify';
 import {getMyDetailsAsync} from "../Store/AuthSlice";
+import { FaLocationDot } from "react-icons/fa6";
+
 
 
 function TarvelerPosts() {
@@ -107,44 +109,49 @@ function TarvelerPosts() {
             {filteredPosts.length !== 0 ? (<div className='posts'>
                 {filteredPosts.map(post => (
                     <div>
-                        {<div className="card" style={{width: "24rem"}}>
-                            <img height={200} className="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id}/>
+
+                        {/* {<div className="card" style={{ width: "24rem" }}>
+                            <img height={200} class="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
                             <div className="card-body">
                                 <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text d-flex align-items-center gap-1">Deadline date : {formatDate(post.deadlineDate)} <FaCalendarAlt/></p>
-                                <p className="card-text d-flex align-items-center gap-1">Start destination : {post.startDestination} <IoIosSend/></p>
-                                <p className="card-text d-flex align-items-center gap-1">End destination : {post.endDestination} <IoIosAirplane/></p>
-                                <p className="card-text d-flex align-items-center gap-1">Item type : {post.itemType} <MdInfo/></p>
-                                <p className="card-text d-flex align-items-center gap-1">Price: {post.price} <FaManatSign/></p>
+                                <p className="card-text d-flex align-items-center gap-1">Deadline date : {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
+                                <p className="card-text d-flex align-items-center gap-1">Start destination : {post.startDestination} <IoIosSend /></p>
+                                <p className="card-text d-flex align-items-center gap-1">End destination : {post.endDestination} <IoIosAirplane /></p>
+                                <p className="card-text d-flex align-items-center gap-1">Item type : {post.itemType} <MdInfo /></p>
+                                <p className="card-text d-flex align-items-center gap-1">Price: {post.price} <FaManatSign /></p>
                                 <Link to={`/SenderPost/${post.id}`} className="btn btn-primary">Details</Link>
                             </div>
-                        </div>}
-                        {/* <div key={post.id} className="post-item" >
+                        </div>} */}
 
-                            <div className="post-image">
-                                <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
-                            </div>
+                        <div key={post.id} className="post-item" >
+                            <Link to={`/SenderPost/${post.id}`} >
+                                <div className="post-image">
+                                    <img src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
+                                </div>
 
-                            <div className="post-details">
+                                <div className="post-details">
 
-                                <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
+                                    <p className="p-detail"><span className="span-detail">Start Destination:</span> <span className='p-span-2'>{post.startDestination} <FaLocationDot /></span></p>
 
-                                <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
+                                    <p className="p-detail"><span className="span-detail">End Destination:</span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span></p>
 
-                                <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)}  <FaCalendarAlt /></p>
+                                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)}  <FaCalendarAlt /></p>
 
-                                <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
+                                    <p className="p-detail"><span className="span-detail">Item Type:</span> {post.itemType}</p>
 
-                                <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
+                                    <p className="p-detail"><span className="span-detail">Price:</span> {post.price} <span className="span-detail">$</span></p>
 
-                            </div>
-                        </div> */}
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 ))}
+
             </div>) : (<div className="no-post">There are no posts yet.</div>)}
             <hr/>
             {<Footer FooterData={FooterData} />}
             <ToastContainer/>
+
         </div>
     );
 }

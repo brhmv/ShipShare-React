@@ -35,7 +35,7 @@ function CreateSenderPost() {
         debugger;
 
         try {
-            const formData = new FormData();
+            let formData = new FormData();
             formData.append('Description', description);
             formData.append('StartDestination', startDestination);
             formData.append('EndDestination', endDestination);
@@ -47,9 +47,9 @@ function CreateSenderPost() {
             formData.append('Title', itemTitle);
 
 
-            // for (let pair of formData.entries()) {
-            //     console.log(pair[0] + ', ' + pair[1]);
-            // }
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }
 
             console.log("formData")
             console.log(formData)
@@ -76,6 +76,7 @@ function CreateSenderPost() {
                     position: "top-right",
                 });
             }
+
         } catch (error) {
             console.error('Error creating post:', error);
         }
@@ -135,7 +136,7 @@ function CreateSenderPost() {
 
                     <div className="mb-3">
                         <p className="p-detail"><span className="span-detail">Item Weight:</span> <GiWeight /></p>
-                        <input type="text" className="form-control" value={itemWeight} onChange={(e) => setItemWeight(e.target.value)} />
+                        <input type="number" className="form-control" value={itemWeight} onChange={(e) => setItemWeight(e.target.value)} />
                     </div>
 
                     <hr />
@@ -176,7 +177,7 @@ function CreateSenderPost() {
             </div>
 
             <Footer FooterData={FooterData} />
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }
