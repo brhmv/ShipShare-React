@@ -45,12 +45,13 @@ const Notification = () => {
 
                     <div className="nrotification-footer">
 
-                        {/* <p className="span-detail">
-                            <span className="black-span">
-                                User ID:
-                            </span>
-                            {notification.userId}
-                        </p> */}
+                        {/*<p className="span-detail">*/}
+                        {/*    <span className="black-span">*/}
+                        {/*        User ID:*/}
+                        {/*    </span>*/}
+                        {/*    {notification.userId}*/}
+                        {/*</p>*/}
+
 
                         <p className="span-detail">
                             <span className="black-span">

@@ -37,11 +37,10 @@ export const createReview = createAsyncThunk('review/createReview', async ({ rat
             throw new Error('Failed to create review');
         }
 
-        const data = await response.json();
+        let data = await response.json();
+        data = {...data,reviewSender : {username : data.username}};
 
-        console.log("data rev");
         console.log(data);
-
         return data;
     } catch (error) {
         throw error;

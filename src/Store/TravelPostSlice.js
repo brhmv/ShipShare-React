@@ -4,12 +4,11 @@ import Cookies from 'js-cookie';
 
 export const getTravellerPosts = createAsyncThunk('post/getAllTravellerPosts', async () => {
     try {
-        // const accessToken = Cookies.get('accessToken');
+        const accessToken = Cookies.get('accessToken');
         const response = await fetch("https://localhost:7189/api/TravellerPost/getAllTravellerPosts", {
             headers: {
                 // 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
-
             },
             method: 'GET',
         });

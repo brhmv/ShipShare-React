@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8b513448-ad9c-4581-8211-f4302c587a9e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ConversationsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ConversationsTab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MessagesTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessagesTab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RecipientMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RecipientMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SenderMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SenderMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/SenderPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SenderPosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/TravelersPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/TravelersPosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/UserView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/UserView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Store/ReviewSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store/ReviewSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Store/TravelPostSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store/TravelPostSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notification.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notification.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Review.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Review.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,21 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "islam",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;islam&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,6 +60,8 @@
       <updated>1709743029798</updated>
       <workItem from="1709743036545" duration="14964000" />
       <workItem from="1709986365456" duration="20602000" />
+      <workItem from="1711718969733" duration="3800000" />
+      <workItem from="1711722974449" duration="1075000" />
     </task>
     <servers />
   </component>
