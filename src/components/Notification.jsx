@@ -52,7 +52,6 @@ const Notification = () => {
                         {/*    {notification.userId}*/}
                         {/*</p>*/}
 
-
                         <p className="span-detail">
                             <span className="black-span">
                                 Date:

@@ -17,7 +17,6 @@ import {getMyDetailsAsync} from "../Store/AuthSlice";
 import { FaLocationDot } from "react-icons/fa6";
 
 
-
 function TarvelerPosts() {
     useTokenExpiration();
     const dispatch = useDispatch();
@@ -109,7 +108,6 @@ function TarvelerPosts() {
             {filteredPosts.length !== 0 ? (<div className='posts'>
                 {filteredPosts.map(post => (
                     <div>
-
                         {/* {<div className="card" style={{ width: "24rem" }}>
                             <img height={200} class="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id} />
                             <div className="card-body">
@@ -146,12 +144,10 @@ function TarvelerPosts() {
                         </div>
                     </div>
                 ))}
-
             </div>) : (<div className="no-post">There are no posts yet.</div>)}
             <hr/>
             {<Footer FooterData={FooterData} />}
             <ToastContainer/>
-
         </div>
     );
 }
