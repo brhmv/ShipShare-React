@@ -22,7 +22,7 @@
 
 .all-conversations {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #6d61f3;
     list-style-type: none;
     width: 20%;
@@ -299,4 +299,10 @@
     font-family: 'Bahnschrift';
     font-weight: lighter;
     white-space: nowrap;
+}
+
+.no-post {
+    display : flex;
+    justify-content : center;
+    align-items : center;
 }

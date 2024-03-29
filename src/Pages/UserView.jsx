@@ -192,7 +192,6 @@ function UserView() {
 
 
                 <div className='user-detail-div'>
-
                     {user && <h1 className='profile-h1-tag'>Reviews of {user.username}</h1>}
                     {user && <Review userId={userId} user={user} isMe={false} />}
                 </div>

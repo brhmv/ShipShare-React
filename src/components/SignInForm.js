@@ -101,10 +101,11 @@ const SignInFrom = ({ setIsLoading }) => {
                   </div>
 
                   <div className="extra mb_20">
-                    <div className="checkbox remember">
+                    <div className="w-100 checkbox remember d-flex justify-content-between">
                       <label>
                         <input type="checkbox" /> Keep me Signed in
                       </label>
+                      <Link to="/forgotPassword">Forgot Password?</Link>
                     </div>
                   </div>
 
@@ -116,7 +117,7 @@ const SignInFrom = ({ setIsLoading }) => {
                                                 <li><a href="https://www.facebook.com"><i className="ti-facebook"></i></a></li>
                                                 <li><a href="https://twitter.com/?lang=en"><i className="ti-twitter-alt"></i></a></li>
                                                 <li><a href="https://google.com"><i className="ti-google"></i></a></li>
-                                            </ul> */}
+                                            </ul> 
                     </div>
                   </div>
                 </form>

@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../Store/SenderPostSlice';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
 import { ToastContainer } from 'react-toastify';
+import {getMyDetailsAsync} from "../Store/AuthSlice";
 
 
 function TarvelerPosts() {
@@ -20,7 +21,7 @@ function TarvelerPosts() {
     const dispatch = useDispatch();
 
     const senderPosts = useSelector((state) => state.postSender.allPosts) ?? "Loading posts...";
-
+    const myDetails = useSelector((state) => state.auth.mydetails);
     const [startLocation, setStartLocation] = useState('');
     const [endLocation, setEndLocation] = useState('');
     const [filteredPosts, setFilteredPosts] = useState(senderPosts);
@@ -35,21 +36,15 @@ function TarvelerPosts() {
     };
 
     useEffect(() => {
-        console.log('Sender posts');
+        dispatch(getMyDetailsAsync());
         dispatch(getPosts());
-        console.log('sender x');
     }, [dispatch]);
 
     useEffect(() => {
-        console.log('sender posts to filter');
-        console.log(senderPosts);
-
-        setFilteredPosts(senderPosts);
-
-        console.log("filteredPosts");
-        console.log(filteredPosts);
-
-    }, [senderPosts]);
+        // setFilteredPosts(senderPosts);
+        if (myDetails)
+            setFilteredPosts(senderPosts.filter(p => p.userId !== myDetails.id));
+    }, [senderPosts,myDetails]);
 
 
     const formatDate = (dateString) => {
@@ -109,11 +104,11 @@ function TarvelerPosts() {
 
             <hr />
 
-            <div className='posts'>
+            {filteredPosts.length !== 0 ? (<div className='posts'>
                 {filteredPosts.map(post => (
                     <div>
                         {<div className="card" style={{width: "24rem"}}>
-                            <img height={200} class="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id}/>
+                            <img height={200} className="card-img-top" src={post.itemPhotos ? post.itemPhotos["$values"][0] : "Adawd"} alt={post.id}/>
                             <div className="card-body">
                                 <h5 className="card-title">{post.title}</h5>
                                 <p className="card-text d-flex align-items-center gap-1">Deadline date : {formatDate(post.deadlineDate)} <FaCalendarAlt/></p>
@@ -146,10 +141,9 @@ function TarvelerPosts() {
                         </div> */}
                     </div>
                 ))}
-            </div>
-
-
-            <Footer FooterData={FooterData} />
+            </div>) : (<div className="no-post">There are no posts yet.</div>)}
+            <hr/>
+            {<Footer FooterData={FooterData} />}
             <ToastContainer/>
         </div>
     );
