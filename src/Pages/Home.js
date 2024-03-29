@@ -23,7 +23,7 @@ const Home = () => {
 
             <ChatBanner />
 
-            <SecurityTestimonial />
+            {/* <SecurityTestimonial /> */}
 
             <AppGetstarted />
 

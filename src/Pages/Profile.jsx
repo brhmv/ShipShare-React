@@ -17,6 +17,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Review from "../components/Review";
 import { MagnifyingGlass } from 'react-loader-spinner';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
+import { GiConfirmed } from "react-icons/gi";
+import { IoIosCloseCircle } from "react-icons/io";
+
+
 
 const ProfileView = () => {
     const dispatch = useDispatch();
@@ -165,7 +169,7 @@ const ProfileView = () => {
                         <h1 className='profile-h1-tag'>User Details</h1>
                         {/* <p className='user-detail'><span className='bold-span'>User ID: </span>{myDetails.id}</p> */}
                         <p className='user-detail'><span className='bold-span'>Name:</span> {myDetails.username}</p>
-                        <p className='user-detail'><span className='bold-span'>Email: </span>{myDetails.email}</p>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{myDetails.email} {myDetails.isEmailConfirmed ? (<GiConfirmed style={{color:"green"}}/>) : (<IoIosCloseCircle style={{color : "red"}}/>)}</p>
                     </div>
                 ) : (
                     <div className='d-flex w-100 justify-content-center align-items-center'>

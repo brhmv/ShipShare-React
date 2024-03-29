@@ -24,7 +24,7 @@ export const getTravellerPosts = createAsyncThunk('post/getAllTravellerPosts', a
     }
 });
 
-export const addPostAsync = createAsyncThunk('post/createTraveler', async ({ postData, setTemp }) => {
+export const addPostAsync = createAsyncThunk('post/createTraveler', async ({ postData }) => {
     try {
         const accessToken = Cookies.get('accessToken');
         const response = await fetch("https://localhost:7189/api/TravellerPost/createTravellerPost", {
@@ -41,8 +41,7 @@ export const addPostAsync = createAsyncThunk('post/createTraveler', async ({ pos
         }
 
         const data = await response.json();
-
-        setTemp(true);
+        
 
         return data;
     } catch (error) {

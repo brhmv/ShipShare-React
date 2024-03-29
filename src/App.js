@@ -29,6 +29,7 @@ import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import Notification from "./components/Notification.jsx";
 import ScrollToTop from "./ScrollToTop.js";
 import { ToastContainer } from "react-toastify";
+import EmailConfirmationPage from "./Pages/EmailConfirmed.jsx";
 
 class App extends Component {
 
@@ -85,6 +86,8 @@ class App extends Component {
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/confirmEmail/:id/:token" element={<EmailConfirmationPage/>}/>
         </Routes>
         <ToastContainer />
 

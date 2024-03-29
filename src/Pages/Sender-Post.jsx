@@ -31,7 +31,11 @@ const SenderPost = () => {
         dispatch(getPosts());
     }, [dispatch]);
 
-
+    useEffect(() => {
+        fetch(`https://localhost:7189/api/SenderPost/increaseSenderPostView/${postId}`,{
+            method : "POST",
+        });
+    },[postId])
 
     const formatDate = (dateString) => {
         const dateTime = new Date(dateString);

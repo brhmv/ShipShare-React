@@ -16,6 +16,8 @@ import { GiWeight } from "react-icons/gi";
 import { getUserDetailsWithIdAsync } from '../Store/AuthSlice';
 import useTokenExpiration from '../customHooks/useTokenExpiration';
 import { ToastContainer } from 'react-toastify';
+import { GiConfirmed } from 'react-icons/gi';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 function UserView() {
     const dispatch = useDispatch();
@@ -27,6 +29,7 @@ function UserView() {
     const FetchTravelerPosts = useSelector((state) => state.postTravel.posts);
     const FetchSenderPosts = useSelector((state) => state.postSender.allPosts);
     const user = useSelector((state) => state.auth.userdetails);
+    const isAuth = useSelector((state) => state.auth.isAuthenticated)
     useTokenExpiration();
 
     useEffect(() => {
@@ -158,8 +161,8 @@ function UserView() {
                     <div className='user-detail-div'>
                         <h1 className='profile-h1-tag'>User Details</h1>
                         <p className='user-detail'><span className='bold-span'>Name:</span> {user.username}</p>
-                        <p className='user-detail'><span className='bold-span'>Email: </span>{user.email}</p>
-                        <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>
+                        <p className='user-detail'><span className='bold-span'>Email: </span>{user.email} {user.isEmailConfirmed ? (<GiConfirmed style={{color:"green"}}/>) : (<IoIosCloseCircle style={{color : "red"}}/>)}</p>
+                        {isAuth && <Link to={`/chat/${userId}`} className='btn btn-success btn-lg m-auto'>Chat with user</Link>}
                     </div>
                 ) : (
                     <div className='d-flex w-100 justify-content-center align-items-center'>
