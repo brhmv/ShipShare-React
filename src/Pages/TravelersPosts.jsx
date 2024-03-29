@@ -110,110 +110,24 @@ function TarvelerPosts() {
 
             {filteredPosts.length !== 0 ? <div className="posts">
                 {filteredPosts.map((post, index) => (
-                <div key={index}>
-                    {
-                        <div className="card" style={{width: "24rem"}}>
-                            <img
-                                height={200}
-                                className="card-img-top"
-                                src="https://img.freepik.com/free-photo/paper-box-packaging-delivery-concept_53876-127190.jpg?w=740&t=st=1711118884~exp=1711119484~hmac=d88b3192c6a52be884cd49e980b481d545c08cc396e8a4d5ef90b685eeea2341"
-                                alt={post.id}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text d-flex align-items-center gap-1">
-                                    Deadline date : {formatDate(post.deadlineDate)}{" "}
-                                    <FaCalendarAlt/>
-                                </p>
-                                <p className="card-text d-flex align-items-center gap-1">
-                                    Start destination : {post.startDestination} <IoIosSend/>
-                                </p>
-                                <p className="card-text d-flex align-items-center gap-1">
-                                    End destination : {post.endDestination} <IoIosAirplane/>
-                                </p>
-                                <p className="card-text d-flex align-items-center gap-1">
-                                    Price: {post.price} <FaManatSign/>
-                                </p>
-                                <Link
-                                    to={`/post/${post.id}`}
-                                    className="btn btn-primary"
-                                >
-                                    Details
-                                </Link>
-                            </div>
-                        </div>
-                    }
-                    {/* <div key={post.id} className="post-item">
-          </div>
+                
+                <div key={post.id} className="post-item">
+                  <Link to={`/post/${post.id}`}>
+                    <div className="post-details">
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-mdb-ripple-init="true"
-            onClick={handleSearch}
-          >
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
-      </div>
+                      <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
 
-      <hr />
+                      <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
 
-      <div className="posts">
-        {filteredPosts.length !== 0 ? (
-          filteredPosts.map((post) => (
-            <div>
-              {/* {
-                <div className="card" style={{ width: "24rem" }}>
-                  <img
-                    height={200}
-                    class="card-img-top"
-                    src="https://img.freepik.com/free-photo/paper-box-packaging-delivery-concept_53876-127190.jpg?w=740&t=st=1711118884~exp=1711119484~hmac=d88b3192c6a52be884cd49e980b481d545c08cc396e8a4d5ef90b685eeea2341"
-                    alt={post.id}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text d-flex align-items-center gap-1">
-                      Deadline date : {formatDate(post.deadlineDate)}{" "}
-                      <FaCalendarAlt />
-                    </p>
-                    <p className="card-text d-flex align-items-center gap-1">
-                      Start destination : {post.startDestination} <IoIosSend />
-                    </p>
-                    <p className="card-text d-flex align-items-center gap-1">
-                      End destination : {post.endDestination} <IoIosAirplane />
-                    </p>
-                    <p className="card-text d-flex align-items-center gap-1">
-                      Price: {post.price} <FaManatSign />
-                    </p>
-                    <Link
-                      to={`/post/${post.id}`}
-                      className="btn btn-primary"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </div>
-              } */}
-              <div key={post.id} className="post-item">
-                <Link to={`/post/${post.id}`}>
-                  <div className="post-details">
+                      <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
 
-                    <p className="p-detail"><span className="span-detail">Start Destination: </span> <span className='p-span-2'>{post.startDestination}<FaLocationDot /></span></p>
+                      <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
 
-                    <p className="p-detail"><span className="span-detail">End Destination: </span> <span className='p-span-2'>{post.endDestination} <FaLocationDot /></span> </p>
-
-                    <p className="p-detail"><span className="span-detail">Deadline Date:</span> {formatDate(post.deadlineDate)} <FaCalendarAlt /></p>
-
-                    <p className="p-detail"><span className="span-detail">Price: </span> {post.price} <span className="span-detail">$</span></p>
-
-                  </div>
-                </Link>
-                                </div>
-                            </div> */}
+                    </div>
+                  </Link>
                 </div>
                 ))}
-            </div> : (<div className="no-post">There are no posts yet.</div>)}
+                </div> : (<div className="no-post">There are no posts yet.</div>)}
 
             <hr/>
             <Footer FooterData={FooterData} />
